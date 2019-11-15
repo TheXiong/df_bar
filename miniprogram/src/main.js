@@ -24,7 +24,7 @@ export default {
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#0097ff',
-      navigationBarTitleText: '小优外卖',
+      navigationBarTitleText: '东方网咖',
       navigationBarTextStyle: 'white'
     },
     tabBar: {
