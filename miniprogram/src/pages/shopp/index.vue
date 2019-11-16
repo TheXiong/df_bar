@@ -45,18 +45,18 @@
     methods: {
       getShopping () {
         let _this = this
-        fly.get('https://easy-mock.com/mock/5b69315d99b4c7086b576bf0/shopping')
-          .then(function (response) {
-            if (response.status === 200) {
-              let shopping = response.data
-              _this.loadingShow = false
-              _this.newShopp = shopping.data
-            }
-          })
-          .catch(function (err) {
-            _this.loadingShow = true
-            console.log(err)
-          })
+        // fly.get('https://easy-mock.com/mock/5b69315d99b4c7086b576bf0/shopping')
+        //   .then(function (response) {
+        //     if (response.status === 200) {
+        //       let shopping = response.data
+        //       _this.loadingShow = false
+        //       _this.newShopp = shopping.data
+        //     }
+        //   })
+        //   .catch(function (err) {
+        //     _this.loadingShow = true
+        //     console.log(err)
+        //   })
       }
     }
   }

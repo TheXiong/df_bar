@@ -9,7 +9,7 @@
 	},
 	"miniprogramRoot": "./dist/",
 	"compileType": "miniprogram",
-	"appid": "touristappid",
+	"appid": "wx6d4059dd02b618cf",
 	"projectname": "mpvue-signin",
 	"condition": {
 		"search": {

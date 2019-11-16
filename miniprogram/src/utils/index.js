@@ -18,7 +18,12 @@ export function formatTime (date) {
   return `${t1} ${t2}`
 }
 
+export function validatePhone (phone) {
+  return /^1[3456789]\d{9}$/.test(phone)
+}
+
 export default {
   formatNumber,
-  formatTime
+  formatTime,
+  validatePhone
 }

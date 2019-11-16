@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "i-input": "../../static/dist/input/index",
+    "i-panel": "../../static/dist/panel/index"
+  }
+}
