@@ -1,0 +1,130 @@
+
+.addressAddContainer.data-v-240a3d0a {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #f5f5f5;
+}
+.addressAddContent.data-v-240a3d0a {
+  background: #fff;
+}
+.addressAddContentList.data-v-240a3d0a {
+  display: flex;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-bottom: 2rpx solid #eee;
+}
+.addressAddContentList .addressAddContentListTitle.data-v-240a3d0a {
+  color: #495060;
+  min-width: 130rpx;
+  padding-right: 20rpx;
+  font-size: 28rpx;
+  padding-left: 40rpx;
+}
+.addressAddContentList .addressAddContentListInput.data-v-240a3d0a {
+  flex: 1;
+  line-height: 1.6;
+  padding: 8rpx 0;
+  min-height: 44rpx;
+  height: auto;
+  font-size: 28rpx;
+  color: #495060;
+  caret-color: #495060;
+}
+.message.data-v-240a3d0a {
+  width: 100%;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  color: #0097ff;
+  font-size: 28rpx;
+}
+.operatorButton.data-v-240a3d0a {
+  width: 690rpx;
+  overflow: hidden;
+  margin-top: 100rpx;
+  margin-left: auto;
+  margin-right: auto;
+}
+.addressAddButton.data-v-240a3d0a {
+  width: 335rpx;
+  height: 88rpx;
+  text-align: center;
+  color: #fff;
+  line-height: 88rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+  border-radius: 3rpx;
+  float: left;
+}
+.del.data-v-240a3d0a {
+  background: #d9644c;
+}
+.save.data-v-240a3d0a {
+  background: #0097ff;
+  margin-left: 20rpx;
+}
+.delContainer.data-v-240a3d0a {
+  height: 100%;
+}
+.delFull.data-v-240a3d0a {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+.delContent.data-v-240a3d0a {
+  width: 540rpx;
+  height: 190rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -95rpx;
+  margin-left: -270rpx;
+}
+.delContent .delContentTitle.data-v-240a3d0a {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 36rpx;
+  color: #80848f;
+  border-bottom: 2rpx solid #e9eaec;
+}
+.delContent .delContentButton.data-v-240a3d0a {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 90rpx;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 90rpx;
+}
+.delContent .delContentButton .delContentButtonL.data-v-240a3d0a {
+  height: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 50%;
+  float: left;
+  border-right: 2rpx solid #e9eaec;
+  color: #495060;
+}
+.delContent .delContentButton .delContentButtonR.data-v-240a3d0a {
+  height: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 50%;
+  float: right;
+  color: #2e80f0;
+}

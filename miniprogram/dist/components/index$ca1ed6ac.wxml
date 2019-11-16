@@ -1,0 +1,32 @@
+<import src="pay$6092c8d6" />
+<template name="index$ca1ed6ac">
+  <view class="_div data-v-141d941c settlementContainer">
+    <view class="_div data-v-141d941c settlementHeader">
+      <view class="_div data-v-141d941c settlementHeaderAddress">
+        <view class="_p data-v-141d941c settlementHeaderAddressD"> 订单配送至: </view>
+        <view class="_p data-v-141d941c settlementHeaderAddressA" bindtap="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}"> {{ userAddres.length===0 ? '请选择收货地址>' : [setUserOrderAddres.name,setUserOrderAddres.phone,setUserOrderAddres.address] }} </view>
+      </view>
+    </view>
+    <view class="_div data-v-141d941c settlementMain">
+      <i-cell-group class="_i-cell-group data-v-141d941c">
+        <i-cell title="{{commdityShoppingName}}" class="_i-cell data-v-141d941c"></i-cell>
+        <i-cell wx:key="index" key="{{index}}" title="{{item.commodityName}}" value="{{(item.commodityMoney) * (item.commoditySum)}}" wx:for="{{commdityShopping}}" wx:for-index="index" wx:for-item="item" class="_i-cell data-v-141d941c"></i-cell>
+        <i-cell title="配送费" value="{{  commditySumPrice < 10 ? 1 : 0  }}" class="_i-cell data-v-141d941c"></i-cell>
+        <i-cell title="优惠金额 " value="{{randomSum}}" class="_i-cell data-v-141d941c"></i-cell>
+      </i-cell-group>
+    </view>
+    <view class="_div data-v-141d941c settlementFooter">
+      <view class="_div data-v-141d941c settlementFooterL">
+        <view class="_p data-v-141d941c settlementFooterLM">
+          <label class="_span data-v-141d941c settlementFooterLMSum">{{commditySumPriceYH}}元</label>
+          <label class="_span data-v-141d941c settlementFooterLMH">|</label>
+          <label class="_span data-v-141d941c settlementFooterLMYH">已优惠{{randomSum}}元</label>
+        </view>
+      </view>
+      <view class="_div data-v-141d941c settlementFooterR" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}"> 去支付 </view>
+    </view>
+    <template wx:if="{{payShow}}" bindclosePayFull="handleProxy" data-eventid="{{'2'}}" data-comkey="{{$k}}" data="{{...$root[$kk+'5'], $root}}" is="pay$6092c8d6"></template>
+    <view class="_div data-v-141d941c tipsMessage" wx:if="{{tipsMessage.status}}"> {{tipsMessage.message}} </view>
+    <view style="height: 100rpx" class="_div data-v-141d941c"></view>
+  </view>
+</template>

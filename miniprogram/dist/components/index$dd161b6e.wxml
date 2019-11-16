@@ -1,0 +1,37 @@
+<template name="index$dd161b6e">
+  <view class="_div data-v-7f30398a ordercontainer">
+    <view class="_div data-v-7f30398a orderNoList" wx:if="{{!commdityOrder.length}}">
+      <view class="_div data-v-7f30398a orderImg">
+        <image src="/static/img/order.png" alt="ndd" class="_img data-v-7f30398a"></image>
+      </view>
+      <view class="_p data-v-7f30398a orderTitle">当前没有订单！</view>
+    </view>
+    <view class="_div data-v-7f30398a orderList" wx:else>
+      <view class="_div data-v-7f30398a orderListBlock" wx:key="index" key="{{index}}" wx:for="{{commdityOrder}}" wx:for-index="index" wx:for-item="item">
+        <i-cell-group class="_i-cell-group data-v-7f30398a">
+          <i-cell title="{{item.commdityOrderName}}" class="_i-cell data-v-7f30398a">
+            <i-icon bindtap="handleProxy" slot="footer" type="delete_fill" color="#d9644c" size="18" data-eventid="{{'0-'+index}}" data-comkey="{{$k}}" class="_i-icon data-v-7f30398a"></i-icon>
+          </i-cell>
+          <i-cell wx:key="indexChild" key="{{indexChild}}" title="{{itemChild.commodityName}}" value="{{ (itemChild.commodityMoney) + ' * ' + (itemChild.commoditySum) + ' = ' + (itemChild.commodityMoney * itemChild.commoditySum)  }}" wx:for="{{item.commdityOrderShopping}}"
+            wx:for-index="indexChild" wx:for-item="itemChild" class="_i-cell data-v-7f30398a"></i-cell>
+          <i-cell title="配送费" value="{{item.commdityOrderActual < 10 ? 1 : 0}}" class="_i-cell data-v-7f30398a"></i-cell>
+          <i-cell title="优惠金额" value="{{item.commdityOrderOffer}}" class="_i-cell data-v-7f30398a"></i-cell>
+          <i-cell title="需要支付" value="{{item.commdityOrderActual}}" class="_i-cell data-v-7f30398a"></i-cell>
+          <i-cell title="实际支付" value="{{item.commdityOrderSumPrice}}" class="_i-cell data-v-7f30398a"></i-cell>
+          <i-cell title="配送地址" value="{{item.commdityOrderUserAddress.phone}}" label="{{item.commdityOrderUserAddress.name +','+item.commdityOrderUserAddress.address}}" class="_i-cell data-v-7f30398a"></i-cell>
+        </i-cell-group>
+      </view>
+    </view>
+    <view class="_div data-v-7f30398a delOrderContainer" wx:if="{{orderTipsMessage}}">
+      <view class="_div data-v-7f30398a delFull">
+        <view class="_div data-v-7f30398a delContent">
+          <view class="_div data-v-7f30398a delContentTitle"> 确定删除该订单吗？ </view>
+          <view class="_div data-v-7f30398a delContentButton">
+            <view class="_div data-v-7f30398a delContentButtonL" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}">取消</view>
+            <view class="_div data-v-7f30398a delContentButtonR" bindtap="handleProxy" data-eventid="{{'2'}}" data-comkey="{{$k}}">确定</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

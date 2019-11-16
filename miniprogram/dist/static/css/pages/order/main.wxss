@@ -1,0 +1,97 @@
+
+.ordercontainer.data-v-7f30398a {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #f4f4f4;
+}
+.orderImg.data-v-7f30398a {
+  width: 130rpx;
+  height: 120rpx;
+  margin: 460rpx auto 0;
+}
+.orderImg ._img.data-v-7f30398a {
+  width: 100%;
+  height: 100%;
+}
+.orderTitle.data-v-7f30398a {
+  text-align: center;
+  font-size: 32rpx;
+  color: #aaaaaa;
+  margin-top: 40rpx;
+}
+.orderList.data-v-7f30398a {
+  background: #f4f4f4;
+  padding-bottom: 100rpx;
+}
+.orderListBlock.data-v-7f30398a {
+  width: 700rpx;
+  margin: 20rpx auto;
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+.delOrderContainer.data-v-7f30398a {
+  height: 100%;
+}
+.delFull.data-v-7f30398a {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+.delContent.data-v-7f30398a {
+  width: 540rpx;
+  height: 190rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -95rpx;
+  margin-left: -270rpx;
+}
+.delContent .delContentTitle.data-v-7f30398a {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 36rpx;
+  color: #80848f;
+  border-bottom: 2rpx solid #e9eaec;
+}
+.delContent .delContentButton.data-v-7f30398a {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 90rpx;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 90rpx;
+}
+.delContent .delContentButton .delContentButtonL.data-v-7f30398a {
+  height: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 50%;
+  float: left;
+  border-right: 2rpx solid #e9eaec;
+  color: #495060;
+}
+.delContent .delContentButton .delContentButtonR.data-v-7f30398a {
+  height: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 50%;
+  float: right;
+  color: #2e80f0;
+}

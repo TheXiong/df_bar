@@ -1,0 +1,99 @@
+
+.shoppcontainer.data-v-80b4adb2 {
+  height: 100%;
+  background: #f4f4f4;
+}
+.shoppHeader.data-v-80b4adb2 {
+  width: 100%;
+  height: 260rpx;
+  background: #0097ff;
+  margin-bottom: -190rpx;
+}
+.shoppHeader .shoppTitle.data-v-80b4adb2 {
+  width: 700rpx;
+  margin: auto;
+  padding-top: 10rpx;
+  color: #fff;
+}
+.shoppHeader .shoppTitle .shoppTitleL.data-v-80b4adb2 {
+  float: left;
+  font-size: 36rpx;
+}
+.shoppHeader .shoppTitle .shoppTitleR.data-v-80b4adb2 {
+  float: right;
+  font-size: 32rpx;
+}
+.shoppList.data-v-80b4adb2 {
+  width: 700rpx;
+  background: #fff;
+  -webkit-border-radius: 20rpx;
+  -moz-border-radius: 20rpx;
+  border-radius: 20rpx;
+  margin: 20rpx auto;
+  padding: 0 0 20rpx 0;
+  overflow: hidden;
+}
+.shoppList .shoppListTitle.data-v-80b4adb2 {
+  width: 100%;
+  height: 60rpx;
+  line-height: 80rpx;
+  color: #494949;
+  font-size: 32rpx;
+  margin-left: 30rpx;
+}
+.shoppList .shoppListTitle .shoppListTitleIcon.data-v-80b4adb2 {
+  height: 40rpx;
+  padding: 0 6rpx;
+  background: #ffe142;
+  float: left;
+  font-size: 24rpx;
+  color: #52250a;
+  text-align: center;
+  line-height: 40rpx;
+  -webkit-border-radius: 6rpx;
+  -moz-border-radius: 6rpx;
+  border-radius: 6rpx;
+  margin-right: 12rpx;
+  margin-top: 20rpx;
+}
+.shoppList .shoppListDetail.data-v-80b4adb2 {
+  width: 100%;
+  height: 160rpx;
+  margin: 20rpx 0;
+}
+.shoppList .shoppListDetail .shoppListDetailImg.data-v-80b4adb2 {
+  width: 160rpx;
+  height: 160rpx;
+  overflow: hidden;
+  float: left;
+  margin-left: 30rpx;
+}
+.shoppList .shoppListDetail .shoppListDetailImg ._img.data-v-80b4adb2 {
+  width: 100%;
+  height: 100%;
+}
+.shoppListDetailD.data-v-80b4adb2 {
+  float: left;
+  width: 456rpx;
+  height: 100%;
+  margin-left: 30rpx;
+}
+.shoppListDetailD .shoppListDetailDT.data-v-80b4adb2 {
+  overflow: hidden;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #333;
+  font-size: 32rpx;
+  font-weight: bold;
+  line-height: 70rpx;
+}
+.shoppListDetailD .shoppListDetailDP.data-v-80b4adb2,
+.shoppListDetailD .shoppListDetailDM.data-v-80b4adb2 {
+  color: #717171;
+  font-size: 28rpx;
+  line-height: 40rpx;
+}
+.shoppLoading.data-v-80b4adb2 {
+  margin-top: 220rpx;
+}

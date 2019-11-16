@@ -1,0 +1,18 @@
+<template name="index$70cb3674">
+  <view class="_div data-v-450eb8ce feedbackContainer">
+    <view class="_div data-v-450eb8ce feedback">
+      <view class="_div data-v-450eb8ce feedbackTitle">联系人</view>
+      <input class="_input data-v-450eb8ce feedbackInput" type="text" value="{{feedback.name}}" bindinput="handleProxy" autofocus placeholder="名字" data-eventid="{{'0'}}" data-comkey="{{$k}}" />
+    </view>
+    <view class="_div data-v-450eb8ce feedback">
+      <view class="_div data-v-450eb8ce feedbackTitle">联系电话</view>
+      <input class="_input data-v-450eb8ce feedbackInput" type="number" value="{{feedback.phone}}" bindinput="handleProxy" placeholder="请输入手机号" data-eventid="{{'1'}}" data-comkey="{{$k}}" />
+    </view>
+    <view class="_div data-v-450eb8ce feedback">
+      <view class="_div data-v-450eb8ce feedbackTitle">反馈内容</view>
+      <textarea class="_textarea data-v-450eb8ce feedbackInputTextarea" value="{{feedback.detail}}" bindinput="handleProxy" placeholder="请输入反馈内容" data-eventid="{{'2'}}" data-comkey="{{$k}}" />
+    </view>
+    <view class="_div data-v-450eb8ce feedbackButton" bindtap="handleProxy" data-eventid="{{'3'}}" data-comkey="{{$k}}">提交意见</view>
+    <view class="_div data-v-450eb8ce feedbackMessage" wx:if="{{feedbackStatus}}">反馈成功~</view>
+  </view>
+</template>

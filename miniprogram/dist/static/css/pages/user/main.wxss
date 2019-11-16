@@ -1,0 +1,60 @@
+
+.userContainer.data-v-8acbfed8 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #eee;
+}
+.user.data-v-8acbfed8 {
+  width: 100%;
+  height: 200rpx;
+  background: #0097ff;
+}
+.user .userImg.data-v-8acbfed8 {
+  width: 120rpx;
+  height: 120rpx;
+  background: #e9e9e9;
+  border-radius: 50%;
+  margin: 40rpx 0 0 40rpx;
+  float: left;
+  overflow: hidden;
+}
+.user .userImg ._img.data-v-8acbfed8 {
+  width: 100%;
+  height: 100%;
+}
+.user .userD.data-v-8acbfed8 {
+  float: left;
+  margin: 40rpx 0 0 50rpx;
+}
+.user .userD .userName.data-v-8acbfed8 {
+  color: #fff;
+  font-size: 40rpx;
+  line-height: 120rpx;
+}
+.user .userD .userPhone.data-v-8acbfed8 {
+  color: #fff;
+  font-size: 32rpx;
+  line-height: 40rpx;
+}
+.usermenu.data-v-8acbfed8 {
+  width: 100%;
+  background: #fff;
+}
+.userLogIn.data-v-8acbfed8 {
+  width: 100%;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+.userLogIn ._a.data-v-8acbfed8 {
+  display: block;
+  width: 100%;
+  height: 80rpx;
+  background: #fff;
+  text-align: center;
+  line-height: 80rpx;
+  font-size: 32rpx;
+  color: #f23030;
+}
