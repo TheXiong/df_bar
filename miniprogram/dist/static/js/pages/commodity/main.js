@@ -1,13 +1,13 @@
 global.webpackJsonp([13],{
 
-/***/ 72:
+/***/ 111:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(112);
 
 
 
@@ -20,23 +20,24 @@ app.$mount();
     usingComponents: {
       'i-icon': '../../static/dist/icon/index',
       'i-cell-group': '../../static/dist/cell-group/index',
-      'i-cell': '../../static/dist/cell/index'
+      'i-cell': '../../static/dist/cell/index',
+      'i-input': '../../static/dist/input/index'
     }
   }
 });
 
 /***/ }),
 
-/***/ 73:
+/***/ 112:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_lib_template_compiler_index_id_data_v_9ef0214c_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_node_modules_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_lib_template_compiler_index_id_data_v_9ef0214c_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_node_modules_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(115);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(74)
+  __webpack_require__(113)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
@@ -81,23 +82,46 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 74:
+/***/ 113:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 75:
+/***/ 114:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lodash__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_lodash__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__(4);
 
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -196,137 +220,57 @@ if (false) {(function () {
     return {
       commodityIndexs: 0,
       commodityToggleShow: false,
-      commodityName: '九三鸭霸王外卖店',
-      commodityList: [{
-        commodityMenu: '炒菜',
-        commodityData: [{
-          commodityImg: '/static/img/xbk.png',
-          commodityAlt: 'xbk',
-          commodityName: '香辣鸡腿堡1',
-          commodityDetail: '鸡肉、青椒、等等等等等等等等等等等等等等等等',
-          commodityMoney: 5,
-          commoditySum: 1
-        }, {
-          commodityImg: '/static/img/xbk.png',
-          commodityAlt: 'xbk',
-          commodityName: '香辣鸡腿堡2',
-          commodityDetail: '鸡肉、青椒、等等等等等等等等等等等等等等等等',
-          commodityMoney: 8,
-          commoditySum: 1
-        }]
-      }, {
-        commodityMenu: '炒菜',
-        commodityData: [{
-          commodityImg: '/static/img/xbk.png',
-          commodityAlt: 'xbk',
-          commodityName: '香辣鸡腿堡3',
-          commodityDetail: '鸡肉、青椒、等等等等等等等等等等等等等等等等',
-          commodityMoney: 14,
-          commoditySum: 1
-        }, {
-          commodityImg: '/static/img/xbk.png',
-          commodityAlt: 'xbk',
-          commodityName: '香辣鸡腿堡4',
-          commodityDetail: '鸡肉、青椒、等等等等等等等等等等等等等等等等',
-          commodityMoney: 12,
-          commoditySum: 1
-        }, {
-          commodityImg: '/static/img/xbk.png',
-          commodityAlt: 'xbk',
-          commodityName: '香辣鸡腿堡5',
-          commodityDetail: '鸡肉、青椒、等等等等等等等等等等等等等等等等',
-          commodityMoney: 10,
-          commoditySum: 1
-        }]
-      }, {
-        commodityMenu: '炒菜',
-        commodityData: [{
-          commodityImg: '/static/img/xbk.png',
-          commodityAlt: 'xbk',
-          commodityName: '香辣鸡腿堡6',
-          commodityDetail: '鸡肉、青椒、等等等等等等等等等等等等等等等等',
-          commodityMoney: 10,
-          commoditySum: 1
-        }, {
-          commodityImg: '/static/img/xbk.png',
-          commodityAlt: 'xbk',
-          commodityName: '香辣鸡腿堡7',
-          commodityDetail: '鸡肉、青椒、等等等等等等等等等等等等等等等等',
-          commodityMoney: 11,
-          commoditySum: 1
-        }, {
-          commodityImg: '/static/img/xbk.png',
-          commodityAlt: 'xbk',
-          commodityName: '香辣鸡腿堡8',
-          commodityDetail: '鸡肉、青椒、等等等等等等等等等等等等等等等等',
-          commodityMoney: 10,
-          commoditySum: 1
-        }, {
-          commodityImg: '/static/img/xbk.png',
-          commodityAlt: 'xbk',
-          commodityName: '香辣鸡腿堡9',
-          commodityDetail: '鸡肉、青椒、等等等等等等等等等等等等等等等等',
-          commodityMoney: 10,
-          commoditySum: 1
-        }]
-      }, {
-        commodityMenu: '炒菜',
-        commodityData: [{
-          commodityImg: '/static/img/xbk.png',
-          commodityAlt: 'xbk',
-          commodityName: '香辣鸡腿堡10',
-          commodityDetail: '鸡肉、青椒、等等等等等等等等等等等等等等等等',
-          commodityMoney: 10,
-          commoditySum: 1
-        }, {
-          commodityImg: '/static/img/xbk.png',
-          commodityAlt: 'xbk',
-          commodityName: '香辣鸡腿堡11',
-          commodityDetail: '鸡肉、青椒、等等等等等等等等等等等等等等等等',
-          commodityMoney: 10,
-          commoditySum: 1
-        }, {
-          commodityImg: '/static/img/xbk.png',
-          commodityAlt: 'xbk',
-          commodityName: '香辣鸡腿堡12',
-          commodityDetail: '鸡肉、青椒、等等等等等等等等等等等等等等等等',
-          commodityMoney: 10,
-          commoditySum: 1
-        }, {
-          commodityImg: '/static/img/xbk.png',
-          commodityAlt: 'xbk',
-          commodityName: '香辣鸡腿堡13',
-          commodityDetail: '鸡肉、青椒、等等等等等等等等等等等等等等等等',
-          commodityMoney: 10,
-          commoditySum: 1
-        }]
-      }]
+      commodityName: "九三鸭霸王外卖店",
+      productTypes: [], //小吃类型
+      productTypesId: 0, //当前所选类型
+      productList: [],
+      userInfo: null
     };
   },
 
-  computed: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["b" /* mapState */])(['commdityShopping']), {
+  computed: __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default()({}, Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["b" /* mapState */])(["commdityShopping"]), {
     commodityPrice: function commodityPrice() {
       var sumPrice = 0;
-      __WEBPACK_IMPORTED_MODULE_1_lodash___default.a.forEach(this.commdityShopping, function (value, key) {
-        sumPrice += value.commodityMoney * value.commoditySum;
+      __WEBPACK_IMPORTED_MODULE_2_lodash___default.a.forEach(this.commdityShopping, function (value, key) {
+        sumPrice += value.integral * value.num;
       });
-      if (sumPrice < 10) {
-        sumPrice += 1;
-      }
+      // if (sumPrice < 10) {
+      //   sumPrice += 1;
+      // }
+
       return sumPrice;
     },
     commoditySumShopp: function commoditySumShopp() {
       var Sum = 0;
-      __WEBPACK_IMPORTED_MODULE_1_lodash___default.a.forEach(this.commdityShopping, function (value, key) {
-        Sum += value.commoditySum;
+      __WEBPACK_IMPORTED_MODULE_2_lodash___default.a.forEach(this.commdityShopping, function (value, key) {
+        Sum += value.num;
       });
       return Sum;
     }
   }),
+  mounted: function mounted() {
+    var _this = this;
+
+    this.$fly.post("/u/goods_group_list", {}).then(function (res) {
+      _this.productTypes = res.data.data;
+      _this.productTypesId = _this.productTypes[0].id || 0;
+      _this.getProductList();
+    });
+    this.userInfo = JSON.parse(wx.getStorageSync("userInfo"));
+  },
+
   methods: {
     // 切换列表
-    toggleList: function toggleList(index) {
-      this.commodityIndexs = index;
+    toggleList: function toggleList(id) {
+      this.productTypesId = id;
+      this.getProductList();
+    },
+    getProductList: function getProductList() {
+      var _this2 = this;
+
+      this.$fly.post("/u/goods_list", { group: this.productTypesId }).then(function (res) {
+        _this2.productList = res.data.data;
+      });
     },
 
     // 遮罩层切换
@@ -338,23 +282,23 @@ if (false) {(function () {
     },
 
     // 添加商品
-    addCommodity: function addCommodity(commodityItems, commodityName, commodityIndex, commodityIndexs) {
-      var commodityFindIndex = __WEBPACK_IMPORTED_MODULE_1_lodash___default.a.findIndex(this.commdityShopping, function (o) {
-        return o.commodityName === commodityName;
+    addCommodity: function addCommodity(product) {
+      var commodityFindIndex = __WEBPACK_IMPORTED_MODULE_2_lodash___default.a.findIndex(this.commdityShopping, function (o) {
+        return o.id === product.id;
       });
       // 拷贝对象
-      var commodityItem = __WEBPACK_IMPORTED_MODULE_1_lodash___default.a.clone(commodityItems);
+      var productCopy = __WEBPACK_IMPORTED_MODULE_2_lodash___default.a.clone(product);
       if (commodityFindIndex !== -1) {
         this.commodityShoppListSwitchAdd(commodityFindIndex);
       } else {
-        this.$store.dispatch('setCommdityShopping', commodityItem);
+        this.$store.dispatch("setCommdityShopping", productCopy);
       }
     },
 
     // 数量减
     commodityShoppListSwitchLess: function commodityShoppListSwitchLess(index) {
       console.log(this.commdityShopping);
-      this.$store.dispatch('setCommdityShoppingLess', index);
+      this.$store.dispatch("setCommdityShoppingLess", index);
       if (this.commdityShopping.length === 0) {
         this.commodityToggleShow = false;
       }
@@ -362,23 +306,41 @@ if (false) {(function () {
 
     // 数量加
     commodityShoppListSwitchAdd: function commodityShoppListSwitchAdd(index) {
-      this.$store.dispatch('setCommdityShoppingAdd', index);
+      this.$store.dispatch("setCommdityShoppingAdd", index);
     },
 
     // 设置商家名
     setCommdityShoppName: function setCommdityShoppName() {
-      this.$store.dispatch('setCommdityShoppingName', this.commodityName);
+      this.$store.dispatch("setCommdityShoppingName", this.commodityName);
     },
     settlement: function settlement() {
+      var _this3 = this;
+
       if (this.commoditySumShopp) {
-        this.setCommdityShoppName();
-        this.commodityToggleShow = false;
-        wx.navigateTo({
-          url: '/pages/settlement/main'
+        // this.commodityToggleShow = false;
+        // wx.navigateTo({
+        //   url: "/pages/settlement/main"
+        // });
+        this.$fly.post("/u/build_order", { infos: this.commdityShopping }).then(function (res) {
+          wx.showToast({
+            title: "下单成功",
+            icon: "success",
+            duration: 2000
+          });
+          _this3.$store.commit("setCommdityShoppingClear");
+          _this3.$fly.post("/u/information", {}).then(function (res) {
+            wx.setStorageSync("userInfo", __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify___default()(res.data.data));
+            wx.reLaunch({
+              url: "../commodity/main"
+            });
+          });
         });
       } else {
         return false;
       }
+    },
+    addressInput: function addressInput(e) {
+      console.log(e);
     }
 
     // commodityJsonInArray (data) {
@@ -397,77 +359,67 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 76:
+/***/ 115:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "commodityContainer"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "commodityTitle"
-  }, [_vm._v(_vm._s(_vm.commodityName))]), _vm._v(" "), _c('div', {
-    staticClass: "commodityDetail"
-  }, [_vm._v("10元起送|免费配送")]), _vm._v(" "), _c('div', {
+  }, [_c('div', {
     staticClass: "commodityList"
-  }, [_vm._v("\r\n    点餐\r\n  ")]), _vm._v(" "), _c('div', {
+  }, [_vm._v("点餐")]), _vm._v(" "), _c('div', {
     staticClass: "commodityListShopp"
   }, [_c('div', {
     staticClass: "commodityListShoppMenu"
-  }, [_c('ul', _vm._l((_vm.commodityList), function(item, index) {
+  }, [_c('ul', _vm._l((_vm.productTypes), function(item, index) {
     return _c('li', {
-      key: index,
+      key: item.id,
       class: {
-        active: index === _vm.commodityIndexs
+        active: item.id === _vm.productTypesId
       },
       attrs: {
         "eventid": '0-' + index
       },
       on: {
         "click": function($event) {
-          _vm.toggleList(index)
+          _vm.toggleList(item.id)
         }
       }
-    }, [_vm._v(_vm._s(item.commodityMenu))])
+    }, [_vm._v(_vm._s(item.name))])
   }))], 1), _vm._v(" "), _c('div', {
     staticClass: "commodityListShoppContent"
-  }, _vm._l((_vm.commodityList), function(commodityItem, commodityIndex) {
+  }, [_c('div', {
+    staticClass: "commodityToggleList commodityToggle"
+  }, _vm._l((_vm.productList), function(product, index) {
     return _c('div', {
-      key: commodityIndex,
-      staticClass: "commodityToggleList",
-      class: {
-        commodityToggle: commodityIndex === _vm.commodityIndexs
+      key: index,
+      staticClass: "commodityListShoppContentD",
+      attrs: {
+        "eventid": '1-' + index
+      },
+      on: {
+        "click": function($event) {
+          _vm.addCommodity(product)
+        }
       }
-    }, _vm._l((commodityItem.commodityData), function(commodityItems, commodityIndexs) {
-      return _c('div', {
-        key: commodityIndexs,
-        staticClass: "commodityListShoppContentD",
-        attrs: {
-          "eventid": '1-' + commodityIndex + '-' + commodityIndexs
-        },
-        on: {
-          "click": function($event) {
-            _vm.addCommodity(commodityItems, commodityItems.commodityName, commodityIndex, commodityIndexs)
-          }
-        }
-      }, [_c('div', {
-        staticClass: "commodityListShoppContentDImg"
-      }, [_c('img', {
-        attrs: {
-          "src": commodityItems.commodityImg,
-          "alt": commodityItems.commodityAlt
-        }
-      })]), _vm._v(" "), _c('div', {
-        staticClass: "commodityListShoppContentDD"
-      }, [_c('p', {
-        staticClass: "commodityListShoppContentDDT"
-      }, [_vm._v(_vm._s(commodityItems.commodityName))]), _vm._v(" "), _c('p', {
-        staticClass: "commodityListShoppContentDDD"
-      }, [_vm._v(_vm._s(commodityItems.commodityDetail))]), _vm._v(" "), _c('p', {
-        staticClass: "commodityListShoppContentDDM"
-      }, [_vm._v(_vm._s(commodityItems.commodityMoney) + "元")]), _vm._v(" "), _vm._m(1, true)], 1)])
-    }))
-  }))]), _vm._v(" "), _c('div', {
+    }, [_c('div', {
+      staticClass: "commodityListShoppContentDImg"
+    }, [_c('img', {
+      attrs: {
+        "src": product.img,
+        "alt": product.alt
+      }
+    })]), _vm._v(" "), _c('div', {
+      staticClass: "commodityListShoppContentDD"
+    }, [_c('p', {
+      staticClass: "commodityListShoppContentDDT"
+    }, [_vm._v(_vm._s(product.name))]), _vm._v(" "), _c('p', {
+      staticClass: "commodityListShoppContentDDD"
+    }, [_vm._v(_vm._s(product.detail))]), _vm._v(" "), _c('p', {
+      staticClass: "commodityListShoppContentDDM"
+    }, [_vm._v(_vm._s(product.integral) + "元")]), _vm._v(" "), _vm._m(0, true)], 1)])
+  }))])]), _vm._v(" "), _c('div', {
     staticClass: "commodityemtyp"
   }), _vm._v(" "), _c('div', {
     staticClass: "commodityShoppList",
@@ -482,14 +434,14 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     return _c('i-cell', {
       key: index,
       attrs: {
-        "title": item.commodityName,
+        "title": item.name,
         "mpcomid": '0-' + index
       }
     }, [_c('div', {
       slot: "footer"
     }, [_c('div', {
       staticClass: "commodityShoppListM"
-    }, [_vm._v(_vm._s(item.commodityMoney * item.commoditySum) + "元")]), _vm._v(" "), _c('div', {
+    }, [_vm._v(_vm._s(item.integral * item.num) + "元")]), _vm._v(" "), _c('div', {
       staticClass: "commodityShoppListSwitch"
     }, [_c('div', {
       staticClass: "commodityShoppListSwitchLess",
@@ -503,7 +455,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       }
     }, [_vm._v("－")]), _vm._v(" "), _c('div', {
       staticClass: "commodityShoppListSwitchSum"
-    }, [_vm._v(_vm._s(item.commoditySum))]), _vm._v(" "), _c('div', {
+    }, [_vm._v(_vm._s(item.num))]), _vm._v(" "), _c('div', {
       staticClass: "commodityShoppListSwitchAdd",
       attrs: {
         "eventid": '3-' + index
@@ -521,7 +473,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     }
   }, [_c('div', {
     slot: "footer"
-  }, [_vm._v("\r\n          " + _vm._s(_vm.commodityPrice >= 10 ? 0 : 1) + "元\r\n        ")])])], 2)], 1), _vm._v(" "), _c('div', {
+  }, [_vm._v(_vm._s(_vm.commodityPrice >= 10 ? 0 : 1) + "元")])])], 2)], 1), _vm._v(" "), _c('div', {
     staticClass: "commoditySum",
     class: {
       commoditySumStatus: _vm.commoditySumShopp
@@ -553,9 +505,9 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     class: {
       commodityDMStatus: _vm.commoditySumShopp
     }
-  }, [_vm._v("\r\n        " + _vm._s(_vm.commoditySumShopp === 0 ? '未选购商品' : _vm.commodityPrice + '元') + "\r\n      ")]), _vm._v(" "), _c('p', {
+  }, [_vm._v(_vm._s(_vm.commoditySumShopp === 0 ? '未选购商品' : _vm.commodityPrice + '元'))]), _vm._v(" "), _c('p', {
     staticClass: "commodityDD"
-  }, [_vm._v("\r\n        不足十元需要加一元配送费\r\n      ")])], 1), _vm._v(" "), _c('div', {
+  }, [_vm._v("您的积分：" + _vm._s(_vm.userInfo ? _vm.userInfo.integral : ''))])], 1), _vm._v(" "), _c('div', {
     staticClass: "commodityM",
     class: {
       commodityMStatus: _vm.commoditySumShopp
@@ -569,7 +521,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         _vm.settlement($event)
       }
     }
-  }, [_vm._v("\r\n        " + _vm._s(_vm.commoditySumShopp === 0 ? '10元起送' : '去结算') + "\r\n    ")])]), _vm._v(" "), _c('div', {
+  }, [_vm._v(_vm._s(_vm.commoditySumShopp === 0 ? '' : '立即下单'))])]), _vm._v(" "), _c('div', {
     staticClass: "commodityFull",
     class: {
       commodityFullToggle: _vm.commodityToggleShow
@@ -583,22 +535,6 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   })])
 }
 var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "commodity"
-  }, [_c('img', {
-    attrs: {
-      "src": "/static/img/cb.png",
-      "alt": "cb"
-    }
-  }), _vm._v(" "), _c('div', {
-    staticClass: "commodityLogo"
-  }, [_c('img', {
-    attrs: {
-      "src": "/static/img/xbk.png",
-      "alt": "xbk"
-    }
-  })])])
-},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "commodityAdd"
   }, [_c('img', {
@@ -620,5 +556,5 @@ if (false) {
 
 /***/ })
 
-},[72]);
+},[111]);
 //# sourceMappingURL=main.js.map

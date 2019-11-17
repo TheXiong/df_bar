@@ -1,15 +1,15 @@
 global.webpackJsonp([4],{
 
-/***/ 18:
+/***/ 46:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__App__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store_index__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fly__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__App__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store_index__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fly__ = __webpack_require__(56);
 
 
 
@@ -68,15 +68,15 @@ app.$mount();
 
 /***/ }),
 
-/***/ 19:
+/***/ 47:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_lib_selector_type_script_index_0_App_vue__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_lib_selector_type_script_index_0_App_vue__ = __webpack_require__(50);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(20)
+  __webpack_require__(48)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
@@ -120,14 +120,14 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 20:
+/***/ 48:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 22:
+/***/ 50:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -145,28 +145,31 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 23:
+/***/ 51:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex_persistedstate__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_lodash__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_lodash__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex_persistedstate__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lodash__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_lodash__);
+
 
 
 // import vuetron from 'vuetron '
 
 
 
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_vuex__["a" /* default */]);
 
-/* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
+/* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_2_vuex__["a" /* default */].Store({
   plugins: [
   // 保持会话持久
-  Object(__WEBPACK_IMPORTED_MODULE_2_vuex_persistedstate__["a" /* default */])({
+  Object(__WEBPACK_IMPORTED_MODULE_3_vuex_persistedstate__["a" /* default */])({
     storage: {
       getItem: function getItem(key) {
         return wx.getStorageSync(key);
@@ -185,7 +188,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
      * 商家名字
     commdityShoppingName: '',
     /**
-     * 商家商品
+     * 已经选购商品
      */
     commdityShopping: [],
     /**
@@ -217,7 +220,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
      * @param commdityShopping
      */
     setCommdityShopping: function setCommdityShopping(state, commdityShopping) {
-      state.commdityShopping.push(commdityShopping);
+      state.commdityShopping.push(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, commdityShopping, { num: 1 }));
     },
 
     /**
@@ -226,7 +229,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
      * @param commdityShoppingIndex
      */
     setCommdityShoppingAdd: function setCommdityShoppingAdd(state, commdityShoppingIndex) {
-      state.commdityShopping[commdityShoppingIndex].commoditySum++;
+      state.commdityShopping[commdityShoppingIndex].num++;
     },
 
     /**
@@ -235,10 +238,10 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
      * @param commdityShoppingIndex
      */
     setCommdityShoppingLess: function setCommdityShoppingLess(state, commdityShoppingIndex) {
-      if (state.commdityShopping[commdityShoppingIndex].commoditySum >= 1) {
-        state.commdityShopping[commdityShoppingIndex].commoditySum--;
-        if (state.commdityShopping[commdityShoppingIndex].commoditySum === 0) {
-          __WEBPACK_IMPORTED_MODULE_3_lodash___default.a.pullAt(state.commdityShopping, commdityShoppingIndex);
+      if (state.commdityShopping[commdityShoppingIndex].num >= 1) {
+        state.commdityShopping[commdityShoppingIndex].num--;
+        if (state.commdityShopping[commdityShoppingIndex].num === 0) {
+          __WEBPACK_IMPORTED_MODULE_4_lodash___default.a.pullAt(state.commdityShopping, commdityShoppingIndex);
         }
       }
     },
@@ -257,7 +260,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
      * @param commdityOrder
      */
     setCommdityOrder: function setCommdityOrder(state, commdityOrder) {
-      var commdityOrderClone = __WEBPACK_IMPORTED_MODULE_3_lodash___default.a.clone(commdityOrder);
+      var commdityOrderClone = __WEBPACK_IMPORTED_MODULE_4_lodash___default.a.clone(commdityOrder);
       state.commdityOrder.push(commdityOrderClone);
     },
 
@@ -267,7 +270,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
      * @param userAddres
      */
     setUserAddres: function setUserAddres(state, userAddres) {
-      var userAddresClone = __WEBPACK_IMPORTED_MODULE_3_lodash___default.a.clone(userAddres);
+      var userAddresClone = __WEBPACK_IMPORTED_MODULE_4_lodash___default.a.clone(userAddres);
       state.userAddres.push(userAddresClone);
     },
 
@@ -297,7 +300,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
      * @param userAddressIndex
      */
     delUserAddress: function delUserAddress(state, userAddressIndex) {
-      __WEBPACK_IMPORTED_MODULE_3_lodash___default.a.pullAt(state.userAddres, userAddressIndex);
+      __WEBPACK_IMPORTED_MODULE_4_lodash___default.a.pullAt(state.userAddres, userAddressIndex);
     },
 
     /**
@@ -306,7 +309,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
      * @param commdityOrderIndex
      */
     delCommdityOrder: function delCommdityOrder(state, commdityOrderIndex) {
-      __WEBPACK_IMPORTED_MODULE_3_lodash___default.a.pullAt(state.commdityOrder, commdityOrderIndex);
+      __WEBPACK_IMPORTED_MODULE_4_lodash___default.a.pullAt(state.commdityOrder, commdityOrderIndex);
     },
 
     /**
@@ -315,7 +318,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
      * @param feedbackList
      */
     addFeedbackList: function addFeedbackList(state, feedbackList) {
-      var feedbackListClone = __WEBPACK_IMPORTED_MODULE_3_lodash___default.a.clone(feedbackList);
+      var feedbackListClone = __WEBPACK_IMPORTED_MODULE_4_lodash___default.a.clone(feedbackList);
       state.feedbackList.push(feedbackListClone);
     }
   },
@@ -388,14 +391,14 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 
 /***/ }),
 
-/***/ 28:
+/***/ 56:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_promise__ = __webpack_require__(172);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_promise__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_promise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_promise__);
 
-var Fly = __webpack_require__(12);
+var Fly = __webpack_require__(45);
 var fly = new Fly();
 //定义公共headers
 // fly.config.headers={xx:5,bb:6,dd:7}
@@ -432,5 +435,5 @@ fly.interceptors.response.use(function (response) {
 
 /***/ })
 
-},[18]);
+},[46]);
 //# sourceMappingURL=app.js.map

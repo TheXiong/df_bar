@@ -78,6 +78,11 @@
         'commdityOrder'
       ])
     },
+    mounted(){
+      this.$fly.post('/u/order_list',{}).then(res=>{
+        
+      })
+    },
     methods: {
       orderCloseDel () {
         this.orderToggleFull(false)

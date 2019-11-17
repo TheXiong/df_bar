@@ -23,7 +23,7 @@ export default new Vuex.Store({
      * 商家名字
     commdityShoppingName: '',
     /**
-     * 商家商品
+     * 已经选购商品
      */
     commdityShopping: [],
     /**
@@ -54,7 +54,7 @@ export default new Vuex.Store({
      * @param commdityShopping
      */
     setCommdityShopping (state, commdityShopping) {
-      state.commdityShopping.push(commdityShopping)
+      state.commdityShopping.push({...commdityShopping,num:1})
     },
     /**
      * 商家购物车商品添加
@@ -62,7 +62,7 @@ export default new Vuex.Store({
      * @param commdityShoppingIndex
      */
     setCommdityShoppingAdd (state, commdityShoppingIndex) {
-      state.commdityShopping[commdityShoppingIndex].commoditySum++
+      state.commdityShopping[commdityShoppingIndex].num++
     },
     /**
      * 商家购物车减少
@@ -70,9 +70,9 @@ export default new Vuex.Store({
      * @param commdityShoppingIndex
      */
     setCommdityShoppingLess (state, commdityShoppingIndex) {
-      if (state.commdityShopping[commdityShoppingIndex].commoditySum >= 1) {
-        state.commdityShopping[commdityShoppingIndex].commoditySum--
-        if (state.commdityShopping[commdityShoppingIndex].commoditySum === 0) {
+      if (state.commdityShopping[commdityShoppingIndex].num >= 1) {
+        state.commdityShopping[commdityShoppingIndex].num--
+        if (state.commdityShopping[commdityShoppingIndex].num === 0) {
           _.pullAt(state.commdityShopping, commdityShoppingIndex)
         }
       }

@@ -166,8 +166,6 @@ export default {
         .post("/u/information", {})
         .then(res => {
           wx.setStorageSync("userInfo", JSON.stringify(res.data.data));
-          console.log(999999999999);
-
           wx.reLaunch({
             url: "../commodity/main"
           });
@@ -189,6 +187,9 @@ export default {
   created() {
     const logs = wx.getStorageSync("logs") || [];
     this.logs = logs.map(log => formatTime(new Date(log)));
+    
+    wx.setStorageSync("token","uZvAdoXqPr41AvVzscbFrg==");
+
     const token = wx.getStorageSync("token");
     if (token) {
       this.getUserInfo();
