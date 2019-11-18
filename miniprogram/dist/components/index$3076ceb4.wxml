@@ -1,0 +1,9 @@
+<template name="index$3076ceb4">
+  <view class="_div data-v-450eb8ce feedbackContainer">
+    <view class="_div data-v-450eb8ce feedback">
+      <view class="_div data-v-450eb8ce feedbackTitle">反馈内容</view>
+      <textarea class="_textarea data-v-450eb8ce feedbackInputTextarea" value="{{feedback}}" bindinput="handleProxy" placeholder="请输入反馈内容" data-eventid="{{'0'}}" data-comkey="{{$k}}" />
+    </view>
+    <view class="_div data-v-450eb8ce feedbackButton" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}">提交意见</view>
+  </view>
+</template>

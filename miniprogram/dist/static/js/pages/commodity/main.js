@@ -1,13 +1,13 @@
-global.webpackJsonp([13],{
+global.webpackJsonp([14],{
 
-/***/ 111:
+/***/ 113:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(114);
 
 
 
@@ -28,16 +28,16 @@ app.$mount();
 
 /***/ }),
 
-/***/ 112:
+/***/ 114:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_lib_template_compiler_index_id_data_v_9ef0214c_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_node_modules_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_lib_template_compiler_index_id_data_v_9ef0214c_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_node_modules_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(117);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(113)
+  __webpack_require__(115)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
@@ -82,26 +82,60 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 113:
+/***/ 115:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 114:
+/***/ 116:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_lodash__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__(6);
 
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -224,11 +258,12 @@ if (false) {(function () {
       productTypes: [], //小吃类型
       productTypesId: 0, //当前所选类型
       productList: [],
-      userInfo: null
+      hasMore: true,
+      scrollTop: 0
     };
   },
 
-  computed: __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default()({}, Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["b" /* mapState */])(["commdityShopping"]), {
+  computed: __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default()({}, Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["b" /* mapState */])(["commdityShopping", "userInfo"]), {
     commodityPrice: function commodityPrice() {
       var sumPrice = 0;
       __WEBPACK_IMPORTED_MODULE_2_lodash___default.a.forEach(this.commdityShopping, function (value, key) {
@@ -256,13 +291,14 @@ if (false) {(function () {
       _this.productTypesId = _this.productTypes[0].id || 0;
       _this.getProductList();
     });
-    this.userInfo = JSON.parse(wx.getStorageSync("userInfo"));
   },
 
   methods: {
     // 切换列表
     toggleList: function toggleList(id) {
       this.productTypesId = id;
+      this.hasMore = true;
+      this.scrollTop = 0;
       this.getProductList();
     },
     getProductList: function getProductList() {
@@ -270,6 +306,9 @@ if (false) {(function () {
 
       this.$fly.post("/u/goods_list", { group: this.productTypesId }).then(function (res) {
         _this2.productList = res.data.data;
+        if (res.data.data.length < 10) {
+          _this2.hasMore = false;
+        }
       });
     },
 
@@ -314,52 +353,42 @@ if (false) {(function () {
       this.$store.dispatch("setCommdityShoppingName", this.commodityName);
     },
     settlement: function settlement() {
-      var _this3 = this;
-
       if (this.commoditySumShopp) {
-        // this.commodityToggleShow = false;
-        // wx.navigateTo({
-        //   url: "/pages/settlement/main"
-        // });
-        this.$fly.post("/u/build_order", { infos: this.commdityShopping }).then(function (res) {
-          wx.showToast({
-            title: "下单成功",
-            icon: "success",
-            duration: 2000
-          });
-          _this3.$store.commit("setCommdityShoppingClear");
-          _this3.$fly.post("/u/information", {}).then(function (res) {
-            wx.setStorageSync("userInfo", __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify___default()(res.data.data));
-            wx.reLaunch({
-              url: "../commodity/main"
-            });
-          });
+        this.commodityToggleShow = false;
+        wx.navigateTo({
+          url: "/pages/settlement/main"
         });
       } else {
         return false;
       }
     },
-    addressInput: function addressInput(e) {
-      console.log(e);
+    lower: function lower(e) {
+      var _this3 = this;
+
+      if (!this.hasMore) {
+        return;
+      }
+      this.$fly.post("/u/goods_list", {
+        group: this.productTypesId,
+        id: this.productList[this.productList.length - 1].id
+      }).then(function (res) {
+        if (res.data.data) {
+          _this3.productList = [].concat(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray___default()(_this3.productList), __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray___default()(res.data.data));
+          _this3.scrollTop = e.target.scrollTop;
+          if (res.data.data.length < 10) {
+            _this3.hasMore = false;
+          }
+        } else {
+          _this3.hasMore = false;
+        }
+      });
     }
-
-    // commodityJsonInArray (data) {
-    //   // console.log(data)
-    //   let commodityJson = {}
-    //   for (let key of Object.keys(data)) {
-    //     // console.log(key, data[key])
-    //     commodityJson[key] = data[key]
-    //   }
-    //   console.log(commodityJson)
-    //   return commodityJson
-    // }
-
   }
 });
 
 /***/ }),
 
-/***/ 115:
+/***/ 117:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -389,13 +418,23 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     }, [_vm._v(_vm._s(item.name))])
   }))], 1), _vm._v(" "), _c('div', {
     staticClass: "commodityListShoppContent"
-  }, [_c('div', {
-    staticClass: "commodityToggleList commodityToggle"
+  }, [_c('scroll-view', {
+    staticClass: "commodityToggleList commodityToggle",
+    attrs: {
+      "scroll-y": "true",
+      "scroll-top": _vm.scrollTop,
+      "eventid": '2'
+    },
+    on: {
+      "scrolltolower": _vm.lower,
+      "scroll": _vm.scroll
+    }
   }, _vm._l((_vm.productList), function(product, index) {
     return _c('div', {
       key: index,
       staticClass: "commodityListShoppContentD",
       attrs: {
+        "id": 'product' + product.id,
         "eventid": '1-' + index
       },
       on: {
@@ -418,8 +457,15 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       staticClass: "commodityListShoppContentDDD"
     }, [_vm._v(_vm._s(product.detail))]), _vm._v(" "), _c('p', {
       staticClass: "commodityListShoppContentDDM"
-    }, [_vm._v(_vm._s(product.integral) + "元")]), _vm._v(" "), _vm._m(0, true)], 1)])
-  }))])]), _vm._v(" "), _c('div', {
+    }, [_vm._v(_vm._s(product.integral) + "元")]), _vm._v(" "), _c('div', {
+      staticClass: "commodityAdd"
+    }, [_c('img', {
+      attrs: {
+        "src": "/static/img/add.png",
+        "alt": "add"
+      }
+    })])], 1)])
+  }))], 1)]), _vm._v(" "), _c('div', {
     staticClass: "commodityemtyp"
   }), _vm._v(" "), _c('div', {
     staticClass: "commodityShoppList",
@@ -446,7 +492,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     }, [_c('div', {
       staticClass: "commodityShoppListSwitchLess",
       attrs: {
-        "eventid": '2-' + index
+        "eventid": '3-' + index
       },
       on: {
         "click": function($event) {
@@ -458,7 +504,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     }, [_vm._v(_vm._s(item.num))]), _vm._v(" "), _c('div', {
       staticClass: "commodityShoppListSwitchAdd",
       attrs: {
-        "eventid": '3-' + index
+        "eventid": '4-' + index
       },
       on: {
         "click": function($event) {
@@ -479,7 +525,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       commoditySumStatus: _vm.commoditySumShopp
     },
     attrs: {
-      "eventid": '5'
+      "eventid": '6'
     },
     on: {
       "click": _vm.commodityToggleShowList
@@ -513,7 +559,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       commodityMStatus: _vm.commoditySumShopp
     },
     attrs: {
-      "eventid": '4'
+      "eventid": '5'
     },
     on: {
       "click": function($event) {
@@ -521,29 +567,20 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         _vm.settlement($event)
       }
     }
-  }, [_vm._v(_vm._s(_vm.commoditySumShopp === 0 ? '' : '立即下单'))])]), _vm._v(" "), _c('div', {
+  }, [_vm._v(_vm._s(_vm.commoditySumShopp === 0 ? '' : '去下单'))])]), _vm._v(" "), _c('div', {
     staticClass: "commodityFull",
     class: {
       commodityFullToggle: _vm.commodityToggleShow
     },
     attrs: {
-      "eventid": '6'
+      "eventid": '7'
     },
     on: {
       "click": _vm.commodityToggleShowList
     }
   })])
 }
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "commodityAdd"
-  }, [_c('img', {
-    attrs: {
-      "src": "/static/img/add.png",
-      "alt": "add"
-    }
-  })])
-}]
+var staticRenderFns = []
 render._withStripped = true
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
@@ -556,5 +593,5 @@ if (false) {
 
 /***/ })
 
-},[111]);
+},[113]);
 //# sourceMappingURL=main.js.map

@@ -162,34 +162,18 @@ export default {
       };
     },
     getUserInfo() {
-      this.$fly
-        .post("/u/information", {})
-        .then(res => {
-          wx.setStorageSync("userInfo", JSON.stringify(res.data.data));
-          wx.reLaunch({
-            url: "../commodity/main"
-          });
-        })
-        .catch(err => {
-          try {
-            wx.removeStorageSync("token");
-          } catch (e) {
-            // Do something when catch error
-            wx.showToast({
-              title: "获取用户信息失败，请重新登录",
-              icon: "none",
-              duration: 2000
-            });
-          }
+      this.$store.dispatch("getNewUserInfo").then(res => {
+        wx.reLaunch({
+          url: "../commodity/main"
         });
+      });
     }
   },
   created() {
     const logs = wx.getStorageSync("logs") || [];
     this.logs = logs.map(log => formatTime(new Date(log)));
-    
-    wx.setStorageSync("token","uZvAdoXqPr41AvVzscbFrg==");
 
+    wx.setStorageSync("token", "uZvAdoXqPr41AvVzscbFrg==");
     const token = wx.getStorageSync("token");
     if (token) {
       this.getUserInfo();

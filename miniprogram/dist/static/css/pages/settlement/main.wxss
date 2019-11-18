@@ -32,6 +32,13 @@
   -ms-text-overflow: ellipsis;
   text-overflow: ellipsis;
   white-space: nowrap;
+  display: flex;
+  flex: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.settlementHeaderAddress .number.data-v-141d941c {
+  width: 400rpx;
 }
 .settlementMain.data-v-141d941c {
   width: 726rpx;

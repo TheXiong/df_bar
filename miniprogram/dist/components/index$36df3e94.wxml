@@ -1,0 +1,68 @@
+<template name="index$36df3e94">
+  <view class="_div data-v-38a944a4 commodityContainer">
+    <view class="_div data-v-38a944a4 commodity">
+      <image src="/static/img/cb.png" alt="cb" class="_img data-v-38a944a4"></image>
+      <view class="_div data-v-38a944a4 commodityLogo">
+        <image src="/static/img/xbk.png" alt="xbk" class="_img data-v-38a944a4"></image>
+      </view>
+    </view>
+    <view class="_div data-v-38a944a4 commodityTitle">{{commodityName}}</view>
+    <view class="_div data-v-38a944a4 commodityDetail">10元起送|免费配送</view>
+    <view class="_div data-v-38a944a4 commodityList"> 点餐 </view>
+    <view class="_div data-v-38a944a4 commodityListShopp">
+      <view class="_div data-v-38a944a4 commodityListShoppMenu">
+        <view class="_ul data-v-38a944a4">
+          <view bindtap="handleProxy" wx:key="index" key="{{index}}" data-eventid="{{'0-'+index}}" data-comkey="{{$k}}" wx:for="{{commodityList}}" wx:for-index="index" wx:for-item="item" class="_li data-v-38a944a4 {{[index === commodityIndexs ? 'active' : '']}}">{{item.commodityMenu}}</view>
+        </view>
+      </view>
+      <view class="_div data-v-38a944a4 commodityListShoppContent">
+        <view class="_div data-v-38a944a4 commodityToggleList {{[commodityIndex === commodityIndexs ? 'commodityToggle' : '']}}" wx:key="commodityIndex" key="{{commodityIndex}}" wx:for="{{commodityList}}" wx:for-index="commodityIndex" wx:for-item="commodityItem">
+          <view bindtap="handleProxy" class="_div data-v-38a944a4 commodityListShoppContentD" wx:key="commodityIndexs" key="{{commodityIndexs}}" data-eventid="{{'1-'+commodityIndex+'-'+commodityIndexs}}" data-comkey="{{$k}}" wx:for="{{commodityItem.commodityData}}"
+            wx:for-index="commodityIndexs" wx:for-item="commodityItems">
+            <view class="_div data-v-38a944a4 commodityListShoppContentDImg">
+              <image src="{{commodityItems.commodityImg}}" alt="{{commodityItems.commodityAlt}}" class="_img data-v-38a944a4"></image>
+            </view>
+            <view class="_div data-v-38a944a4 commodityListShoppContentDD">
+              <view class="_p data-v-38a944a4 commodityListShoppContentDDT">{{commodityItems.commodityName}}</view>
+              <view class="_p data-v-38a944a4 commodityListShoppContentDDD">{{commodityItems.commodityDetail}}</view>
+              <view class="_p data-v-38a944a4 commodityListShoppContentDDM">{{commodityItems.commodityMoney}}元</view>
+              <view class="_div data-v-38a944a4 commodityAdd">
+                <image src="/static/img/add.png" alt="add" class="_img data-v-38a944a4"></image>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="_div data-v-38a944a4 commodityemtyp"></view>
+    <view class="_div data-v-38a944a4 commodityShoppList {{[commodityToggleShow ? 'commodityShoppListToggle' : '']}}">
+      <i-cell-group class="_i-cell-group data-v-38a944a4">
+        <i-cell title="{{item.commodityName}}" wx:key="index" key="{{index}}" wx:for="{{commdityShopping}}" wx:for-index="index" wx:for-item="item" class="_i-cell data-v-38a944a4">
+          <view slot="footer" class="_div data-v-38a944a4">
+            <view class="_div data-v-38a944a4 commodityShoppListM">{{item.commodityMoney * item.commoditySum}}元</view>
+            <view class="_div data-v-38a944a4 commodityShoppListSwitch">
+              <view class="_div data-v-38a944a4 commodityShoppListSwitchLess" bindtap="handleProxy" data-eventid="{{'2-'+index}}" data-comkey="{{$k}}">－</view>
+              <view class="_div data-v-38a944a4 commodityShoppListSwitchSum">{{item.commoditySum}}</view>
+              <view class="_div data-v-38a944a4 commodityShoppListSwitchAdd" bindtap="handleProxy" data-eventid="{{'3-'+index}}" data-comkey="{{$k}}">＋</view>
+            </view>
+          </view>
+        </i-cell>
+        <i-cell title="配送费" class="_i-cell data-v-38a944a4">
+          <view slot="footer" class="_div data-v-38a944a4"> {{commodityPrice >= 10 ? 0 : 1}}元 </view>
+        </i-cell>
+      </i-cell-group>
+    </view>
+    <view class="_div data-v-38a944a4 commoditySum {{[commoditySumShopp ? 'commoditySumStatus' : '']}}" bindtap="handleProxy" data-eventid="{{'5'}}" data-comkey="{{$k}}">
+      <view class="_div data-v-38a944a4 commodityG {{[commoditySumShopp ? 'commodityGStatus' : '']}}">
+        <i-icon type="publishgoods_fill" size="40" color="{{ commoditySumShopp === 0 ?  '#5f5f63' : '#ffffff' }}" class="_i-icon data-v-38a944a4"></i-icon>
+        <view wx:if="{{commoditySumShopp}}" class="_div data-v-38a944a4 commodityGsum">{{commoditySumShopp}}</view>
+      </view>
+      <view class="_div data-v-38a944a4 commodityD">
+        <view class="_p data-v-38a944a4 commodityDM {{[commoditySumShopp ? 'commodityDMStatus' : '']}}"> {{ commoditySumShopp === 0 ? '未选购商品' : commodityPrice + '元' }} </view>
+        <view class="_p data-v-38a944a4 commodityDD"> 不足十元需要加一元配送费 </view>
+      </view>
+      <view class="_div data-v-38a944a4 commodityM {{[commoditySumShopp ? 'commodityMStatus' : '']}}" catchtap="handleProxy" data-eventid="{{'4'}}" data-comkey="{{$k}}"> {{ commoditySumShopp === 0 ? '10元起送' : '去结算'}} </view>
+    </view>
+    <view bindtap="handleProxy" class="_div data-v-38a944a4 commodityFull {{[commodityToggleShow ? 'commodityFullToggle' : '']}}" data-eventid="{{'6'}}" data-comkey="{{$k}}"></view>
+  </view>
+</template>

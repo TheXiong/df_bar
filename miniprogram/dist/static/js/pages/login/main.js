@@ -1,13 +1,13 @@
 global.webpackJsonp([9],{
 
-/***/ 137:
+/***/ 144:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(145);
 
 
 
@@ -23,16 +23,16 @@ app.$mount();
 
 /***/ }),
 
-/***/ 138:
+/***/ 145:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_lib_template_compiler_index_id_data_v_b80db4d4_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_node_modules_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_lib_template_compiler_index_id_data_v_b80db4d4_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_node_modules_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(148);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(139)
+  __webpack_require__(146)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
@@ -77,23 +77,20 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 139:
+/***/ 146:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 140:
+/***/ 147:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_index__ = __webpack_require__(28);
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_index__ = __webpack_require__(29);
 
 //
 //
@@ -168,7 +165,7 @@ if (false) {(function () {
       var _this = this;
 
       //验证phone
-      if (!(this.form.mobile && Object(__WEBPACK_IMPORTED_MODULE_2__utils_index__["b" /* validatePhone */])(this.form.mobile))) {
+      if (!(this.form.mobile && Object(__WEBPACK_IMPORTED_MODULE_1__utils_index__["b" /* validatePhone */])(this.form.mobile))) {
         wx.showToast({
           title: "电话号码有误,请重填",
           icon: "none",
@@ -187,7 +184,7 @@ if (false) {(function () {
           });
           return;
         }
-        this.$fly.post("/c/login", __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default()({}, this.form, { type: "" })).then(function (res) {
+        this.$fly.post("/c/login", __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, this.form, { type: "" })).then(function (res) {
           wx.setStorageSync("token", res.headers.token);
           _this.getUserInfo();
         });
@@ -201,7 +198,7 @@ if (false) {(function () {
           });
           return;
         }
-        this.$fly.post("/c/login", __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default()({}, this.form, { type: "password" })).then(function (res) {
+        this.$fly.post("/c/login", __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, this.form, { type: "password" })).then(function (res) {
           wx.setStorageSync("token", res.headers.token);
           _this.getUserInfo();
         });
@@ -215,7 +212,7 @@ if (false) {(function () {
         return;
       }
       //验证phone
-      if (!(this.form.mobile && Object(__WEBPACK_IMPORTED_MODULE_2__utils_index__["b" /* validatePhone */])(this.form.mobile))) {
+      if (!(this.form.mobile && Object(__WEBPACK_IMPORTED_MODULE_1__utils_index__["b" /* validatePhone */])(this.form.mobile))) {
         wx.showToast({
           title: "电话号码有误,请重填",
           icon: "none",
@@ -253,33 +250,20 @@ if (false) {(function () {
       };
     },
     getUserInfo: function getUserInfo() {
-      this.$fly.post("/u/information", {}).then(function (res) {
-        wx.setStorageSync("userInfo", __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify___default()(res.data.data));
+      this.$store.dispatch("getNewUserInfo").then(function (res) {
         wx.reLaunch({
           url: "../commodity/main"
         });
-      }).catch(function (err) {
-        try {
-          wx.removeStorageSync("token");
-        } catch (e) {
-          // Do something when catch error
-          wx.showToast({
-            title: "获取用户信息失败，请重新登录",
-            icon: "none",
-            duration: 2000
-          });
-        }
       });
     }
   },
   created: function created() {
     var logs = wx.getStorageSync("logs") || [];
     this.logs = logs.map(function (log) {
-      return Object(__WEBPACK_IMPORTED_MODULE_2__utils_index__["a" /* formatTime */])(new Date(log));
+      return Object(__WEBPACK_IMPORTED_MODULE_1__utils_index__["a" /* formatTime */])(new Date(log));
     });
 
     wx.setStorageSync("token", "uZvAdoXqPr41AvVzscbFrg==");
-
     var token = wx.getStorageSync("token");
     if (token) {
       this.getUserInfo();
@@ -289,7 +273,7 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 143:
+/***/ 148:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -435,5 +419,5 @@ if (false) {
 
 /***/ })
 
-},[137]);
+},[144]);
 //# sourceMappingURL=main.js.map

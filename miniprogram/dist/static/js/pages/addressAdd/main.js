@@ -1,13 +1,13 @@
-global.webpackJsonp([16],{
+global.webpackJsonp([17],{
 
-/***/ 101:
+/***/ 103:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(104);
 
 
 
@@ -29,16 +29,16 @@ app.$mount();
 
 /***/ }),
 
-/***/ 102:
+/***/ 104:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_lib_template_compiler_index_id_data_v_4dfe6054_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_node_modules_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_lib_template_compiler_index_id_data_v_4dfe6054_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_node_modules_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(107);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(103)
+  __webpack_require__(105)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
@@ -83,33 +83,21 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 103:
+/***/ 105:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 104:
+/***/ 106:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(6);
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -134,21 +122,25 @@ if (false) {(function () {
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-  computed: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapState */])(['userAddres'])),
   components: {},
   data: function data() {
     return {
-      addressUser: {
-        addressName: '',
-        addressPhone: '',
-        addressDetail: ''
-      },
-
+      member_number: "",
       messageStatus: false
     };
   },
-  onLoad: function onLoad() {
-    this.addressClear();
+
+  computed: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapState */])(["userInfo"])),
+  watch: {
+    userInfo: function userInfo() {
+      this.member_number = this.userInfo.member_number;
+    }
+  },
+  created: function created() {
+    // let userInfo = wx.getStorageSync("userInfo");
+    console.log(this.userInfo);
+
+    this.member_number = this.userInfo.member_number;
   },
 
   methods: {
@@ -156,32 +148,15 @@ if (false) {(function () {
      * 单击保存 保存信息到全局状态
      */
     addressAddButton: function addressAddButton() {
-      this.$store.dispatch('setUserAddres', this.addressUser);
-      this.addressClear();
-      this.addressToPage();
-      // console.log(this.userAddres)
-    },
+      var _this = this;
 
-    /**
-     * 清除内容
-     */
-    addressClear: function addressClear() {
-      this.addressUser.addressName = '';
-      this.addressUser.addressPhone = '';
-      this.addressUser.addressDetail = '';
-    },
-
-    /**
-     * 页面跳转
-     */
-    addressToPage: function addressToPage() {
-      var url = '/pages/address/main';
-      wx.redirectTo({
-        url: url,
-        success: function success() {},
-        fail: function fail() {
-          wx.navigateBack();
-        }
+      if (!this.member_number) {
+        return;
+      }
+      this.$fly.post("/u/add_user_member_number", {
+        member_number: this.member_number
+      }).then(function (res) {
+        _this.$store.dispatch("getNewUserInfo");
       });
     }
   }
@@ -189,7 +164,7 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 105:
+/***/ 107:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -202,93 +177,40 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "addressAddContentList"
   }, [_c('div', {
     staticClass: "addressAddContentListTitle"
-  }, [_vm._v("联系人")]), _vm._v(" "), _c('input', {
+  }, [_vm._v("会员卡号")]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.addressUser.addressName),
-      expression: "addressUser.addressName"
+      value: (_vm.member_number),
+      expression: "member_number"
     }],
     staticClass: "addressAddContentListInput",
     attrs: {
       "type": "text",
       "autofocus": "",
-      "placeholder": "名字",
+      "placeholder": "卡号",
       "eventid": '0'
     },
     domProps: {
-      "value": (_vm.addressUser.addressName)
+      "value": (_vm.member_number)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.addressUser.addressName = $event.target.value
-      }
-    }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "addressAddContentList"
-  }, [_c('div', {
-    staticClass: "addressAddContentListTitle"
-  }, [_vm._v("联系电话")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.addressUser.addressPhone),
-      expression: "addressUser.addressPhone"
-    }],
-    staticClass: "addressAddContentListInput",
-    attrs: {
-      "type": "number",
-      "placeholder": "请输入手机号",
-      "eventid": '1'
-    },
-    domProps: {
-      "value": (_vm.addressUser.addressPhone)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.addressUser.addressPhone = $event.target.value
-      }
-    }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "addressAddContentList"
-  }, [_c('div', {
-    staticClass: "addressAddContentListTitle"
-  }, [_vm._v("详细地址")]), _vm._v(" "), _c('textarea', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.addressUser.addressDetail),
-      expression: "addressUser.addressDetail"
-    }],
-    staticClass: "addressAddContentListInput",
-    attrs: {
-      "type": "text",
-      "maxlength": "30",
-      "placeholder": "请输入详细地址(最多50字)",
-      "eventid": '2'
-    },
-    domProps: {
-      "value": (_vm.addressUser.addressDetail)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.addressUser.addressDetail = $event.target.value
+        _vm.member_number = $event.target.value
       }
     }
   })])]), _vm._v(" "), (_vm.messageStatus) ? _c('p', {
     staticClass: "message"
-  }, [_vm._v("您还没有填完信息哦~")]) : _vm._e(), _vm._v(" "), _c('div', {
+  }, [_vm._v("您还没有填写卡号哦~")]) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "addressAddButton",
     attrs: {
-      "eventid": '3'
+      "eventid": '1'
     },
     on: {
       "click": _vm.addressAddButton
     }
-  }, [_vm._v("保存地址")])], 1)
+  }, [_vm._v("保存卡号")])], 1)
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -303,5 +225,5 @@ if (false) {
 
 /***/ })
 
-},[101]);
+},[103]);
 //# sourceMappingURL=main.js.map

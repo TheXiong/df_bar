@@ -1,4 +1,7 @@
 
+.commodityContainer.data-v-9ef0214c {
+  height: 100%;
+}
 .commodity.data-v-9ef0214c {
   width: 100%;
   height: 200rpx;
@@ -77,8 +80,9 @@
   color: #333;
 }
 .commodityListShoppContent.data-v-9ef0214c {
-  width: 540rpx;
+  width: 570rpx;
   margin-left: 20rpx;
+  height: 900rpx;
   float: left;
 }
 .commodityListShoppContent .commodityToggle.data-v-9ef0214c {
@@ -86,6 +90,7 @@
 }
 .commodityListShoppContent .commodityToggleList.data-v-9ef0214c {
   display: none;
+  height: 100%;
 }
 .commodityListShoppContent .commodityListShoppContentD.data-v-9ef0214c {
   width: 100%;

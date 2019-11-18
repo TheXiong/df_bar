@@ -1,13 +1,13 @@
 global.webpackJsonp([10],{
 
-/***/ 132:
+/***/ 139:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(140);
 
 
 
@@ -25,16 +25,16 @@ app.$mount();
 
 /***/ }),
 
-/***/ 133:
+/***/ 140:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(135);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_lib_template_compiler_index_id_data_v_450eb8ce_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_node_modules_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_lib_template_compiler_index_id_data_v_450eb8ce_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_node_modules_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(143);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(134)
+  __webpack_require__(141)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
@@ -79,21 +79,17 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 134:
+/***/ 141:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 135:
+/***/ 142:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(4);
-
 //
 //
 //
@@ -104,30 +100,11 @@ if (false) {(function () {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-  computed: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapState */])(['feedbackList'])),
   data: function data() {
     return {
-      feedback: {
-        name: '',
-        phone: '',
-        detail: ''
-      },
-      feedbackStatus: false
+      feedback: ""
     };
   },
 
@@ -135,37 +112,36 @@ if (false) {(function () {
     feedbackButton: function feedbackButton() {
       var _this = this;
 
-      this.$store.dispatch('addFeedbackList', this.feedback);
+      if (!this.feedback) {
+        wx.showToast({
+          title: "请填写反馈内容",
+          icon: "none",
+          duration: 2000
+        });
+        return;
+      }
 
-      this.feedbackStatus = true;
-
-      this.clearPageInput();
-
-      setTimeout(function () {
-        _this.feedbackStatus = false;
-
-        _this.toUserPages();
-      }, 500);
+      this.$fly.post("/u/feedback", { feedback: this.feedback }).then(function (res) {
+        wx.showToast({
+          title: "提交反馈成功",
+          icon: "success",
+          duration: 2000
+        });
+        _this.clearPageInput();
+      });
     },
     clearPageInput: function clearPageInput() {
-      this.feedback.name = '';
-      this.feedback.phone = '';
-      this.feedback.detail = '';
-    },
-    toUserPages: function toUserPages() {
-      var url = '/pages/user/main';
-      wx.switchTab({ url: url });
+      this.feedback = "";
     }
   },
   onLoad: function onLoad() {
     this.clearPageInput();
-    console.log(this.feedbackList);
   }
 });
 
 /***/ }),
 
-/***/ 136:
+/***/ 143:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -176,91 +152,36 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "feedback"
   }, [_c('div', {
     staticClass: "feedbackTitle"
-  }, [_vm._v("联系人")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.feedback.name),
-      expression: "feedback.name"
-    }],
-    staticClass: "feedbackInput",
-    attrs: {
-      "type": "text",
-      "autofocus": "",
-      "placeholder": "名字",
-      "eventid": '0'
-    },
-    domProps: {
-      "value": (_vm.feedback.name)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.feedback.name = $event.target.value
-      }
-    }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "feedback"
-  }, [_c('div', {
-    staticClass: "feedbackTitle"
-  }, [_vm._v("联系电话")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.feedback.phone),
-      expression: "feedback.phone"
-    }],
-    staticClass: "feedbackInput",
-    attrs: {
-      "type": "number",
-      "placeholder": "请输入手机号",
-      "eventid": '1'
-    },
-    domProps: {
-      "value": (_vm.feedback.phone)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.feedback.phone = $event.target.value
-      }
-    }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "feedback"
-  }, [_c('div', {
-    staticClass: "feedbackTitle"
   }, [_vm._v("反馈内容")]), _vm._v(" "), _c('textarea', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.feedback.detail),
-      expression: "feedback.detail"
+      value: (_vm.feedback),
+      expression: "feedback"
     }],
     staticClass: "feedbackInputTextarea",
     attrs: {
       "placeholder": "请输入反馈内容",
-      "eventid": '2'
+      "eventid": '0'
     },
     domProps: {
-      "value": (_vm.feedback.detail)
+      "value": (_vm.feedback)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.feedback.detail = $event.target.value
+        _vm.feedback = $event.target.value
       }
     }
   })]), _vm._v(" "), _c('div', {
     staticClass: "feedbackButton",
     attrs: {
-      "eventid": '3'
+      "eventid": '1'
     },
     on: {
       "click": _vm.feedbackButton
     }
-  }, [_vm._v("提交意见")]), _vm._v(" "), (_vm.feedbackStatus) ? _c('div', {
-    staticClass: "feedbackMessage"
-  }, [_vm._v("反馈成功~")]) : _vm._e()])
+  }, [_vm._v("提交意见")])])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -275,5 +196,5 @@ if (false) {
 
 /***/ })
 
-},[132]);
+},[139]);
 //# sourceMappingURL=main.js.map

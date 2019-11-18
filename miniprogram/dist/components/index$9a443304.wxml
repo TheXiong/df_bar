@@ -1,0 +1,36 @@
+<template name="index$9a443304">
+  <view class="_div data-v-4d902480 userContainer">
+    <view class="_div data-v-4d902480 user">
+      <view class="_div data-v-4d902480 userImg">
+        <open-data type="userAvatarUrl" class="_open-data data-v-4d902480"></open-data>
+      </view>
+      <view class="_div data-v-4d902480 userD">
+        <view class="_p data-v-4d902480 userName">
+          <open-data type="userNickName" class="_open-data data-v-4d902480"></open-data>
+        </view>
+      </view>
+    </view>
+    <view class="_div data-v-4d902480 usermenu">
+      <i-cell-group class="_i-cell-group data-v-4d902480">
+        <i-cell title="历史订单" is-link="true" url="/pages/order/main" link-type="switchTab" class="_i-cell data-v-4d902480">
+          <i-icon slot="icon" type="document_fill" color="#0097ff" size="18" class="_i-icon data-v-4d902480"></i-icon>
+        </i-cell>
+        <i-cell title="收货地址" is-link="true" url="/pages/address/main" class="_i-cell data-v-4d902480">
+          <i-icon slot="icon" type="coordinates_fill" color="#0097ff" size="18" class="_i-icon data-v-4d902480"></i-icon>
+        </i-cell>
+        <i-cell title="联系我们" is-link="true" url="/pages/contactus/main" class="_i-cell data-v-4d902480">
+          <i-icon slot="icon" type="group_fill" color="#0097ff" size="18" class="_i-icon data-v-4d902480"></i-icon>
+        </i-cell>
+        <i-cell title="联系商家" is-link="true" url="/pages/contactmerchant/main" class="_i-cell data-v-4d902480">
+          <i-icon slot="icon" type="homepage_fill" color="#0097ff" size="18" class="_i-icon data-v-4d902480"></i-icon>
+        </i-cell>
+        <i-cell title="意见反馈" is-link="true" url="/pages/feedback/main" class="_i-cell data-v-4d902480">
+          <i-icon slot="icon" type="like_fill" color="#0097ff" size="18" class="_i-icon data-v-4d902480"></i-icon>
+        </i-cell>
+      </i-cell-group>
+    </view>
+    <view class="_div data-v-4d902480 userLogIn">
+      <view class="_a data-v-4d902480">退出登陆</view>
+    </view>
+  </view>
+</template>

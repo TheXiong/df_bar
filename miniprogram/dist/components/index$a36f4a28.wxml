@@ -1,0 +1,35 @@
+<template name="index$a36f4a28">
+  <view class="_div data-v-8acbfed8 userContainer">
+    <view class="_div data-v-8acbfed8 user">
+      <view class="_div data-v-8acbfed8 userImg">
+        <open-data type="userAvatarUrl" class="_open-data data-v-8acbfed8"></open-data>
+      </view>
+      <view class="_div data-v-8acbfed8 userD">
+        <view class="_p data-v-8acbfed8 userName">
+          <open-data type="userNickName" class="_open-data data-v-8acbfed8"></open-data> {{userInfo?'(ID:'+userInfo.id+')':''}} </view>
+        <view class="_p data-v-8acbfed8 userPhone"> 积分:{{userInfo?userInfo.integral:''}}
+          <button type="primary" class="_button data-v-8acbfed8 exchange" bindtap="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}">兑换</button>
+        </view>
+      </view>
+    </view>
+    <view class="_div data-v-8acbfed8 usermenu">
+      <i-cell-group class="_i-cell-group data-v-8acbfed8">
+        <i-cell title="积分记录" is-link="true" url="/pages/order/main" link-type="switchTab" class="_i-cell data-v-8acbfed8">
+          <i-icon slot="icon" type="document_fill" color="#0097ff" size="18" class="_i-icon data-v-8acbfed8"></i-icon>
+        </i-cell>
+        <i-cell title="会员卡号" is-link="true" url="/pages/address/main" class="_i-cell data-v-8acbfed8">
+          <i-icon slot="icon" type="coordinates_fill" color="#0097ff" size="18" class="_i-icon data-v-8acbfed8"></i-icon>
+        </i-cell>
+        <i-cell title="联系客服" is-link="true" url="/pages/contactus/main" class="_i-cell data-v-8acbfed8">
+          <i-icon slot="icon" type="group_fill" color="#0097ff" size="18" class="_i-icon data-v-8acbfed8"></i-icon>
+        </i-cell>
+        <i-cell title="意见反馈" is-link="true" url="/pages/feedback/main" class="_i-cell data-v-8acbfed8">
+          <i-icon slot="icon" type="like_fill" color="#0097ff" size="18" class="_i-icon data-v-8acbfed8"></i-icon>
+        </i-cell>
+      </i-cell-group>
+    </view>
+    <view class="_div data-v-8acbfed8 userLogIn" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}">
+      <view class="_a data-v-8acbfed8">退出登陆</view>
+    </view>
+  </view>
+</template>

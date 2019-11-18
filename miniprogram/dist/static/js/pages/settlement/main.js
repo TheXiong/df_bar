@@ -1,13 +1,13 @@
 global.webpackJsonp([1],{
 
-/***/ 163:
+/***/ 168:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(164);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(169);
 
 
 
@@ -27,16 +27,16 @@ app.$mount();
 
 /***/ }),
 
-/***/ 164:
+/***/ 169:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(166);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_lib_template_compiler_index_id_data_v_141d941c_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_node_modules_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(171);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(171);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_lib_template_compiler_index_id_data_v_141d941c_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_node_modules_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(180);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(165)
+  __webpack_require__(170)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
@@ -81,30 +81,27 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 165:
+/***/ 170:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 166:
+/***/ 171:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty__ = __webpack_require__(202);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_lodash__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pay__ = __webpack_require__(167);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuex__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lodash__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pay__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__(6);
 
-
-
-var _components$data$comp;
-
+//
+//
+//
 //
 //
 //
@@ -154,21 +151,26 @@ var _components$data$comp;
 
 
 
-/* harmony default export */ __webpack_exports__["a"] = (_components$data$comp = {
+/* harmony default export */ __webpack_exports__["a"] = ({
   components: {
-    pay: __WEBPACK_IMPORTED_MODULE_3__components_pay__["a" /* default */]
+    pay: __WEBPACK_IMPORTED_MODULE_2__components_pay__["a" /* default */]
   },
   data: function data() {
     return {
-      address: ''
+      integral: 0,
+      payShow: false,
+      member_number: "",
+      tipsMessage: {
+        message: "没有会员卡号",
+        status: false
+      }
     };
   },
 
-  computed: __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default()({}, Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["b" /* mapState */])(["commdityShoppingName", "commdityShopping", "commdityOrder", "userOrderAddres"]), {
-    // 实际价格
+  computed: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["b" /* mapState */])(["commdityShopping", "userInfo"]), {
     commditySumPrice: function commditySumPrice() {
       var commditySumPrice = 0;
-      __WEBPACK_IMPORTED_MODULE_2_lodash___default.a.forEach(this.commdityShopping, function (value, key) {
+      __WEBPACK_IMPORTED_MODULE_1_lodash___default.a.forEach(this.commdityShopping, function (value, key) {
         commditySumPrice += value.integral * value.num;
       });
 
@@ -177,59 +179,59 @@ var _components$data$comp;
       // }
       return commditySumPrice;
     }
-  })
-}, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default()(_components$data$comp, "data", function data() {
-  return {
-    randomSum: 0,
-    payShow: false,
-    commdityOrders: {
-      commdityOrderName: "",
-      commdityOrderShopping: [],
-      commdityOrderOffer: 0,
-      commdityOrderActual: this.commditySumPrice,
-      commdityOrderSumPrice: 0,
-      commdityOrderUserAddress: {}
+  }),
+  watch: {
+    userInfo: function userInfo() {
+      this.member_number = this.userInfo.member_number;
+      this.integral = this.userInfo.integral;
     }
-  };
-}), __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default()(_components$data$comp, "methods", {
-  payClickTest: function payClickTest() {
-    var _this = this;
-    // if (this.userAddres.length === 0) {
-    //   this.tipsMessage.status = true
-    //   setTimeout(function () {
-    //     _this.tipsMessage.status = false
-    //   }, 500)
-    //   return false
-    // }
-    this.commdityOrders.commdityOrderName = this.commdityShoppingName;
-    this.commdityOrders.commdityOrderShopping = this.commdityShopping;
-    this.commdityOrders.commdityOrderOffer = this.randomSum;
-    this.commdityOrders.commdityOrderActual = this.commditySumPrice;
-    this.commdityOrders.commdityOrderSumPrice = this.commditySumPriceYH;
-    this.commdityOrders.commdityOrderUserAddress = this.setUserOrderAddres;
-    this.$store.dispatch("setCommdityOrder", this.commdityOrders);
-    // this.commdityOrders.commdityOrderName = ''
-    // this.commdityOrders.commdityOrderShopping = []
-    this.payShow = true;
-    // console.log(this.commdityOrder)
   },
-  closePayFull: function closePayFull(status) {
-    this.payShow = status;
+  created: function created() {
+    this.member_number = this.userInfo.member_number;
+    this.integral = this.userInfo.integral;
+  },
+
+  methods: {
+    payClickTest: function payClickTest() {
+      var _this = this;
+
+      this.$fly.post("/u/build_order", { infos: this.commdityShopping }).then(function (res) {
+        wx.showToast({
+          title: "下单成功",
+          icon: "success",
+          duration: 2000
+        });
+        _this.$fly.post("/u/order_list", {}).then(function (res) {
+          _this.$store.dispatch("setCommdityOrder", res.data.data);
+        });
+        _this.$store.dispatch("getNewUserInfo").then(function (res) {
+          _this.payShow = true;
+        });
+      });
+    },
+    closePayFull: function closePayFull(status) {
+      this.payShow = status;
+    },
+    toEditCardNumber: function toEditCardNumber() {
+      wx.navigateTo({
+        url: "/pages/addressAdd/main"
+      });
+    }
   }
-}), _components$data$comp);
+});
 
 /***/ }),
 
-/***/ 167:
+/***/ 176:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_lib_selector_type_script_index_0_pay_vue__ = __webpack_require__(169);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_lib_template_compiler_index_id_data_v_2b37686c_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_node_modules_mpvue_loader_lib_selector_type_template_index_0_pay_vue__ = __webpack_require__(170);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_lib_selector_type_script_index_0_pay_vue__ = __webpack_require__(178);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_lib_template_compiler_index_id_data_v_2b37686c_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_node_modules_mpvue_loader_lib_selector_type_template_index_0_pay_vue__ = __webpack_require__(179);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(168)
+  __webpack_require__(177)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
@@ -274,20 +276,20 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 168:
+/***/ 177:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 169:
+/***/ 178:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(6);
 
 //
 //
@@ -315,7 +317,7 @@ if (false) {(function () {
       // console.log('blackindex')
       this.closePayFull();
       wx.switchTab({
-        url: '../index/main'
+        url: '../commodity/main'
       });
     },
     checkOrder: function checkOrder() {
@@ -334,7 +336,7 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 170:
+/***/ 179:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -380,7 +382,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 171:
+/***/ 180:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -388,26 +390,47 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   return _c('div', {
     staticClass: "settlementContainer"
   }, [_c('div', {
+    staticClass: "settlementHeader"
+  }, [_c('div', {
+    staticClass: "settlementHeaderAddress"
+  }, [_c('p', {
+    staticClass: "settlementHeaderAddressD"
+  }, [_vm._v("会员卡号:")]), _vm._v(" "), _c('p', {
+    staticClass: "settlementHeaderAddressA"
+  }, [(_vm.member_number) ? _c('span', {
+    staticClass: "settlementHeaderAddressA number"
+  }, [_vm._v(_vm._s(_vm.member_number))]) : _vm._e(), _vm._v(" "), (_vm.member_number) ? _c('span', {
+    staticClass: "settlementHeaderAddressA editAddress",
+    attrs: {
+      "eventid": '1'
+    },
+    on: {
+      "click": _vm.toEditCardNumber
+    }
+  }, [_vm._v("编辑会员卡号 >")]) : _c('span', {
+    staticClass: "settlementHeaderAddressA",
+    attrs: {
+      "eventid": '0'
+    },
+    on: {
+      "click": _vm.toEditCardNumber
+    }
+  }, [_vm._v("录入会员卡号 >")])])], 1)]), _vm._v(" "), _c('div', {
     staticClass: "settlementMain"
   }, [_c('i-cell-group', {
     attrs: {
-      "mpcomid": '2'
+      "mpcomid": '1'
     }
-  }, [_c('i-cell', {
-    attrs: {
-      "title": _vm.commdityShoppingName,
-      "mpcomid": '0'
-    }
-  }), _vm._v(" "), _vm._l((_vm.commdityShopping), function(item, index) {
+  }, _vm._l((_vm.commdityShopping), function(item, index) {
     return _c('i-cell', {
       key: index,
       attrs: {
         "title": item.name,
-        "value": (item.integral) * (item.num),
-        "mpcomid": '1-' + index
+        "value": item.integral + '*' + item.num + '=' + (item.integral) * (item.num),
+        "mpcomid": '0-' + index
       }
     })
-  })], 2)], 1), _vm._v(" "), _c('div', {
+  }))], 1), _vm._v(" "), _c('div', {
     staticClass: "settlementFooter"
   }, [_c('div', {
     staticClass: "settlementFooterL"
@@ -415,18 +438,22 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "settlementFooterLM"
   }, [_c('span', {
     staticClass: "settlementFooterLMSum"
-  }, [_vm._v(_vm._s(_vm.commditySumPrice) + "元")])])], 1), _vm._v(" "), _c('div', {
+  }, [_vm._v("花费积分" + _vm._s(_vm.commditySumPrice))]), _vm._v(" "), _c('span', {
+    staticClass: "settlementFooterLMH"
+  }, [_vm._v("|")]), _vm._v(" "), _c('span', {
+    staticClass: "settlementFooterLMYH"
+  }, [_vm._v("您有积分" + _vm._s(_vm.integral))])])], 1), _vm._v(" "), _c('div', {
     staticClass: "settlementFooterR",
     attrs: {
-      "eventid": '0'
+      "eventid": '2'
     },
     on: {
       "click": _vm.payClickTest
     }
-  }, [_vm._v("去支付")])]), _vm._v(" "), (_vm.payShow) ? _c('pay', {
+  }, [_vm._v("立即下单")])]), _vm._v(" "), (_vm.payShow) ? _c('pay', {
     attrs: {
-      "eventid": '1',
-      "mpcomid": '3'
+      "eventid": '3',
+      "mpcomid": '2'
     },
     on: {
       "closePayFull": _vm.closePayFull
@@ -452,5 +479,5 @@ if (false) {
 
 /***/ })
 
-},[163]);
+},[168]);
 //# sourceMappingURL=main.js.map

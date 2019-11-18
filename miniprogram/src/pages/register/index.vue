@@ -129,6 +129,7 @@ export default {
           icon: "success",
           duration: 2000
         });
+        wx.setStorageSync("token",res.headers.token);
         wx.navigateTo({ url: "../login/main" });
       });
     },

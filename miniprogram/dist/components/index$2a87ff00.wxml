@@ -1,0 +1,21 @@
+<template name="index$2a87ff00">
+  <view class="_div data-v-0a4b2c02 addressAddContainer">
+    <view class="_div data-v-0a4b2c02 addressAddContent">
+      <view class="_div data-v-0a4b2c02 addressAddContentList">
+        <view class="_div data-v-0a4b2c02 addressAddContentListTitle">联系人</view>
+        <input class="_input data-v-0a4b2c02 addressAddContentListInput" type="text" value="{{addressUser.addressName}}" bindinput="handleProxy" autofocus placeholder="名字" data-eventid="{{'0'}}" data-comkey="{{$k}}" />
+      </view>
+      <view class="_div data-v-0a4b2c02 addressAddContentList">
+        <view class="_div data-v-0a4b2c02 addressAddContentListTitle">联系电话</view>
+        <input class="_input data-v-0a4b2c02 addressAddContentListInput" type="number" value="{{addressUser.addressPhone}}" bindinput="handleProxy" placeholder="请输入手机号" data-eventid="{{'1'}}" data-comkey="{{$k}}" />
+      </view>
+      <view class="_div data-v-0a4b2c02 addressAddContentList">
+        <view class="_div data-v-0a4b2c02 addressAddContentListTitle">详细地址</view>
+        <textarea class="_textarea data-v-0a4b2c02 addressAddContentListInput" type="text" value="{{addressUser.addressDetail}}" bindinput="handleProxy" maxlength="30" placeholder="请输入详细地址(最多50字)" data-eventid="{{'2'}}" data-comkey="{{$k}}"
+        />
+      </view>
+    </view>
+    <view wx:if="{{messageStatus}}" class="_p data-v-0a4b2c02 message">您还没有填完信息哦~</view>
+    <view class="_div data-v-0a4b2c02 addressAddButton" bindtap="handleProxy" data-eventid="{{'3'}}" data-comkey="{{$k}}">保存地址</view>
+  </view>
+</template>

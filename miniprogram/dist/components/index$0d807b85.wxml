@@ -1,0 +1,10 @@
+<template name="index$0d807b85">
+  <view class="_div data-v-1052573d counter-warp">
+    <view class="_p data-v-1052573d">Vuex counter：{{ count }}</view>
+    <view class="_p data-v-1052573d">
+      <button bindtap="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}" class="_button data-v-1052573d">+</button>
+      <button bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}" class="_button data-v-1052573d">-</button>
+    </view>
+    <navigator url="/pages/user/main" class="_a data-v-1052573d home">去往首页</navigator>
+  </view>
+</template>

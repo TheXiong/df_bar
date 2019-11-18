@@ -1,0 +1,72 @@
+<template name="index$7016bd9b">
+  <view class="_div data-v-50482813 container">
+    <view class="_div data-v-50482813 headSearch">
+      <view class="_div data-v-50482813 headSearchInput" bindtap="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}">
+        <input class="_input data-v-50482813 headSeachISearch" type="search" placeholder="请输入收货人姓名" />
+      </view>
+    </view>
+    <view class="_div data-v-50482813 banner" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}">
+      <image src="/static/img/banner.png" alt="banner" class="_img data-v-50482813"></image>
+    </view>
+    <view class="_div data-v-50482813 menu">
+      <view class="_div data-v-50482813 menuContent">
+        <view class="_div data-v-50482813 menuContentList">
+          <image src="/static/img/gssc.png" alt="gssc" class="_img data-v-50482813"></image>
+        </view>
+        <view class="_div data-v-50482813 menuContentList">
+          <image src="/static/img/xlqg.png" alt="xlqg" class="_img data-v-50482813"></image>
+        </view>
+        <view class="_div data-v-50482813 menuContentList">
+          <image src="/static/img/qbms.png" alt="qbms" class="_img data-v-50482813"></image>
+        </view>
+      </view>
+    </view>
+    <view class="_div data-v-50482813 main">
+      <view class="_div data-v-50482813 shop" wx:key="index" key="{{index}}" wx:for="{{merchant}}" wx:for-index="index" wx:for-item="item">
+        <view class="_div data-v-50482813 shopContent">
+          <view class="_div data-v-50482813 shopContentTitle clearflx">
+            <navigator url="/pages/commodity/main" class="_a data-v-50482813">
+              <view class="_div data-v-50482813 sCTImg">
+                <image src="{{item.logo}}" alt="{{item.logoalt}}" class="_img data-v-50482813"></image>
+              </view>
+            </navigator>
+            <view class="_div data-v-50482813 sCTDetail">
+              <view class="_div data-v-50482813 sCTDetailTitle">
+                <view class="_div data-v-50482813 sCTDetailTitleicon">店铺</view>
+                <view class="_p data-v-50482813">{{item.title}}</view>
+              </view>
+              <view class="_div data-v-50482813 sCTDetailpj"> {{item.sales}} </view>
+              <view class="_div data-v-50482813 sCTDetailm"> {{item.distribution}} </view>
+            </view>
+          </view>
+          <view class="_div data-v-50482813 shopLine"></view>
+          <view class="_div data-v-50482813 shopActivity clearflx">
+            <view class="_div data-v-50482813 shopActivityicon clearflx">
+              <view class="_div data-v-50482813 shopActivityiconJ">减</view>
+              <view class="_p data-v-50482813">{{item.less}}</view>
+            </view>
+            <view class="_div data-v-50482813 shopActivityicon clearflx">
+              <view class="_div data-v-50482813 shopActivityiconJ">折</view>
+              <view class="_p data-v-50482813">{{item.fold}}</view>
+            </view>
+          </view>
+          <view class="_div data-v-50482813 shopping">
+            <view class="_div data-v-50482813 shoppingContent" wx:key="itemIndex" key="{{itemIndex}}" wx:for="{{item.shopping}}" wx:for-index="itemIndex" wx:for-item="itemShoop">
+              <view class="_div data-v-50482813 shoppingContentImg">
+                <image src="{{itemShoop.shoopingImg}}" alt="{{item.shoopimgAlt}}" class="_img data-v-50482813"></image>
+              </view>
+              <view class="_p data-v-50482813 shoppingContentTitle">{{itemShoop.shoopingTitle}}</view>
+              <view class="_p data-v-50482813 shoppingContentM">
+                <label class="_span data-v-50482813 shoppingContentMA">{{itemShoop.shoopingMa}}￥</label>
+                <label class="_span data-v-50482813 shoppingContentMB">{{itemShoop.shoopingMb}}</label>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="_div data-v-50482813">
+        <i-load-more tip="暂无数据" loading="{{loadingShow}}" class="_i-load-more data-v-50482813"></i-load-more>
+      </view>
+    </view>
+  </view>
+</template>

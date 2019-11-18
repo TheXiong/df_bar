@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import fly from '../fly.js'
 // import vuetron from 'vuetron '
 import createPersistedState from 'vuex-persistedstate'
 import _ from 'lodash'
@@ -36,7 +37,8 @@ export default new Vuex.Store({
     userAddres: [],
     userOrderAddres: 0,
     // 意见反馈
-    feedbackList: []
+    feedbackList: [],
+    userInfo: {}
   },
 
   mutations: {
@@ -90,8 +92,15 @@ export default new Vuex.Store({
      * @param commdityOrder
      */
     setCommdityOrder (state, commdityOrder) {
-      let commdityOrderClone = _.clone(commdityOrder)
-      state.commdityOrder.push(commdityOrderClone)
+      commdityOrder.map(order => {
+        order.total = order.order_goods.reduce((prev, current) => {
+          prev += current.integral * current.number
+          return prev
+        }, 0)
+        order.join_time = (new Date(order.join_time * 1000)).toLocaleString()
+      })
+
+      state.commdityOrder = commdityOrder
     },
     /**
      * 设置用户收货地址
@@ -144,6 +153,9 @@ export default new Vuex.Store({
     addFeedbackList (state, feedbackList) {
       let feedbackListClone = _.clone(feedbackList)
       state.feedbackList.push(feedbackListClone)
+    },
+    setUserInfo (state, userInfo) {
+      state.userInfo = userInfo
     }
   },
   /**
@@ -185,6 +197,31 @@ export default new Vuex.Store({
     },
     addFeedbackList ({commit}, addFeedbackList) {
       commit('addFeedbackList', addFeedbackList)
+    },
+    getNewUserInfo ({commit}) {
+      return new Promise((resolve, reject) => {
+        fly
+          .post('/u/information', {})
+          .then(res => {
+            let userInfo = res.data.data
+            wx.setStorageSync('userInfo', userInfo)
+            commit('setUserInfo', userInfo)
+            resolve()
+          })
+          .catch(() => {
+            try {
+              wx.showToast({
+                title: '获取用户信息失败，请重新登录',
+                icon: 'none',
+                duration: 2000
+              })
+              wx.removeStorageSync('token')
+              wx.navigateTo({
+                url: '../login/main'
+              })
+            } catch (e) {}
+          })
+      })
     }
   }
 })

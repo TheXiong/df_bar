@@ -1,0 +1,21 @@
+<template name="index$2a68e678">
+  <view class="_div data-v-b80db4d4 login">
+    <view class="_p data-v-b80db4d4 login-title">会员登录</view>
+    <view class="_view data-v-b80db4d4 section">
+      <input value="{{form.mobile}}" bindinput="handleProxy" type="number" maxlength="11" placeholder-class="input-holder" placeholder="请输入您的手机号" data-eventid="{{'0'}}" data-comkey="{{$k}}" class="_input data-v-b80db4d4" />
+    </view>
+    <view wx:if="{{loginType=='mobile_verify_code'}}" class="_view data-v-b80db4d4 section">
+      <input class="_input data-v-b80db4d4 code-input" value="{{form.mobile_verify_code}}" bindinput="handleProxy" placeholder-class="input-holder" placeholder="请输入验证码" type="number" maxlength="6" data-eventid="{{'1'}}" data-comkey="{{$k}}" />
+      <button class="_button data-v-b80db4d4 code" size="mini" bindtap="handleProxy" data-eventid="{{'2'}}" data-comkey="{{$k}}">{{codeText}}</button>
+    </view>
+    <view wx:if="{{loginType=='password'}}" class="_view data-v-b80db4d4 section">
+      <input value="{{form.password}}" bindinput="handleProxy" placeholder-class="input-holder" password="{{isPassword}}" placeholder="请输入您的密码" data-eventid="{{'3'}}" data-comkey="{{$k}}" class="_input data-v-b80db4d4" />
+    </view>
+    <button size="mini" wx:if="{{loginType=='mobile_verify_code'}}" bindtap="handleProxy" data-eventid="{{'5'}}" data-comkey="{{$k}}" class="_button data-v-b80db4d4">密码登录</button>
+    <button size="mini" wx:else bindtap="handleProxy" data-eventid="{{'4'}}" data-comkey="{{$k}}" class="_button data-v-b80db4d4">验证码登录</button>
+    <button class="_button data-v-b80db4d4 btn" bindtap="handleProxy" data-eventid="{{'6'}}" data-comkey="{{$k}}">登录</button>
+    <view class="_br data-v-b80db4d4"></view>
+    <view class="_br data-v-b80db4d4"></view>
+    <view class="_p data-v-b80db4d4 login-text" bindtap="handleProxy" data-eventid="{{'7'}}" data-comkey="{{$k}}">没有账号？立即注册</view>
+  </view>
+</template>

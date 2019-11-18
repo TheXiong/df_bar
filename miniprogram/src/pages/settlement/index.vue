@@ -1,24 +1,27 @@
 <template>
   <div class="settlementContainer">
-    <!-- <div class="settlementHeader">
+    <div class="settlementHeader">
       <div class="settlementHeaderAddress">
-        <p class="settlementHeaderAddressD">订单配送至:</p>
+        <p class="settlementHeaderAddressD">会员卡号:</p>
         <p class="settlementHeaderAddressA">
-          <i-panel title="订单配送至:">
-            <i-input :value="address" placeholder="请输入座位号" />
-          </i-panel>
+          <span class="settlementHeaderAddressA number" v-if="member_number">{{member_number}}</span>
+          <span
+            class="settlementHeaderAddressA editAddress"
+            @click="toEditCardNumber"
+            v-if="member_number"
+          >编辑会员卡号 ></span>
+          <span class="settlementHeaderAddressA" @click="toEditCardNumber" v-else>录入会员卡号 ></span>
         </p>
       </div>
-    </div> -->
+    </div>
 
     <div class="settlementMain">
       <i-cell-group>
-        <i-cell :title="commdityShoppingName"></i-cell>
         <i-cell
           v-for="(item, index) in commdityShopping"
           :key="index"
           :title="item.name"
-          :value="(item.integral) * (item.num)"
+          :value="item.integral+'*'+item.num+'='+(item.integral) * (item.num)"
         ></i-cell>
 
         <!-- <i-cell title="优惠金额 " :value="randomSum" ></i-cell> -->
@@ -28,12 +31,12 @@
     <div class="settlementFooter">
       <div class="settlementFooterL">
         <p class="settlementFooterLM">
-          <span class="settlementFooterLMSum">{{commditySumPrice}}元</span>
-          <!-- <span class="settlementFooterLMH">|</span>
-          <span class="settlementFooterLMYH">已优惠{{randomSum}}元</span>-->
+          <span class="settlementFooterLMSum">花费积分{{commditySumPrice}}</span>
+          <span class="settlementFooterLMH">|</span>
+          <span class="settlementFooterLMYH">您有积分{{integral}}</span>
         </p>
       </div>
-      <div class="settlementFooterR" @click="payClickTest">去支付</div>
+      <div class="settlementFooterR" @click="payClickTest">立即下单</div>
     </div>
     <pay v-if="payShow" @closePayFull="closePayFull"></pay>
 
@@ -51,19 +54,19 @@ export default {
   components: {
     pay
   },
-  data(){
+  data() {
     return {
-      address:''
-    }
+      integral: 0,
+      payShow: false,
+      member_number: "",
+      tipsMessage: {
+        message: "没有会员卡号",
+        status: false
+      }
+    };
   },
   computed: {
-    ...mapState([
-      "commdityShoppingName",
-      "commdityShopping",
-      "commdityOrder",
-      "userOrderAddres"
-    ]),
-    // 实际价格
+    ...mapState(["commdityShopping", "userInfo"]),
     commditySumPrice() {
       let commditySumPrice = 0;
       _.forEach(this.commdityShopping, function(value, key) {
@@ -74,47 +77,44 @@ export default {
       //   commditySumPrice += 1
       // }
       return commditySumPrice;
-    },
+    }
   },
-  data() {
-    return {
-      randomSum: 0,
-      payShow: false,
-      commdityOrders: {
-        commdityOrderName: "",
-        commdityOrderShopping: [],
-        commdityOrderOffer: 0,
-        commdityOrderActual: this.commditySumPrice,
-        commdityOrderSumPrice: 0,
-        commdityOrderUserAddress: {}
-      },
-    };
+  watch: {
+    userInfo() {
+      this.member_number = this.userInfo.member_number;
+      this.integral = this.userInfo.integral;
+    }
+  },
+  created() {
+    this.member_number = this.userInfo.member_number;
+    this.integral = this.userInfo.integral;
   },
   methods: {
     payClickTest() {
-      let _this = this;
-      // if (this.userAddres.length === 0) {
-      //   this.tipsMessage.status = true
-      //   setTimeout(function () {
-      //     _this.tipsMessage.status = false
-      //   }, 500)
-      //   return false
-      // }
-      this.commdityOrders.commdityOrderName = this.commdityShoppingName;
-      this.commdityOrders.commdityOrderShopping = this.commdityShopping;
-      this.commdityOrders.commdityOrderOffer = this.randomSum;
-      this.commdityOrders.commdityOrderActual = this.commditySumPrice;
-      this.commdityOrders.commdityOrderSumPrice = this.commditySumPriceYH;
-      this.commdityOrders.commdityOrderUserAddress = this.setUserOrderAddres;
-      this.$store.dispatch("setCommdityOrder", this.commdityOrders);
-      // this.commdityOrders.commdityOrderName = ''
-      // this.commdityOrders.commdityOrderShopping = []
-      this.payShow = true;
-      // console.log(this.commdityOrder)
+      this.$fly
+        .post("/u/build_order", { infos: this.commdityShopping })
+        .then(res => {
+          wx.showToast({
+            title: "下单成功",
+            icon: "success",
+            duration: 2000
+          });
+          this.$fly.post("/u/order_list", {}).then(res => {
+            this.$store.dispatch("setCommdityOrder",  res.data.data);
+          });
+          this.$store.dispatch("getNewUserInfo").then(res => {
+            this.payShow = true;
+          });
+        });
     },
     closePayFull(status) {
       this.payShow = status;
     },
+    toEditCardNumber() {
+      wx.navigateTo({
+        url: "/pages/addressAdd/main"
+      });
+    }
   }
 };
 </script>
@@ -152,6 +152,15 @@ export default {
     -ms-text-overflow: ellipsis;
     text-overflow: ellipsis;
     white-space: nowrap;
+    display: flex;
+    flex: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .number {
+    width: 400rpx;
+  }
+  .editAddress {
   }
 }
 .settlementMain {

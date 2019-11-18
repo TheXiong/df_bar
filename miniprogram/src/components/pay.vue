@@ -30,7 +30,7 @@ export default {
         // console.log('blackindex')
         this.closePayFull()
         wx.switchTab({
-          url: '../index/main'
+          url: '../commodity/main'
         })
       },
       checkOrder () {

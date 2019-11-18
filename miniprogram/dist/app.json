@@ -8,6 +8,7 @@
     "pages/contactmerchant/main",
     "pages/contactus/main",
     "pages/counter/main",
+    "pages/exchange/main",
     "pages/feedback/main",
     "pages/logs/main",
     "pages/order/main",

@@ -1,0 +1,13 @@
+<template name="pay$52547f87">
+  <view class="_div data-v-1fb393f6 payContainer">
+    <view class="_div data-v-1fb393f6 payFull">
+      <view class="_div data-v-1fb393f6 payContent">
+        <view class="_div data-v-1fb393f6 payContentTitle"> 支付成功 </view>
+        <view class="_div data-v-1fb393f6 payContentButton">
+          <view class="_div data-v-1fb393f6 payContentButtonL" bindtap="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}">返回首页</view>
+          <view class="_div data-v-1fb393f6 payContentButtonR" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}">查看订单</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

@@ -27,17 +27,21 @@
 }
 .user .userD.data-v-8acbfed8 {
   float: left;
-  margin: 40rpx 0 0 50rpx;
+  margin: 30rpx 0 0 50rpx;
 }
 .user .userD .userName.data-v-8acbfed8 {
   color: #fff;
   font-size: 40rpx;
-  line-height: 120rpx;
+  line-height: 90rpx;
 }
 .user .userD .userPhone.data-v-8acbfed8 {
   color: #fff;
   font-size: 32rpx;
   line-height: 40rpx;
+}
+.user .userD .userPhone .exchange.data-v-8acbfed8 {
+  display: inline;
+  font-size: 32rpx;
 }
 .usermenu.data-v-8acbfed8 {
   width: 100%;

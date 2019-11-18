@@ -1,0 +1,12 @@
+<template name="index$3c6cea6e">
+  <view class="_div data-v-4dfe6054 addressAddContainer">
+    <view class="_div data-v-4dfe6054 addressAddContent">
+      <view class="_div data-v-4dfe6054 addressAddContentList">
+        <view class="_div data-v-4dfe6054 addressAddContentListTitle">会员卡号</view>
+        <input class="_input data-v-4dfe6054 addressAddContentListInput" type="text" value="{{member_number}}" bindinput="handleProxy" autofocus placeholder="卡号" data-eventid="{{'0'}}" data-comkey="{{$k}}" />
+      </view>
+    </view>
+    <view wx:if="{{messageStatus}}" class="_p data-v-4dfe6054 message">您还没有填写卡号哦~</view>
+    <view class="_div data-v-4dfe6054 addressAddButton" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}">保存卡号</view>
+  </view>
+</template>

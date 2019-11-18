@@ -26,12 +26,19 @@
         </ul>
       </div>
       <div class="commodityListShoppContent">
-        <div class="commodityToggleList commodityToggle">
+        <scroll-view
+          scroll-y="true"
+          @scrolltolower="lower"
+          :scroll-top="scrollTop"
+          @scroll="scroll"
+          class="commodityToggleList commodityToggle"
+        >
           <div
             @click="addCommodity(product)"
             class="commodityListShoppContentD"
             v-for="(product, index) in productList"
             :key="index"
+            :id="'product'+product.id"
           >
             <div class="commodityListShoppContentDImg">
               <img :src="product.img" :alt="product.alt" />
@@ -45,8 +52,35 @@
               </div>
             </div>
           </div>
-        </div>
+        </scroll-view>
       </div>
+      <!-- <scroll-view
+        scroll-y="true"
+        @scrolltolower="lower"
+        :scroll-top="scrollTop"
+        class="commodityListShoppContent"
+      >
+          <div class="commodityToggleList commodityToggle">
+            <div
+              @click="addCommodity(product)"
+              class="commodityListShoppContentD"
+              v-for="(product, index) in productList"
+              :key="index"
+            >
+              <div class="commodityListShoppContentDImg">
+                <img :src="product.img" :alt="product.alt" />
+              </div>
+              <div class="commodityListShoppContentDD">
+                <p class="commodityListShoppContentDDT">{{product.name}}</p>
+                <p class="commodityListShoppContentDDD">{{product.detail}}</p>
+                <p class="commodityListShoppContentDDM">{{product.integral}}元</p>
+                <div class="commodityAdd">
+                  <img src="/static/img/add.png" alt="add" />
+                </div>
+              </div>
+            </div>
+        </div>
+      </scroll-view>-->
     </div>
 
     <div class="commodityemtyp"></div>
@@ -97,7 +131,7 @@
         class="commodityM"
         :class="{commodityMStatus: commoditySumShopp}"
         @click.stop="settlement"
-      >{{ commoditySumShopp === 0 ? '' : '立即下单'}}</div>
+      >{{ commoditySumShopp === 0 ? '' : '去下单'}}</div>
     </div>
 
     <div
@@ -120,11 +154,12 @@ export default {
       productTypes: [], //小吃类型
       productTypesId: 0, //当前所选类型
       productList: [],
-      userInfo: null
+      hasMore: true,
+      scrollTop: 0
     };
   },
   computed: {
-    ...mapState(["commdityShopping"]),
+    ...mapState(["commdityShopping", "userInfo"]),
     commodityPrice: function() {
       let sumPrice = 0;
       _.forEach(this.commdityShopping, function(value, key) {
@@ -150,12 +185,13 @@ export default {
       this.productTypesId = this.productTypes[0].id || 0;
       this.getProductList();
     });
-    this.userInfo = JSON.parse(wx.getStorageSync("userInfo"));
   },
   methods: {
     // 切换列表
     toggleList(id) {
       this.productTypesId = id;
+      this.hasMore = true;
+      this.scrollTop = 0;
       this.getProductList();
     },
     getProductList() {
@@ -163,6 +199,9 @@ export default {
         .post("/u/goods_list", { group: this.productTypesId })
         .then(res => {
           this.productList = res.data.data;
+          if (res.data.data.length < 10) {
+            this.hasMore = false;
+          }
         });
     },
     // 遮罩层切换
@@ -203,50 +242,42 @@ export default {
     },
     settlement() {
       if (this.commoditySumShopp) {
-        // this.commodityToggleShow = false;
-        // wx.navigateTo({
-        //   url: "/pages/settlement/main"
-        // });
-        this.$fly
-          .post("/u/build_order", { infos: this.commdityShopping })
-          .then(res => {
-            wx.showToast({
-              title: "下单成功",
-              icon: "success",
-              duration: 2000
-            });
-            this.$store.commit("setCommdityShoppingClear")
-            this.$fly.post("/u/information", {}).then(res => {
-              wx.setStorageSync("userInfo", JSON.stringify(res.data.data));
-              wx.reLaunch({
-                url: "../commodity/main"
-              });
-            });
-          });
+        this.commodityToggleShow = false;
+        wx.navigateTo({
+          url: "/pages/settlement/main"
+        });
       } else {
         return false;
       }
     },
-    addressInput(e) {
-      console.log(e);
-    }
-
-    // commodityJsonInArray (data) {
-    //   // console.log(data)
-    //   let commodityJson = {}
-    //   for (let key of Object.keys(data)) {
-    //     // console.log(key, data[key])
-    //     commodityJson[key] = data[key]
-    //   }
-    //   console.log(commodityJson)
-    //   return commodityJson
-    // }
+    lower(e) {
+      if (!this.hasMore) {
+        return;
+      }
+      this.$fly
+        .post("/u/goods_list", {
+          group: this.productTypesId,
+          id: this.productList[this.productList.length - 1].id
+        })
+        .then(res => {
+          if (res.data.data) {
+            this.productList = [...this.productList, ...res.data.data];
+            this.scrollTop = e.target.scrollTop;
+            if (res.data.data.length < 10) {
+              this.hasMore = false;
+            }
+          } else {
+            this.hasMore = false;
+          }
+        });
+    },
   }
 };
 </script>
 
 <style lang="less" scoped>
 .commodityContainer {
+  height: 100%;
 }
 .commodity {
   width: 100%;
@@ -333,8 +364,9 @@ export default {
 }
 
 .commodityListShoppContent {
-  width: 540rpx;
+  width: 570rpx;
   margin-left: 20rpx;
+  height: 900rpx;
   float: left;
 
   .commodityToggle {
@@ -342,6 +374,7 @@ export default {
   }
   .commodityToggleList {
     display: none;
+    height: 100%;
   }
 
   .commodityListShoppContentD {
