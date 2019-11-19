@@ -6,8 +6,10 @@
       <div class="title">赠送记录</div>
       <scroll-view class="list" scroll-y="true" @scrolltolower="lower" :scroll-top="scrollTop">
         <div class="item" v-for="(item, index) in listData" :key="index">
-          <div class="content">{{item.join_time}}</div>
+          <div class="content">{{index+1}}</div>
+          <div class="content">{{item.name}}</div>
           <div class="content">{{item.note}}</div>
+          <div class="content">{{item.join_time}}</div>
         </div>
       </scroll-view>
       <!-- <div class="list">
