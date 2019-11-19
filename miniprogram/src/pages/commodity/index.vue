@@ -8,7 +8,7 @@
     </div>-->
 
     <!-- <div class="commodityTitle">{{commodityName}}</div>
-    <div class="commodityDetail">10元起送|免费配送</div>-->
+    <div class="commodityDetail">10元元起送|免费配送</div>-->
 
     <div class="commodityList">点餐</div>
 
@@ -30,11 +30,9 @@
           scroll-y="true"
           @scrolltolower="lower"
           :scroll-top="scrollTop"
-          @scroll="scroll"
           class="commodityToggleList commodityToggle"
         >
           <div
-            @click="addCommodity(product)"
             class="commodityListShoppContentD"
             v-for="(product, index) in productList"
             :key="index"
@@ -45,51 +43,26 @@
             </div>
             <div class="commodityListShoppContentDD">
               <p class="commodityListShoppContentDDT">{{product.name}}</p>
-              <p class="commodityListShoppContentDDD">{{product.detail}}</p>
-              <p class="commodityListShoppContentDDM">{{product.integral}}元</p>
-              <div class="commodityAdd">
+              <p class="commodityListShoppContentDDM">{{product.integral}}积分</p>
+              <!-- <div class="commodityAdd">
                 <img src="/static/img/add.png" alt="add" />
+              </div>-->
+              <div class="commodityShoppListSwitch addAndMinus">
+                <div class="commodityShoppListSwitchLess" @click="minusCommodity(product)">－</div>
+                <div class="commodityShoppListSwitchSum">{{product.num}}</div>
+                <div class="commodityShoppListSwitchAdd" @click="addCommodity(product)">＋</div>
               </div>
             </div>
           </div>
         </scroll-view>
       </div>
-      <!-- <scroll-view
-        scroll-y="true"
-        @scrolltolower="lower"
-        :scroll-top="scrollTop"
-        class="commodityListShoppContent"
-      >
-          <div class="commodityToggleList commodityToggle">
-            <div
-              @click="addCommodity(product)"
-              class="commodityListShoppContentD"
-              v-for="(product, index) in productList"
-              :key="index"
-            >
-              <div class="commodityListShoppContentDImg">
-                <img :src="product.img" :alt="product.alt" />
-              </div>
-              <div class="commodityListShoppContentDD">
-                <p class="commodityListShoppContentDDT">{{product.name}}</p>
-                <p class="commodityListShoppContentDDD">{{product.detail}}</p>
-                <p class="commodityListShoppContentDDM">{{product.integral}}元</p>
-                <div class="commodityAdd">
-                  <img src="/static/img/add.png" alt="add" />
-                </div>
-              </div>
-            </div>
-        </div>
-      </scroll-view>-->
     </div>
-
-    <div class="commodityemtyp"></div>
 
     <div :class="{commodityShoppListToggle: commodityToggleShow}" class="commodityShoppList">
       <i-cell-group>
         <i-cell :title="item.name" v-for="(item, index) in commdityShopping" :key="index">
           <div slot="footer">
-            <div class="commodityShoppListM">{{item.integral * item.num}}元</div>
+            <div class="commodityShoppListM">{{item.integral * item.num}}积分</div>
             <div class="commodityShoppListSwitch">
               <div
                 class="commodityShoppListSwitchLess"
@@ -101,9 +74,9 @@
           </div>
         </i-cell>
 
-        <i-cell title="配送费">
-          <div slot="footer">{{commodityPrice >= 10 ? 0 : 1}}元</div>
-        </i-cell>
+        <!-- <i-cell title="配送费">
+          <div slot="footer">{{commodityPrice >= 10 ? 0 : 1}}积分</div>
+        </i-cell>-->
       </i-cell-group>
     </div>
 
@@ -124,7 +97,7 @@
         <p
           class="commodityDM"
           :class="{commodityDMStatus: commoditySumShopp }"
-        >{{ commoditySumShopp === 0 ? '未选购商品' : commodityPrice + '元' }}</p>
+        >{{ commoditySumShopp === 0 ? '未选购商品' : commodityPrice + '积分' }}</p>
         <p class="commodityDD">您的积分：{{ userInfo?userInfo.integral:'' }}</p>
       </div>
       <div
@@ -179,7 +152,16 @@ export default {
       return Sum;
     }
   },
+  watch: {
+    commdityShopping:{
+      handler: function(){
+        this.mapCartToProductList()
+      },
+      deep: true
+    }
+  },
   mounted() {
+    this.hasMore = true;
     this.$fly.post("/u/goods_group_list", {}).then(res => {
       this.productTypes = res.data.data;
       this.productTypesId = this.productTypes[0].id || 0;
@@ -194,12 +176,36 @@ export default {
       this.scrollTop = 0;
       this.getProductList();
     },
+    mapCartToProductList() {
+      let cartList = this.commdityShopping;
+      let productList = this.productList;
+      this.productList = productList.map(product => {
+        let commodityFindIndex = _.findIndex(cartList, function(o) {
+          return o.id === product.id;
+        });
+        if (commodityFindIndex !== -1) {
+          product.num = cartList[commodityFindIndex].num;
+        }else{
+          product.num = 0;
+        }
+        return product;
+      });
+    },
     getProductList() {
       this.$fly
         .post("/u/goods_list", { group: this.productTypesId })
         .then(res => {
-          this.productList = res.data.data;
-          if (res.data.data.length < 10) {
+          if (res.data.data) {
+            this.productList = res.data.data.map(item => {
+              return {
+                ...item,
+                num: 0
+              };
+            });
+            if (res.data.data.length < 10) {
+              this.hasMore = false;
+            }
+          } else {
             this.hasMore = false;
           }
         });
@@ -224,9 +230,20 @@ export default {
         this.$store.dispatch("setCommdityShopping", productCopy);
       }
     },
+    minusCommodity(product) {
+      if (product.num < 1) {
+        return;
+      }
+      let commodityFindIndex = _.findIndex(this.commdityShopping, function(o) {
+        return o.id === product.id;
+      });
+      // 拷贝对象
+      if (commodityFindIndex !== -1) {
+        this.$store.dispatch("setCommdityShoppingLess", commodityFindIndex);
+      }
+    },
     // 数量减
     commodityShoppListSwitchLess(index) {
-      console.log(this.commdityShopping);
       this.$store.dispatch("setCommdityShoppingLess", index);
       if (this.commdityShopping.length === 0) {
         this.commodityToggleShow = false;
@@ -250,6 +267,17 @@ export default {
         return false;
       }
     },
+    getTheBigId(arr) {
+      return arr.reduce((prev, current) => {
+        if (prev) {
+          //不为null
+          prev = prev > current.id ? prev : current.id;
+        } else {
+          prev = current.id;
+        }
+        return prev;
+      }, null);
+    },
     lower(e) {
       if (!this.hasMore) {
         return;
@@ -257,11 +285,17 @@ export default {
       this.$fly
         .post("/u/goods_list", {
           group: this.productTypesId,
-          id: this.productList[this.productList.length - 1].id
+          id: this.getTheBigId(this.productList)
         })
         .then(res => {
           if (res.data.data) {
-            this.productList = [...this.productList, ...res.data.data];
+            let list = res.data.data.map(item => {
+              return {
+                ...item,
+                num: 0
+              };
+            });
+            this.productList = [...this.productList, ...list];
             this.scrollTop = e.target.scrollTop;
             if (res.data.data.length < 10) {
               this.hasMore = false;
@@ -270,14 +304,21 @@ export default {
             this.hasMore = false;
           }
         });
-    },
+    }
   }
 };
 </script>
 
+<style lang="wxss">
+page {
+  height: 100% !important;
+}
+</style>
 <style lang="less" scoped>
 .commodityContainer {
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .commodity {
   width: 100%;
@@ -335,9 +376,11 @@ export default {
 
 .commodityListShopp {
   width: 100%;
-  height: auto;
+  height: 100%;
+  padding-bottom: 100rpx;
   /*margin-bottom:100rpx;*/
   overflow: hidden;
+  flex: 1;
 
   .commodityListShoppMenu {
     width: 154rpx;
@@ -366,7 +409,7 @@ export default {
 .commodityListShoppContent {
   width: 570rpx;
   margin-left: 20rpx;
-  height: 900rpx;
+  height: 100%;
   float: left;
 
   .commodityToggle {
@@ -394,14 +437,17 @@ export default {
     .commodityListShoppContentDD {
       float: left;
       width: 330rpx;
+      height: 100%;
       margin-left: 20rpx;
       position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
 
       .commodityListShoppContentDDT {
         color: #333;
         font-size: 16px;
         font-weight: bold;
-        line-height: 80rpx;
       }
       .commodityListShoppContentDDD {
         color: #999;
@@ -417,16 +463,81 @@ export default {
         font-size: 14px;
         line-height: 70rpx;
       }
-      .commodityAdd {
-        width: 44rpx;
-        height: 44rpx;
-        overflow: hidden;
+      // .commodityAdd {
+      //   width: 44rpx;
+      //   height: 44rpx;
+      //   overflow: hidden;
+      //   position: absolute;
+      //   right: 30rpx;
+      //   bottom: 20rpx;
+      //   img {
+      //     width: 100%;
+      //     height: 100%;
+      //   }
+      // }
+      .addAndMinus {
         position: absolute;
-        right: 30rpx;
-        bottom: 20rpx;
-        img {
-          width: 100%;
+        display: flex;
+        flex-direction: row;
+        right: 0;
+        bottom: 22rpx;
+      }
+      .commodityShoppListSwitch {
+        width: 180rpx;
+        height: 70rpx;
+        line-height: 70rpx;
+        .commodityShoppListSwitchLess {
+          width: 44rpx;
+          height: 44rpx;
+          line-height: 44rpx;
+          text-align: center;
+          color: #2396ff;
+          font-size: 16px;
+          font-weight: bold;
+          border: 1px solid #2396ff;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          border-radius: 50%;
+
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+
+          float: left;
+          margin-top: 16rpx;
+        }
+        .commodityShoppListSwitchSum {
+          width: 82rpx;
           height: 100%;
+          text-align: center;
+          line-height: 70rpx;
+          float: left;
+          color: #212121;
+          font-size: 16px;
+          overflow: hidden;
+          -ms-text-overflow: ellipsis;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+        .commodityShoppListSwitchAdd {
+          width: 44rpx;
+          height: 44rpx;
+          line-height: 44rpx;
+          text-align: center;
+          color: #fff;
+          font-size: 16px;
+          font-weight: bold;
+          background: #2396ff;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          border-radius: 50%;
+
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+
+          float: left;
+          margin-top: 16rpx;
         }
       }
     }

@@ -1,0 +1,30 @@
+<template name="index$62643e0d">
+  <view class="_div data-v-80a34396 exchange-container">
+    <view class="_view data-v-80a34396 table-inner-wraper" style="padding: 15px;">
+      <view class="_view data-v-80a34396 table">
+        <view class="_view data-v-80a34396 tr bg-w">
+          <view class="_view data-v-80a34396 th">时间</view>
+          <view class="_view data-v-80a34396 th">名称</view>
+          <view class="_view data-v-80a34396 th">消耗积分</view>
+          <view class="_view data-v-80a34396 th">剩余积分</view>
+        </view>
+        <scroll-view class="_scroll-view data-v-80a34396 scroll-container" scroll-y="true" bindscrolltolower="handleProxy" scroll-top="{{scrollTop}}" data-eventid="{{'0'}}" data-comkey="{{$k}}">
+          <block wx:key="index" key="{{index}}" wx:for="{{listData}}" wx:for-index="index" wx:for-item="item">
+            <view class="_view data-v-80a34396 tr bg-g" wx:if="{{index % 2 == 0}}">
+              <view class="_view data-v-80a34396 td">{{item.join_time}}</view>
+              <view class="_view data-v-80a34396 td">{{item.note}}</view>
+              <view class="_view data-v-80a34396 td">{{item.change}}</view>
+              <view class="_view data-v-80a34396 td">{{item.result}}</view>
+            </view>
+            <view class="_view data-v-80a34396 tr" wx:else>
+              <view class="_view data-v-80a34396 td">{{item.join_time}}</view>
+              <view class="_view data-v-80a34396 td">{{item.note}}</view>
+              <view class="_view data-v-80a34396 td">{{item.change}}</view>
+              <view class="_view data-v-80a34396 td">{{item.result}}</view>
+            </view>
+          </block>
+        </scroll-view>
+      </view>
+    </view>
+  </view>
+</template>

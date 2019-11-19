@@ -1,6 +1,11 @@
 
+page {
+  height: 100% !important;
+}
 .commodityContainer.data-v-9ef0214c {
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .commodity.data-v-9ef0214c {
   width: 100%;
@@ -54,8 +59,10 @@
 }
 .commodityListShopp.data-v-9ef0214c {
   width: 100%;
-  height: auto;
+  height: 100%;
+  padding-bottom: 100rpx;
   overflow: hidden;
+  flex: 1;
 }
 .commodityListShopp .commodityListShoppMenu.data-v-9ef0214c {
   width: 154rpx;
@@ -82,7 +89,7 @@
 .commodityListShoppContent.data-v-9ef0214c {
   width: 570rpx;
   margin-left: 20rpx;
-  height: 900rpx;
+  height: 100%;
   float: left;
 }
 .commodityListShoppContent .commodityToggle.data-v-9ef0214c {
@@ -110,14 +117,17 @@
 .commodityListShoppContent .commodityListShoppContentD .commodityListShoppContentDD.data-v-9ef0214c {
   float: left;
   width: 330rpx;
+  height: 100%;
   margin-left: 20rpx;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 .commodityListShoppContent .commodityListShoppContentD .commodityListShoppContentDD .commodityListShoppContentDDT.data-v-9ef0214c {
   color: #333;
   font-size: 32rpx;
   font-weight: bold;
-  line-height: 80rpx;
 }
 .commodityListShoppContent .commodityListShoppContentD .commodityListShoppContentDD .commodityListShoppContentDDD.data-v-9ef0214c {
   color: #999;
@@ -133,17 +143,66 @@
   font-size: 28rpx;
   line-height: 70rpx;
 }
-.commodityListShoppContent .commodityListShoppContentD .commodityListShoppContentDD .commodityAdd.data-v-9ef0214c {
+.commodityListShoppContent .commodityListShoppContentD .commodityListShoppContentDD .addAndMinus.data-v-9ef0214c {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  right: 0;
+  bottom: 22rpx;
+}
+.commodityListShoppContent .commodityListShoppContentD .commodityListShoppContentDD .commodityShoppListSwitch.data-v-9ef0214c {
+  width: 180rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+}
+.commodityListShoppContent .commodityListShoppContentD .commodityListShoppContentDD .commodityShoppListSwitch .commodityShoppListSwitchLess.data-v-9ef0214c {
   width: 44rpx;
   height: 44rpx;
-  overflow: hidden;
-  position: absolute;
-  right: 30rpx;
-  bottom: 20rpx;
+  line-height: 44rpx;
+  text-align: center;
+  color: #2396ff;
+  font-size: 32rpx;
+  font-weight: bold;
+  border: 2rpx solid #2396ff;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  margin-top: 16rpx;
 }
-.commodityListShoppContent .commodityListShoppContentD .commodityListShoppContentDD .commodityAdd ._img.data-v-9ef0214c {
-  width: 100%;
+.commodityListShoppContent .commodityListShoppContentD .commodityListShoppContentDD .commodityShoppListSwitch .commodityShoppListSwitchSum.data-v-9ef0214c {
+  width: 82rpx;
   height: 100%;
+  text-align: center;
+  line-height: 70rpx;
+  float: left;
+  color: #212121;
+  font-size: 32rpx;
+  overflow: hidden;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.commodityListShoppContent .commodityListShoppContentD .commodityListShoppContentDD .commodityShoppListSwitch .commodityShoppListSwitchAdd.data-v-9ef0214c {
+  width: 44rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: bold;
+  background: #2396ff;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  margin-top: 16rpx;
 }
 .commodityemtyp.data-v-9ef0214c {
   width: 100%;

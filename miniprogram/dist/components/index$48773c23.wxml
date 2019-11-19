@@ -1,9 +1,0 @@
-<template name="index$48773c23">
-  <view class="_div data-v-418e1a56 contactMerchantContainer">
-    <i-cell-group class="_i-cell-group data-v-418e1a56">
-      <i-cell wx:key="index" key="{{index}}" title="{{item.name}}" value="{{item.contact}}" wx:for="{{contactUs}}" wx:for-index="index" wx:for-item="item" class="_i-cell data-v-418e1a56">
-        <i-icon slot="icon" type="group_fill" color="#0097ff" size="18" class="_i-icon data-v-418e1a56"></i-icon>
-      </i-cell>
-    </i-cell-group>
-  </view>
-</template>

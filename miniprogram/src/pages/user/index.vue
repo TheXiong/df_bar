@@ -25,10 +25,10 @@
 
     <div class="usermenu">
       <i-cell-group>
-        <i-cell title="积分记录" is-link="true" url="/pages/order/main" link-type="switchTab">
+        <i-cell title="积分记录" is-link="true" url="/pages/integral/main">
           <i-icon slot="icon" type="document_fill" color="#0097ff" size="18" />
         </i-cell>
-        <i-cell title="会员卡号" is-link="true" url="/pages/address/main">
+        <i-cell title="会员卡号" is-link="true" url="/pages/addressAdd/main">
           <i-icon slot="icon" type="coordinates_fill" color="#0097ff" size="18" />
         </i-cell>
         <i-cell title="联系客服" is-link="true" url="/pages/contactus/main">

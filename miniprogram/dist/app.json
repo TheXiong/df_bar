@@ -1,15 +1,13 @@
 {
   "pages": [
     "pages/login/main",
-    "pages/address/main",
     "pages/addressAdd/main",
-    "pages/addressUpdate/main",
     "pages/commodity/main",
-    "pages/contactmerchant/main",
     "pages/contactus/main",
     "pages/counter/main",
     "pages/exchange/main",
     "pages/feedback/main",
+    "pages/integral/main",
     "pages/logs/main",
     "pages/order/main",
     "pages/register/main",
@@ -54,5 +52,6 @@
         "text": "我的"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

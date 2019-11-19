@@ -1,26 +1,14 @@
 <template name="index$06781055">
   <view class="_div data-v-80b4adb2 shoppcontainer">
-    <view class="_div data-v-80b4adb2 shoppHeader">
-      <view class="_div data-v-80b4adb2 shoppTitle">
-        <view class="_p data-v-80b4adb2 shoppTitleL">美食推荐</view>
-      </view>
-    </view>
-    <view class="_div data-v-80b4adb2 shoppList" wx:key="index" key="{{index}}" wx:for="{{newShopp}}" wx:for-index="index" wx:for-item="item">
-      <view class="_div data-v-80b4adb2 shoppListTitle">
-        <view class="_div data-v-80b4adb2 shoppListTitleIcon">店铺</view> {{item.name}} </view>
-      <view class="_div data-v-80b4adb2 shoppListDetail" wx:key="indexList" key="{{indexList}}" wx:for="{{item.shoppingList}}" wx:for-index="indexList" wx:for-item="itemList">
-        <view class="_div data-v-80b4adb2 shoppListDetailImg">
-          <image src="{{itemList.shoppingImg}}" alt="{{itemList.shoppingImgAlt}}" class="_img data-v-80b4adb2"></image>
+    <rich-text class="_div data-v-80b4adb2 tip" nodes="{{tip}}"></rich-text>
+    <view class="_div data-v-80b4adb2 gift-list-container">
+      <view class="_div data-v-80b4adb2 title">赠送记录</view>
+      <scroll-view class="_scroll-view data-v-80b4adb2 list" scroll-y="true" bindscrolltolower="handleProxy" scroll-top="{{scrollTop}}" data-eventid="{{'0'}}" data-comkey="{{$k}}">
+        <view class="_div data-v-80b4adb2 item" wx:key="index" key="{{index}}" wx:for="{{listData}}" wx:for-index="index" wx:for-item="item">
+          <view class="_div data-v-80b4adb2 content">{{item.join_time}}</view>
+          <view class="_div data-v-80b4adb2 content">{{item.note}}</view>
         </view>
-        <view class="_div data-v-80b4adb2 shoppListDetailD">
-          <view class="_p data-v-80b4adb2 shoppListDetailDT">{{itemList.shoppListDetailDT}}</view>
-          <view class="_p data-v-80b4adb2 shoppListDetailDP">{{itemList.shoppListDetailDP}}</view>
-          <view class="_p data-v-80b4adb2 shoppListDetailDM">{{itemList.shoppListDetailDM}}</view>
-        </view>
-      </view>
-    </view>
-    <view class="_div data-v-80b4adb2 {{[loadingShow ? 'shoppLoading' : '']}}">
-      <i-load-more tip="暂无数据" loading="{{loadingShow}}" class="_i-load-more data-v-80b4adb2"></i-load-more>
+      </scroll-view>
     </view>
   </view>
 </template>

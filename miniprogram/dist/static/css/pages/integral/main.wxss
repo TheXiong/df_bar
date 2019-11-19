@@ -2,50 +2,50 @@
 page {
   height: 100% !important;
 }
-.table.data-v-04d3a428 {
+.table.data-v-80a34396 {
   border: 0 solid darkgray;
 }
-.tr.data-v-04d3a428 {
+.tr.data-v-80a34396 {
   display: flex;
   width: 100%;
   justify-content: center;
-  height: 100rpx;
+  height: 120rpx;
   align-items: center;
 }
-.td.data-v-04d3a428 {
+.td.data-v-80a34396 {
   width: 40%;
   justify-content: center;
   text-align: center;
   font-size: 30rpx;
 }
-.bg-w.data-v-04d3a428 {
+.bg-w.data-v-80a34396 {
   background: snow;
 }
-.bg-g.data-v-04d3a428 {
+.bg-g.data-v-80a34396 {
   background: #e6f3f9;
 }
-.th.data-v-04d3a428 {
+.th.data-v-80a34396 {
   width: 40%;
   justify-content: center;
-  background: #333;
+  background: #0097ff;
   color: #fff;
   display: flex;
-  height: 100rpx;
+  height: 120rpx;
   align-items: center;
 }
-.tip.data-v-04d3a428 {
+.tip.data-v-80a34396 {
   white-space: pre-wrap;
-  font-size: 28rpx;
+  font-size: 32rpx;
 }
-.integral.data-v-04d3a428 {
+.integral.data-v-80a34396 {
   font-size: 32rpx;
   text-align: center;
 }
-.divider.data-v-04d3a428 {
+.divider.data-v-80a34396 {
   border-bottom: 2rpx solid #ccc;
   margin-top: 20rpx;
 }
-.exchange.data-v-04d3a428 {
+.exchange.data-v-80a34396 {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -53,28 +53,29 @@ page {
   margin: 20rpx 0;
   padding: 0 100rpx;
 }
-.exchange .input.data-v-04d3a428 {
+.exchange .input.data-v-80a34396 {
   width: 300rpx;
   height: 90rpx;
   padding-left: 20rpx;
-  border: 2rpx solid #0097ff;
+  border: 2rpx solid #000;
   border-radius: 10rpx;
 }
-.exchange .btn.data-v-04d3a428 {
+.exchange .btn.data-v-80a34396 {
   height: 90rpx;
   line-height: 90rpx;
 }
-.exchange-container.data-v-04d3a428 {
+.exchange-container.data-v-80a34396 {
   display: flex;
   flex-direction: column;
   height: 100%;
 }
-.exchange-container .table-inner-wraper.data-v-04d3a428 {
-  height: 600rpx;
+.exchange-container .table-inner-wraper.data-v-80a34396 {
+  height: 100%;
+  box-sizing: border-box;
 }
-.exchange-container .table-inner-wraper .table.data-v-04d3a428 {
+.exchange-container .table-inner-wraper .table.data-v-80a34396 {
   height: 100%;
 }
-.exchange-container .table-inner-wraper .table .scroll-container.data-v-04d3a428 {
-  height: calc(100% - 100rpx);
+.exchange-container .table-inner-wraper .table .scroll-container.data-v-80a34396 {
+  height: calc(100% - 120rpx);
 }

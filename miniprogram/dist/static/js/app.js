@@ -1,15 +1,59 @@
-global.webpackJsonp([4],{
+global.webpackJsonp([7],{
 
-/***/ 47:
+/***/ 52:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_promise__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_promise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_promise__);
+
+var Fly = __webpack_require__(53);
+var fly = new Fly();
+//定义公共headers
+// fly.config.headers={xx:5,bb:6,dd:7}
+//设置超时
+// fly.config.timeout=10000;
+//设置请求基地址
+fly.config.baseURL = "http://xcs.mylife028.cn/api/v1/";
+//设置公共的Get参数
+// fly.config.params={"token":"testtoken"};
+fly.interceptors.request.use(function (request) {
+    request.headers = {
+        "Content-Type": "application/json"
+    };
+    if (wx.getStorageSync('token')) {
+        request.headers['token'] = wx.getStorageSync('token');
+    }
+});
+
+fly.interceptors.response.use(function (response) {
+    if (response.data.code == 0) {
+        return response;
+    } else {
+        wx.showToast({
+            title: response.data.msg,
+            icon: "none",
+            duration: 2000
+        });
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_promise___default.a.reject(response.data.msg);
+    }
+}, function (err) {
+    return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_promise___default.a.reject("ssss");
+});
+/* harmony default export */ __webpack_exports__["a"] = (fly);
+
+/***/ }),
+
+/***/ 54:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__App__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store_index__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fly__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__App__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store_index__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fly__ = __webpack_require__(52);
 
 
 
@@ -68,15 +112,15 @@ app.$mount();
 
 /***/ }),
 
-/***/ 48:
+/***/ 55:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_lib_selector_type_script_index_0_App_vue__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_lib_selector_type_script_index_0_App_vue__ = __webpack_require__(58);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(49)
+  __webpack_require__(56)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
@@ -120,14 +164,14 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 49:
+/***/ 56:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 51:
+/***/ 58:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -145,20 +189,20 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 52:
+/***/ 59:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_promise__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_promise__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_promise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_promise__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fly_js__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vuex_persistedstate__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_lodash__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fly_js__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vuex_persistedstate__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_lodash__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_lodash__);
 
 
@@ -429,51 +473,7 @@ __WEBPACK_IMPORTED_MODULE_2_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_3_vuex
   }
 }));
 
-/***/ }),
-
-/***/ 69:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_promise__ = __webpack_require__(70);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_promise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_promise__);
-
-var Fly = __webpack_require__(46);
-var fly = new Fly();
-//定义公共headers
-// fly.config.headers={xx:5,bb:6,dd:7}
-//设置超时
-// fly.config.timeout=10000;
-//设置请求基地址
-fly.config.baseURL = "http://xcs.mylife028.cn/api/v1/";
-//设置公共的Get参数
-// fly.config.params={"token":"testtoken"};
-fly.interceptors.request.use(function (request) {
-    request.headers = {
-        "Content-Type": "application/json"
-    };
-    if (wx.getStorageSync('token')) {
-        request.headers['token'] = wx.getStorageSync('token');
-    }
-});
-
-fly.interceptors.response.use(function (response) {
-    if (response.data.code == 0) {
-        return response;
-    } else {
-        wx.showToast({
-            title: response.data.msg,
-            icon: "none",
-            duration: 2000
-        });
-        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_promise___default.a.reject(response.data.msg);
-    }
-}, function (err) {
-    return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_promise___default.a.reject("ssss");
-});
-/* harmony default export */ __webpack_exports__["a"] = (fly);
-
 /***/ })
 
-},[47]);
+},[54]);
 //# sourceMappingURL=app.js.map

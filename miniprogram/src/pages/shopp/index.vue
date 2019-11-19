@@ -1,173 +1,138 @@
 <template>
   <div class="shoppcontainer">
-    <div class="shoppHeader">
-      <div class="shoppTitle">
-        <p class="shoppTitleL">美食推荐</p>
-        <!--<p class="shoppTitleR">查看更多</p>-->
-      </div>
-    </div>
-    <div class="shoppList" v-for="(item, index) in newShopp" :key="index">
-      <div class="shoppListTitle">
-        <div class="shoppListTitleIcon">店铺</div>
-        {{item.name}}
-      </div>
-      <div class="shoppListDetail" v-for="(itemList, indexList) in item.shoppingList" :key="indexList">
-        <div class="shoppListDetailImg">
-          <img :src="itemList.shoppingImg" :alt="itemList.shoppingImgAlt">
-        </div>
-        <div class="shoppListDetailD">
-          <p class="shoppListDetailDT">{{itemList.shoppListDetailDT}}</p>
-          <p class="shoppListDetailDP">{{itemList.shoppListDetailDP}}</p>
-          <p class="shoppListDetailDM">{{itemList.shoppListDetailDM}}</p>
-        </div>
-      </div>
-    </div>
+    <div class="tip" v-html="tip"></div>
 
-    <div :class="{shoppLoading: loadingShow}">
-      <i-load-more tip="暂无数据" :loading="loadingShow" />
+    <div class="gift-list-container">
+      <div class="title">赠送记录</div>
+      <scroll-view class="list" scroll-y="true" @scrolltolower="lower" :scroll-top="scrollTop">
+        <div class="item" v-for="(item, index) in listData" :key="index">
+          <div class="content">{{item.join_time}}</div>
+          <div class="content">{{item.note}}</div>
+        </div>
+      </scroll-view>
+      <!-- <div class="list">
+        <div class="item" v-for="(item, index) in listData" :key="index">
+          <div class="content">{{item.join_time}}</div>
+          <div class="content">{{item.note}}</div>
+        </div>
+      </div>-->
     </div>
   </div>
 </template>
 
 <script>
-  let Fly = require('flyio/dist/npm/wx')
-  let fly = new Fly()
-  export default {
-    data () {
-      return {
-        loadingShow: true,
-        newShopp: []
-      }
+export default {
+  data() {
+    return {
+      tip: `本期活动:\r\n为回馈广大用户对本网咖的厚爱,网咖推出送奖品活动!\r\n达到以下条件均可获赠奖品一份:\r\n1.英雄联盟 任意区服获得5杀(人机除外)\r\n2.大逃亡任意服吃鸡(第1名)`,
+      listData: [],
+      hasMore: true,
+      scrollTop: 0
+    };
+  },
+  mounted() {
+    this.hasMore = true;
+    this.getList();
+  },
+  methods: {
+    getList() {
+      this.$fly.post("/u/gift_record", {}).then(res => {
+        if (res.data.data) {
+          this.listData = this.transformData(res.data.data);
+          if (res.data.data.length < 10) {
+            this.hasMore = false;
+          }
+        } else {
+          this.hasMore = false;
+        }
+      });
     },
-    created () {
-      this.getShopping()
+    getTheSmallId(arr) {
+      return arr.reduce((prev, current) => {
+        if (prev) {
+          //不为null
+          prev = prev < current.id ? prev : current.id;
+        } else {
+          prev = current.id;
+        }
+        return prev;
+      }, null);
     },
-    methods: {
-      getShopping () {
-        let _this = this
-        // fly.get('https://easy-mock.com/mock/5b69315d99b4c7086b576bf0/shopping')
-        //   .then(function (response) {
-        //     if (response.status === 200) {
-        //       let shopping = response.data
-        //       _this.loadingShow = false
-        //       _this.newShopp = shopping.data
-        //     }
-        //   })
-        //   .catch(function (err) {
-        //     _this.loadingShow = true
-        //     console.log(err)
-        //   })
+    transformData(arr) {
+      return arr.map(item => {
+        return {
+          ...item,
+          join_time: new Date(item.join_time * 1000)
+            .toLocaleString()
+            .replace(/:\d{1,2}$/, "")
+            .replace(/[\u4e00-\u9fa5]+/, "")
+        };
+      });
+    },
+    lower(e) {
+      if (!this.hasMore) {
+        return;
       }
+      this.$fly
+        .post("/u/gift_record", {
+          id: this.getTheSmallId(this.listData)
+        })
+        .then(res => {
+          if (res.data.data) {
+            this.listData = [
+              ...this.listData,
+              ...this.transformData(res.data.data)
+            ];
+            this.scrollTop = e.target.scrollTop;
+            if (res.data.data.length < 10) {
+              this.hasMore = false;
+            }
+          } else {
+            this.hasMore = false;
+          }
+        });
     }
   }
+};
 </script>
 
+<style lang="wxss">
+page {
+  height: 100% !important;
+}
+</style>
+
 <style lang="less" scoped>
-.shoppcontainer{
+.shoppcontainer {
   height: 100%;
-  background: #f4f4f4;
-}
-.shoppHeader{
-  width: 100%;
-  height: 260rpx;
-  background: #0097ff;
-
-  margin-bottom: -190rpx;
-
-  .shoppTitle{
-    width: 700rpx;
-    margin: auto;
-    padding-top: 10rpx;
-    color: #fff;
-    .shoppTitleL{
-      float: left;
-      font-size: 18px;
-    }
-    .shoppTitleR{
-      float: right;
-      font-size: 16px;
-    }
+  .tip {
+    white-space: pre-wrap;
+    font-size: 14px;
+    display: block;
+    height: 300rpx;
+    overflow: scroll;
   }
-}
-
-  .shoppList{
-    width: 700rpx;
-    /*height: 400rpx;*/
-    background: #fff;
-    -webkit-border-radius: 20rpx;
-    -moz-border-radius: 20rpx;
-    border-radius: 20rpx;
-    margin: 20rpx auto;
-    padding: 0 0 20rpx 0;
-    overflow: hidden;
-    .shoppListTitle{
-      width: 100%;
-      height: 60rpx;
-      line-height: 80rpx;
-      color: #494949;
-      font-size: 16px;
-      margin-left: 30rpx;
-      .shoppListTitleIcon{
-        height: 40rpx;
-        padding: 0 6rpx;
-        background: #ffe142;
-        float: left;
-        font-size: 12px;
-        color: #52250a;
-        text-align: center;
-        line-height: 40rpx;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px;
-        margin-right: 12rpx;
-        margin-top: 20rpx;
-      }
+  .gift-list-container {
+    height: calc(100% - 300rpx);
+    .title {
+      text-align: left;
+      height: 100rpx;
     }
-
-    .shoppListDetail{
-      width: 100%;
-      height: 160rpx;
-      margin: 20rpx 0;
-      .shoppListDetailImg{
-        width: 160rpx;
-        height: 160rpx;
-        overflow: hidden;
-        float: left;
-        margin-left: 30rpx;
-        img{
-          width: 100%;
-          height: 100%;
+    .list {
+      border-top: 1px solid #ccc;
+      height: calc(100% - 100rpx);
+      .item {
+        border-bottom: 1px solid #ccc;
+        height: 100rpx;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        .content {
+          font-size: 16px;
         }
       }
-
     }
   }
-
-.shoppListDetailD{
-  float: left;
-  width: 456rpx;
-  height: 100%;
-  margin-left: 30rpx;
-  .shoppListDetailDT{
-    overflow: hidden;
-    -ms-text-overflow: ellipsis;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    color: #333;
-    font-size: 16px;
-    font-weight: bold;
-    line-height: 70rpx;
-  }
-  .shoppListDetailDP,
-  .shoppListDetailDM{
-    color: #717171;
-    font-size: 14px;
-    line-height: 40rpx;
-  }
 }
-
-  .shoppLoading{
-    margin-top: 220rpx;
-  }
-
 </style>

@@ -8,7 +8,8 @@ export default {
   config: {
     // 这儿添加要用的小程序组件
     usingComponents: {
-      'i-panel': '../../static/dist/panel/index'
+      'i-panel': '../../static/dist/panel/index',
+      'i-divider': '../../static/dist/divider/index'
     }
   }
 }
