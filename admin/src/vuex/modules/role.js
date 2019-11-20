@@ -2,13 +2,30 @@ import store from '../index'
 import router from '../../router/index'
 export default {
   state: {
-    info: ''  // 每次刷新都要通过token请求个人信息来筛选动态路由
+    info: '',  // 每次刷新都要通过token请求个人信息来筛选动态路由
+    roleList: [
+      {
+        level: 1,
+        level_name: 'superAdmin',
+        level_cnname: '超级管理员'
+      },
+      {
+        level: 2,
+        level_name: 'admin',
+        level_cnname: '普通管理员'
+      },
+      {
+        level: 0,
+        level_name: 'member',
+        level_cnname: '普通用户'
+      }
+    ]
   },
   mutations: {
-    getInfo (state, data) {
-      if (data.authorityRouter && data.authorityRouter.indexOf(',') != -1){
+    getInfo(state, data) {
+      if (data.authorityRouter && data.authorityRouter.indexOf(',') != -1) {
         data.authorityRouter = data.authorityRouter.split(",")
-      } else if (data.authorityRouter == null){
+      } else if (data.authorityRouter == null) {
         data.authorityRouter = []
       }
       state.info = {
@@ -36,7 +53,7 @@ export default {
   },
 
   actions: {
-    getInfo ({commit}, data) {
+    getInfo({ commit }, data) {
       commit('getInfo', data)
     },
     // setRole ({commit}, options){

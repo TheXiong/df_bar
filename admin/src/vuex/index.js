@@ -29,6 +29,7 @@ const store = new Vuex.Store({
     addRouters: state => state.routerData.addRouters,
     token: state => state.token,
     info: state => state.role.info,
+    roleList: state => state.role.roleList,
     routers: state => state.routerData.routers,
     logoShow: state => state.layout.logoShow,
     isCollapse: state => state.layout.isCollapse,

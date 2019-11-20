@@ -1,42 +1,28 @@
 <template>
   <div>
-    <el-table
-      :data="userListData">
-      <el-table-column
-        fixed
-        prop="createdAt"
-        label="创建时间">
-      </el-table-column>
-      <el-table-column
-        prop="username"
-        label="用户名">
-      </el-table-column>
-      <el-table-column
-        prop="age"
-        label="年龄">
-      </el-table-column>
-      <el-table-column
-        prop="name"
-        label="姓名">
-      </el-table-column>
-      <el-table-column
-        prop="mobilePhone"
-        label="手机">
-      </el-table-column>
-      <el-table-column
-        prop="roleName"
-        label="角色">
-      </el-table-column>
-      <el-table-column
-        label="操作">
+    <el-table :data="userListData">
+      <el-table-column prop="id" label="ID"></el-table-column>
+      <el-table-column prop="join_time" label="创建时间"></el-table-column>
+      <el-table-column prop="name" label="用户名"></el-table-column>
+      <el-table-column prop="mobile" label="电话"></el-table-column>
+      <el-table-column prop="integral" label="积分"></el-table-column>
+      <el-table-column prop="level_name" label="角色"></el-table-column>
+      <el-table-column prop="status" label="状态">
         <template slot-scope="scope">
-          <el-button
-            size="mini"
-            @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-          <el-button
-            size="mini"
-            type="danger"
-            @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+          <el-switch
+            v-model="scope.row.status"
+            @change="(newStatus)=>switchChange(newStatus,scope.row.id)"
+            :active-value="-1"
+            :inactive-value="0"
+            active-text="冻结"
+            inactive-text="正常"
+          ></el-switch>
+        </template>
+      </el-table-column>
+      <el-table-column label="操作">
+        <template slot-scope="scope">
+          <el-button size="mini" @click="handleEditRole(scope.$index, scope.row)">设置角色</el-button>
+          <el-button size="mini" @click="handleEditIntegral(scope.$index, scope.row)">更改积分</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -47,84 +33,200 @@
       @current-change="currentChange"
       @prev-click="currentChange"
       @next-click="currentChange"
-    >
-    </el-pagination>
+    ></el-pagination>
+
+    <el-dialog title="设置角色" :visible.sync="roleVisible" width="30%">
+      <el-form :model="roleForm" ref="roleForm" :rules="roleFormRules">
+        <el-form-item label="角色" prop="level">
+          <el-select v-model="roleForm.level" placeholder="请选择">
+            <el-option
+              v-for="item in roleList"
+              :key="item.level"
+              :label="item.level_cnname"
+              :value="item.level"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+      </el-form>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="roleVisible = false">取 消</el-button>
+        <el-button type="primary" @click="roleSubmit">确 定</el-button>
+      </span>
+    </el-dialog>
+
+    <el-dialog title="更改积分" :visible.sync="integralVisible" width="30%">
+      <el-form :model="integralForm" ref="integralForm" :rules="integralFormRules">
+        <el-form-item label="变化值" prop="integral">
+          <el-input type="text" v-model="integralForm.integral" autocomplete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="integralVisible = false">取 消</el-button>
+        <el-button type="primary" @click="integralSubmit">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'articleList',
-  data () {
+  name: "articleList",
+  data() {
     return {
       total: 0,
-      currentPage: 1,
+      page: 1,
+      limit: 10,
+      search: "",
       sort: null,
-      userListData: []
-    }
+      userListData: [],
+      roleVisible: false,
+      roleForm: {
+        level: ""
+      },
+      roleFormRules: {
+        level: [{ required: true, message: "请选择角色", trigger: "blur" }]
+      },
+      roleList: this.$store.getters.roleList,
+      editRow: null,
+      integralVisible: false,
+      integralForm: {
+        integral: ""
+      },
+      integralFormRules: {
+        integral: [
+          { required: true, message: "请填写积分变动值", trigger: "blur" },
+          {
+            validator: (rule, value, callback) => {
+              if (!/^(\-?)\d+$/.test(value)) {
+                callback(new Error("请输入数字"));
+                return;
+              }
+              if (value == 0) {
+                callback(new Error("变化值不能为0"));
+                return;
+              }
+              callback();
+            },
+            trigger: "blur"
+          }
+        ]
+      }
+    };
   },
   methods: {
-    handleEdit (index, row) {
-      this.$router.push({path: '/editUser?userId=' + row.id});
+    handleEditRole(index, row) {
+      this.roleForm = {
+        level: ""
+      };
+      this.editRow = row;
+      this.roleVisible = true;
+      this.$nextTick(() => {
+        this.$refs.roleForm.clearValidate();
+      });
     },
-    handleDelete (index, row) {
-      let that = this
-      this.$axios.post('/user/delUser', {
-        id: row.id
-      })
-        .then(response => {
-          console.log(response)
-            that.$message({
-              showClose: true,
-              message: response.data.message,
-              type: 'success'
+    handleEditIntegral(index, row) {
+      this.integralForm = {
+        integral: ""
+      };
+      this.editRow = row;
+      this.integralVisible = true;
+      this.$nextTick(() => {
+        this.$refs.integralForm.clearValidate();
+      });
+    },
+    roleSubmit() {
+      this.$refs.roleForm.validate(valid => {
+        if (valid) {
+          let postdata = {
+            level: this.roleForm.level,
+            user_id: this.editRow.id
+          };
+          this.$axios
+            .post("/a/set_manager", postdata)
+            .then(res => {
+              this.$message({
+                showClose: true,
+                message: "操作成功",
+                type: "success"
+              });
+              this.getList();
+              this.roleVisible = false;
             })
-            that.getList({
-                currentPage: that.currentPage,
-                pageSize:10,
-              })
-        })
-        .catch(err => {
-          console.log(err)
-        })
+            .catch(function(error) {
+              console.log(error);
+            });
+        }
+      });
     },
-    currentChange(page){
-      this.currentPage = page
-      this.getList({
-        currentPage: page,
-        pageSize:10,
-      })
+    integralSubmit() {
+      this.$refs.integralForm.validate(valid => {
+        if (valid) {
+          let postdata = {
+            integral: this.integralForm.integral,
+            user_id: this.editRow.id
+          };
+          this.$axios
+            .post("/a/gift_points", postdata)
+            .then(res => {
+              this.$message({
+                showClose: true,
+                message: "操作成功",
+                type: "success"
+              });
+              this.getList();
+              this.integralVisible = false;
+            })
+            .catch(function(error) {
+              console.log(error);
+            });
+        }
+      });
     },
-    getList (postdata) {
-      let that = this
-      this.$axios.post('/a/user_list', postdata)
-        .then(function (response) {
-          for (let i = 0; i < response.data.rows.length; i++) {
-            let d = new Date(response.data.rows[i].createdAt)
-            let moth = (d.getMonth() + 1) < 10 ? '0' + (d.getMonth() + 1) : (d.getMonth() + 1)
-            let date = d.getDate() < 10 ? '0' + d.getDate() : d.getDate()
-            let hours = d.getHours() < 10 ? '0' + d.getHours() : d.getHours()
-            let minutes = d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes()
-            let seconds = d.getSeconds() < 10 ? '0' + d.getSeconds() : d.getSeconds()
-            response.data.rows[i].createdAt = d.getFullYear() + '-' + moth + '-' + date + ' ' + hours + ':' + minutes + ':' + seconds
-            that.total = response.data.count
-            that.userListData = response.data.rows
-          }
+    currentChange(page) {
+      this.page = page;
+      this.getList();
+    },
+    getList() {
+      let postdata = {
+        page: this.page,
+        limit: this.limit,
+        search: this.search
+      };
+      this.$axios
+        .post("/a/user_list", postdata)
+        .then(res => {
+          this.userListData = res.data.data.users;
+          this.total = res.data.data.count;
         })
-        .catch(function (error) {
-          console.log(error)
+        .catch(function(error) {
+          console.log(error);
+        });
+    },
+    switchChange(newStatus, id) {
+      let postdata = {
+        status: newStatus,
+        user_id: id
+      };
+      this.$axios
+        .post("/a/update_user_status", postdata)
+        .then(res => {
+          this.$message({
+            showClose: true,
+            message: "操作成功",
+            type: "success"
+          });
+          this.getList();
         })
+        .catch(function(error) {
+          console.log(error);
+        });
     }
   },
-  mounted () {
-    this.getList({
-      currentPage: 1,
-      pageSize:10,
-    })
+  mounted() {
+    this.getList();
   }
-}
+};
 </script>
 
 <style scoped>
-
 </style>

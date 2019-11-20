@@ -8,28 +8,20 @@ import zhLocale from 'element-ui/lib/locale/lang/zh-CN'
 const cn = {
   routeNmae: {
     home: '主页',
-    article: '文章管理',
-    publishArticle: '发表文章',
-    publishArticleEditor: '发表文章-富文本',
-    articleList: '文章列表',
-    commentList: '评论列表',
     userManage: '用户管理',
     addUser: '添加账号',
     editUser: '修改资料',
     userList: '用户列表',
     editPassworld: '修改密码',
 
-    editor: '编辑器',
-    markdown: 'markdown',
-    wangeditor: 'wangeditor',
-    systemSettings: '系统设置',
-    navMenu : '导航菜单',
-    systemManage: "系统管理",
-    organizeManage: "组织权限管理",
-    unitManage: "单位管理",
-    personnelManage: "部门人员管理",
-    roleManage: "角色管理",
-    systemSetting :"系统配置项",
+    shopManage:'商品管理',
+    shopList:'商品列表',
+
+    orderManage:'订单管理',
+    orderList:'订单列表',
+
+    serviceManage:'客服管理',
+    serviceEdit: '客服编辑'
   },
   rightMenu: {
     close: '关闭',

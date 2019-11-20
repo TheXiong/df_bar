@@ -9,10 +9,6 @@ import enLocale from 'element-ui/lib/locale/lang/en'
 const en = {
   routeNmae: {
     home: 'home',
-    article: 'article',
-    publishArticle: 'publishArticle',
-    publishArticleEditor: 'publishArticle',
-    articleList: 'articleList',
     addUser: 'addUser',
     editUser: 'editUser',
     userList: 'userList',
@@ -20,19 +16,15 @@ const en = {
     userManage: 'userManage',
     editPassworld: 'editPassworld',
 
+    shopManage:'shopManage',
+    shopList:'shopList',
 
-    editor: 'editor',
-    markdown: 'markdown',
-    wangeditor: 'wangeditor',
+    orderManage:'orderManage',
+    orderList: 'orderList',
 
-    systemSettings: 'systemSettings',
-    navMenu : 'navMenu',
-    systemManage: "systemManage",
-    organizeManage: "organizeManage",
-    unitManage: "unitManage",
-    personnelManage: "personnelManage",
-    roleManage: "roleManage",
-    systemSetting: "systemSetting",
+    serviceManage: 'serviceManage',
+    serviceEdit: 'serviceEdit'
+
   },
   rightMenu: {
     close: 'close',
