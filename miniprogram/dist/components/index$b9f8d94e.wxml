@@ -1,9 +1,5 @@
 <template name="index$b9f8d94e">
   <view class="_div data-v-2a4801ab contactusContainer">
-    <i-cell-group class="_i-cell-group data-v-2a4801ab">
-      <i-cell wx:key="index" key="{{index}}" title="{{item.name}}" value="{{item.contact}}" wx:for="{{contactUs}}" wx:for-index="index" wx:for-item="item" class="_i-cell data-v-2a4801ab">
-        <i-icon slot="icon" type="group_fill" color="#0097ff" size="18" class="_i-icon data-v-2a4801ab"></i-icon>
-      </i-cell>
-    </i-cell-group>
+    <image wx:if="{{src}}" mode="aspectFit" src="{{baseUrl+src}}" class="_image data-v-2a4801ab"></image>
   </view>
 </template>

@@ -11,9 +11,13 @@ page {
   display: block;
   height: 300rpx;
   overflow: scroll;
+  box-sizing: border-box;
+  padding: 20rpx;
 }
 .shoppcontainer .gift-list-container.data-v-80b4adb2 {
-  height: calc(100% - 300rpx);
+  height: calc(100% - 310rpx);
+  box-sizing: border-box;
+  padding: 20rpx;
 }
 .shoppcontainer .gift-list-container .title.data-v-80b4adb2 {
   text-align: left;
@@ -32,5 +36,5 @@ page {
   align-items: center;
 }
 .shoppcontainer .gift-list-container .list .item .content.data-v-80b4adb2 {
-  font-size: 32rpx;
+  font-size: 28rpx;
 }

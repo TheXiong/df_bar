@@ -4,9 +4,12 @@
     <view class="_div data-v-80b4adb2 gift-list-container">
       <view class="_div data-v-80b4adb2 title">赠送记录</view>
       <scroll-view class="_scroll-view data-v-80b4adb2 list" scroll-y="true" bindscrolltolower="handleProxy" scroll-top="{{scrollTop}}" data-eventid="{{'0'}}" data-comkey="{{$k}}">
-        <view class="_div data-v-80b4adb2 item" wx:key="index" key="{{index}}" wx:for="{{listData}}" wx:for-index="index" wx:for-item="item">
+        <view class="_div data-v-80b4adb2 item" wx:key="index" key="{{index}}" wx:for="{{listData}}" wx:for-index="index" wx:for-item="item" style=" {{index % 2 == 0 ? 'background:#e6f3f9' : ''}}">
+          <view class="_div data-v-80b4adb2 content">{{index+1}}</view>
+          <view class="_div data-v-80b4adb2 content">{{item.tag}}</view>
+          <view class="_div data-v-80b4adb2 content">{{item.name}}</view>
+          <view class="_div data-v-80b4adb2 content">机号:{{item.note}}</view>
           <view class="_div data-v-80b4adb2 content">{{item.join_time}}</view>
-          <view class="_div data-v-80b4adb2 content">{{item.note}}</view>
         </view>
       </scroll-view>
     </view>

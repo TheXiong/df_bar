@@ -5,37 +5,41 @@
     <div class="gift-list-container">
       <div class="title">赠送记录</div>
       <scroll-view class="list" scroll-y="true" @scrolltolower="lower" :scroll-top="scrollTop">
-        <div class="item" v-for="(item, index) in listData" :key="index">
+        <div class="item" v-for="(item, index) in listData" :key="index" :style="index%2==0?'background:#e6f3f9':''">
           <div class="content">{{index+1}}</div>
+          <div class="content">{{item.tag}}</div>
           <div class="content">{{item.name}}</div>
-          <div class="content">{{item.note}}</div>
+          <div class="content">机号:{{item.note}}</div>
           <div class="content">{{item.join_time}}</div>
         </div>
       </scroll-view>
-      <!-- <div class="list">
-        <div class="item" v-for="(item, index) in listData" :key="index">
-          <div class="content">{{item.join_time}}</div>
-          <div class="content">{{item.note}}</div>
-        </div>
-      </div>-->
     </div>
   </div>
 </template>
 
 <script>
+import { formatTime } from "../../utils/index";
 export default {
   data() {
     return {
       tip: `本期活动:\r\n为回馈广大用户对本网咖的厚爱,网咖推出送奖品活动!\r\n达到以下条件均可获赠奖品一份:\r\n1.英雄联盟 任意区服获得5杀(人机除外)\r\n2.大逃亡任意服吃鸡(第1名)`,
       listData: [],
       hasMore: true,
-      scrollTop: 0
+      scrollTop: 0,
+      hasMounted: false
     };
   },
   mounted() {
     this.hasMore = true;
+    this.hasMounted = true
     this.getList();
   },
+
+	onShow(){
+		if (this.hasMounted) {
+      this.getList();
+    }
+	},
   methods: {
     getList() {
       this.$fly.post("/u/gift_record", {}).then(res => {
@@ -64,10 +68,7 @@ export default {
       return arr.map(item => {
         return {
           ...item,
-          join_time: new Date(item.join_time * 1000)
-            .toLocaleString()
-            .replace(/:\d{1,2}$/, "")
-            .replace(/[\u4e00-\u9fa5]+/, "")
+          join_time: formatTime(new Date(item.join_time * 1000))
         };
       });
     },
@@ -113,9 +114,13 @@ page {
     display: block;
     height: 300rpx;
     overflow: scroll;
+    box-sizing: border-box;
+    padding: 20rpx;
   }
   .gift-list-container {
-    height: calc(100% - 300rpx);
+    height: calc(100% - 310rpx);
+    box-sizing: border-box;
+    padding: 20rpx;
     .title {
       text-align: left;
       height: 100rpx;
@@ -131,7 +136,7 @@ page {
         justify-content: space-around;
         align-items: center;
         .content {
-          font-size: 16px;
+          font-size: 14px;
         }
       }
     }

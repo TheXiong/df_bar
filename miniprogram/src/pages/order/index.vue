@@ -19,7 +19,7 @@
               size="18"
             />
             <i-icon slot="footer" type="delete" color="#d9644c" />
-          </i-cell> -->
+          </i-cell>-->
 
           <i-cell
             v-for="(goods, i) in item.order_goods"
@@ -49,22 +49,33 @@
 
 <script>
 import { mapState } from "vuex";
+
 export default {
   data() {
     return {
       orderTipsMessage: false,
-      commdityShoppingIndex: 0
+      commdityShoppingIndex: 0,
+      hasMounted: false
     };
+  },
+  onShow() {
+    if (this.hasMounted) {
+      this.getList();
+    }
   },
   computed: {
     ...mapState(["commdityOrder"])
   },
   mounted() {
-    this.$fly.post("/u/order_list", {}).then(res => {
-      this.$store.dispatch("setCommdityOrder", res.data.data);
-    });
+    this.hasMounted = true;
+    this.getList();
   },
   methods: {
+    getList() {
+      this.$fly.post("/u/order_list", {}).then(res => {
+        this.$store.dispatch("setCommdityOrder", res.data.data);
+      });
+    },
     orderCloseDel() {
       this.orderToggleFull(false);
       return false;

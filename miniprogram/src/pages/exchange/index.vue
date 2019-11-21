@@ -1,11 +1,9 @@
 <template>
   <div class="exchange-container">
-    <i-panel title="注: 以下内容请须知:">
-      <view style="padding: 0 15px;">
-        <div class="tip" v-html="tip"></div>
-        <div class="integral">我的积分: {{userInfo.integral}} 分</div>
-      </view>
-    </i-panel>
+    <div class="header">
+      <div class="tip" v-html="tip"></div>
+      <div class="integral">我的积分: {{userInfo.integral}} 分</div>
+    </div>
 
     <div class="divider"></div>
 
@@ -15,7 +13,7 @@
     </div>
 
     <!-- <i-panel title="兑换记录" class="table-wraper"> -->
-    <view class="table-inner-wraper" style="padding: 15px;">
+    <view class="table-inner-wraper">
       <view class="table">
         <view class="tr bg-w">
           <view class="th">兑换时间</view>
@@ -52,6 +50,7 @@
 
 <script>
 import { mapState } from "vuex";
+import { formatTime } from "../../utils/index";
 export default {
   data() {
     return {
@@ -119,19 +118,20 @@ export default {
       return arr.map(item => {
         return {
           ...item,
-          join_time: new Date(item.join_time * 1000).toLocaleString().replace(/:\d{1,2}$/,'').replace(/[\u4e00-\u9fa5]+/,'')
+          join_time: formatTime(new Date(item.join_time * 1000))
         };
       });
     },
-    getTheSmallId(arr){
-      return arr.reduce((prev,current)=>{
-        if(prev){ //不为null
-          prev = prev < current.id?prev:current.id
-        }else{
-          prev = current.id
+    getTheSmallId(arr) {
+      return arr.reduce((prev, current) => {
+        if (prev) {
+          //不为null
+          prev = prev < current.id ? prev : current.id;
+        } else {
+          prev = current.id;
         }
-        return prev
-      },null)
+        return prev;
+      }, null);
     },
     lower(e) {
       if (!this.hasMore) {
@@ -215,8 +215,9 @@ page {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  margin: 10px 0;
-  padding: 0 100rpx;
+  padding: 20rpx 100rpx;
+  height: 140rpx;
+  box-sizing: border-box;
   .input {
     width: 300rpx;
     height: 90rpx;
@@ -230,11 +231,11 @@ page {
   }
 }
 .exchange-container {
-  display: flex;
-  flex-direction: column;
   height: 100%;
   .table-inner-wraper {
-    height: 600rpx;
+    height: calc(100% - 460rpx);
+    box-sizing: border-box;
+    padding: 20rpx;
     .table {
       height: 100%;
       .scroll-container {
@@ -242,5 +243,11 @@ page {
       }
     }
   }
+}
+.header{
+  height: 300rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+  overflow: auto;
 }
 </style>

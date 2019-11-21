@@ -1,80 +1,37 @@
 <template>
- <div class="contactusContainer">
-   <i-cell-group>
-     <i-cell
-       v-for="(item, index) in contactUs"
-       :key="index"
-       :title="item.name"
-       :value="item.contact">
-       <i-icon
-         slot="icon"
-         type="group_fill"
-         color="#0097ff"
-         size="18"/>
-     </i-cell>
-   </i-cell-group>
- </div>
+  <div class="contactusContainer">
+    <image v-if="src" mode="aspectFit" :src="baseUrl+src" />
+  </div>
 </template>
 
 <script>
 export default {
-  data () {
+  data() {
     return {
-      contactUs: [
-        {
-          name: '客服小红',
-          contact: 'Tel:15273656769'
-        },
-        {
-          name: '客服小怡',
-          contact: 'Tel:15273656769'
-        },
-        {
-          name: '客服小情',
-          contact: 'Tel:15273656769'
-        },
-        {
-          name: '客服小慧',
-          contact: 'Tel:15273656769'
-        },
-        {
-          name: '客服小燕',
-          contact: 'Tel:15273656769'
-        },
-        {
-          name: '客服小瑶',
-          contact: 'Qq:15273656769'
-        },
-        {
-          name: '客服小红',
-          contact: 'Qq:15273656769'
-        },
-        {
-          name: '客服小怡',
-          contact: 'Qq:15273656769'
-        },
-        {
-          name: '客服小情',
-          contact: 'Qq:15273656769'
-        },
-        {
-          name: '客服小慧',
-          contact: 'Qq:15273656769'
-        },
-        {
-          name: '客服小燕',
-          contact: 'Qq:15273656769'
-        },
-        {
-          name: '客服小瑶',
-          contact: 'Qq:15273656769'
-        }
-      ]
-    }
+      src: "",
+      baseUrl: "https://mylife028.cn/"
+    };
+  },
+  mounted() {
+    this.$fly.post("/u/contact_customer_service", {}).then(res => {
+      this.src = res.data.data.customer;
+    });
   }
-
-}
+};
 </script>
+<style lang="wxss">
+page {
+  width: 100%;
+  height: 100%;
+}
+</style>
 <style lang="less" scoped>
-
+.contactusContainer {
+  width: 100%;
+  height: 100%;
+  image {
+    width: 100%;
+    height: 100%;
+  }
+}
 </style>

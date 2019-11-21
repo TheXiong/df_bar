@@ -1,17 +1,15 @@
 <template name="index$bf67e478">
   <view class="_div data-v-04d3a428 exchange-container">
-    <i-panel title="注: 以下内容请须知:" class="_i-panel data-v-04d3a428">
-      <view style="padding: 0 15px;" class="_view data-v-04d3a428">
-        <rich-text class="_div data-v-04d3a428 tip" nodes="{{tip}}"></rich-text>
-        <view class="_div data-v-04d3a428 integral">我的积分: {{userInfo.integral}} 分</view>
-      </view>
-    </i-panel>
+    <view class="_div data-v-04d3a428 header">
+      <rich-text class="_div data-v-04d3a428 tip" nodes="{{tip}}"></rich-text>
+      <view class="_div data-v-04d3a428 integral">我的积分: {{userInfo.integral}} 分</view>
+    </view>
     <view class="_div data-v-04d3a428 divider"></view>
     <view class="_div data-v-04d3a428 exchange">
       <input class="_input data-v-04d3a428 input" value="{{integral}}" bindinput="handleProxy" type="number" auto-focus placeholder="积分" data-eventid="{{'0'}}" data-comkey="{{$k}}" />
       <button class="_button data-v-04d3a428 btn" type="primary" size="mini" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}">确认兑换</button>
     </view>
-    <view class="_view data-v-04d3a428 table-inner-wraper" style="padding: 15px;">
+    <view class="_view data-v-04d3a428 table-inner-wraper">
       <view class="_view data-v-04d3a428 table">
         <view class="_view data-v-04d3a428 tr bg-w">
           <view class="_view data-v-04d3a428 th">兑换时间</view>

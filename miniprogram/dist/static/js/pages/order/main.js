@@ -147,24 +147,35 @@ if (false) {(function () {
 //
 
 
+
 /* harmony default export */ __webpack_exports__["a"] = ({
   data: function data() {
     return {
       orderTipsMessage: false,
-      commdityShoppingIndex: 0
+      commdityShoppingIndex: 0,
+      hasMounted: false
     };
+  },
+  onShow: function onShow() {
+    if (this.hasMounted) {
+      this.getList();
+    }
   },
 
   computed: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapState */])(["commdityOrder"])),
   mounted: function mounted() {
-    var _this = this;
-
-    this.$fly.post("/u/order_list", {}).then(function (res) {
-      _this.$store.dispatch("setCommdityOrder", res.data.data);
-    });
+    this.hasMounted = true;
+    this.getList();
   },
 
   methods: {
+    getList: function getList() {
+      var _this = this;
+
+      this.$fly.post("/u/order_list", {}).then(function (res) {
+        _this.$store.dispatch("setCommdityOrder", res.data.data);
+      });
+    },
     orderCloseDel: function orderCloseDel() {
       this.orderToggleFull(false);
       return false;

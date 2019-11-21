@@ -4,6 +4,7 @@ import fly from '../fly.js'
 // import vuetron from 'vuetron '
 import createPersistedState from 'vuex-persistedstate'
 import _ from 'lodash'
+import { formatTime } from "../utils/index";
 
 Vue.use(Vuex)
 
@@ -97,7 +98,7 @@ export default new Vuex.Store({
           prev += current.integral * current.number
           return prev
         }, 0)
-        order.join_time = (new Date(order.join_time * 1000)).toLocaleString()
+        order.join_time = formatTime(new Date(order.join_time * 1000))
       })
 
       state.commdityOrder = commdityOrder

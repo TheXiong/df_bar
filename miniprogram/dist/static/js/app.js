@@ -1,4 +1,4 @@
-global.webpackJsonp([7],{
+global.webpackJsonp([8],{
 
 /***/ 52:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -7,14 +7,14 @@ global.webpackJsonp([7],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_promise__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_promise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_promise__);
 
-var Fly = __webpack_require__(53);
+var Fly = __webpack_require__(92);
 var fly = new Fly();
 //定义公共headers
 // fly.config.headers={xx:5,bb:6,dd:7}
 //设置超时
 // fly.config.timeout=10000;
 //设置请求基地址
-fly.config.baseURL = "http://xcs.mylife028.cn/api/v1/";
+fly.config.baseURL = "https://mylife028.cn/api/v1/";
 //设置公共的Get参数
 // fly.config.params={"token":"testtoken"};
 fly.interceptors.request.use(function (request) {
@@ -44,15 +44,15 @@ fly.interceptors.response.use(function (response) {
 
 /***/ }),
 
-/***/ 54:
+/***/ 53:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__App__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store_index__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__App__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store_index__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fly__ = __webpack_require__(52);
 
 
@@ -112,15 +112,15 @@ app.$mount();
 
 /***/ }),
 
-/***/ 55:
+/***/ 54:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_lib_selector_type_script_index_0_App_vue__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_lib_selector_type_script_index_0_App_vue__ = __webpack_require__(57);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(56)
+  __webpack_require__(55)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
@@ -164,14 +164,14 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 56:
+/***/ 55:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 58:
+/***/ 57:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -189,7 +189,7 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 59:
+/***/ 58:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -202,14 +202,16 @@ if (false) {(function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fly_js__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vuex_persistedstate__ = __webpack_require__(93);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_lodash__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_lodash__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_lodash__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_index__ = __webpack_require__(32);
 
 
 
 
 
 // import vuetron from 'vuetron '
+
 
 
 
@@ -315,7 +317,7 @@ __WEBPACK_IMPORTED_MODULE_2_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_3_vuex
           prev += current.integral * current.number;
           return prev;
         }, 0);
-        order.join_time = new Date(order.join_time * 1000).toLocaleString();
+        order.join_time = Object(__WEBPACK_IMPORTED_MODULE_7__utils_index__["a" /* formatTime */])(new Date(order.join_time * 1000));
       });
 
       state.commdityOrder = commdityOrder;
@@ -475,5 +477,5 @@ __WEBPACK_IMPORTED_MODULE_2_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_3_vuex
 
 /***/ })
 
-},[54]);
+},[53]);
 //# sourceMappingURL=app.js.map

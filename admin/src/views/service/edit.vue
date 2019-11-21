@@ -31,7 +31,7 @@ export default {
       dataFormRules: {
         info: []
       },
-      baseUrl: "http://xcs.mylife028.cn/"
+      baseUrl: "https://mylife028.cn/"
     };
   },
   mounted() {
@@ -46,9 +46,7 @@ export default {
   },
   methods: {
     handleAvatarSuccess(res, file) {
-      console.log(res);
       this.dataForm.info = res.data.info;
-      //   this.imageUrl = URL.createObjectURL(file.raw);
     },
     beforeAvatarUpload(file) {
       const isLt20M = file.size / 1024 / 1024 < 20;

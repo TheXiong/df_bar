@@ -1,4 +1,4 @@
-global.webpackJsonp([3],{
+global.webpackJsonp([4],{
 
 /***/ 134:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -96,11 +96,12 @@ if (false) {(function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_index__ = __webpack_require__(32);
 
 
 //
@@ -141,6 +142,7 @@ if (false) {(function () {
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
@@ -174,7 +176,7 @@ if (false) {(function () {
     transformData: function transformData(arr) {
       return arr.map(function (item) {
         return __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default()({}, item, {
-          join_time: new Date(item.join_time * 1000).toLocaleString().replace(/:\d{1,2}$/, '').replace(/[\u4e00-\u9fa5]+/, '')
+          join_time: Object(__WEBPACK_IMPORTED_MODULE_3__utils_index__["a" /* formatTime */])(new Date(item.join_time * 1000))
         });
       });
     },

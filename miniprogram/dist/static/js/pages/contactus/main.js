@@ -36,7 +36,8 @@ app.$mount();
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(114)
+  __webpack_require__(207)
+  __webpack_require__(208)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
@@ -81,13 +82,6 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 114:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ 115:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -98,60 +92,20 @@ if (false) {(function () {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   data: function data() {
     return {
-      contactUs: [{
-        name: '客服小红',
-        contact: 'Tel:15273656769'
-      }, {
-        name: '客服小怡',
-        contact: 'Tel:15273656769'
-      }, {
-        name: '客服小情',
-        contact: 'Tel:15273656769'
-      }, {
-        name: '客服小慧',
-        contact: 'Tel:15273656769'
-      }, {
-        name: '客服小燕',
-        contact: 'Tel:15273656769'
-      }, {
-        name: '客服小瑶',
-        contact: 'Qq:15273656769'
-      }, {
-        name: '客服小红',
-        contact: 'Qq:15273656769'
-      }, {
-        name: '客服小怡',
-        contact: 'Qq:15273656769'
-      }, {
-        name: '客服小情',
-        contact: 'Qq:15273656769'
-      }, {
-        name: '客服小慧',
-        contact: 'Qq:15273656769'
-      }, {
-        name: '客服小燕',
-        contact: 'Qq:15273656769'
-      }, {
-        name: '客服小瑶',
-        contact: 'Qq:15273656769'
-      }]
+      src: "",
+      baseUrl: "https://mylife028.cn/"
     };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    this.$fly.post("/u/contact_customer_service", {}).then(function (res) {
+      _this.src = res.data.data.customer;
+    });
   }
 });
 
@@ -164,28 +118,12 @@ if (false) {(function () {
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "contactusContainer"
-  }, [_c('i-cell-group', {
+  }, [(_vm.src) ? _c('image', {
     attrs: {
-      "mpcomid": '2'
+      "mode": "aspectFit",
+      "src": _vm.baseUrl + _vm.src
     }
-  }, _vm._l((_vm.contactUs), function(item, index) {
-    return _c('i-cell', {
-      key: index,
-      attrs: {
-        "title": item.name,
-        "value": item.contact,
-        "mpcomid": '1-' + index
-      }
-    }, [_c('i-icon', {
-      attrs: {
-        "type": "group_fill",
-        "color": "#0097ff",
-        "size": "18",
-        "mpcomid": '0-' + index
-      },
-      slot: "icon"
-    })], 1)
-  }))], 1)
+  }) : _vm._e()])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -197,6 +135,20 @@ if (false) {
      require("vue-hot-reload-api").rerender("data-v-2a4801ab", esExports)
   }
 }
+
+/***/ }),
+
+/***/ 207:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 208:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 

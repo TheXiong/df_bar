@@ -38,6 +38,7 @@
 
 <script>
 import { mapState } from "vuex";
+import { formatTime } from "../../utils/index";
 export default {
   data() {
     return {
@@ -67,7 +68,7 @@ export default {
       return arr.map(item => {
         return {
           ...item,
-          join_time: new Date(item.join_time * 1000).toLocaleString().replace(/:\d{1,2}$/,'').replace(/[\u4e00-\u9fa5]+/,'')
+          join_time: formatTime(new Date(item.join_time * 1000))
         };
       });
     },

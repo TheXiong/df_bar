@@ -128,8 +128,14 @@ export default {
       productTypesId: 0, //当前所选类型
       productList: [],
       hasMore: true,
-      scrollTop: 0
+      scrollTop: 0,
+      hasMounted: false
     };
+  },
+  onShow() {
+    if (this.hasMounted) {
+      this.getList()
+    }
   },
   computed: {
     ...mapState(["commdityShopping", "userInfo"]),
@@ -153,22 +159,26 @@ export default {
     }
   },
   watch: {
-    commdityShopping:{
-      handler: function(){
-        this.mapCartToProductList()
+    commdityShopping: {
+      handler: function() {
+        this.mapCartToProductList();
       },
       deep: true
     }
   },
   mounted() {
     this.hasMore = true;
-    this.$fly.post("/u/goods_group_list", {}).then(res => {
-      this.productTypes = res.data.data;
-      this.productTypesId = this.productTypes[0].id || 0;
-      this.getProductList();
-    });
+    this.hasMounted = true;
+    this.getList()
   },
   methods: {
+    getList() {
+      this.$fly.post("/u/goods_group_list", {}).then(res => {
+        this.productTypes = res.data.data;
+        this.productTypesId = this.productTypes[0].id || 0;
+        this.getProductList();
+      });
+    },
     // 切换列表
     toggleList(id) {
       this.productTypesId = id;
@@ -185,7 +195,7 @@ export default {
         });
         if (commodityFindIndex !== -1) {
           product.num = cartList[commodityFindIndex].num;
-        }else{
+        } else {
           product.num = 0;
         }
         return product;

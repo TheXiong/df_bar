@@ -1,4 +1,4 @@
-global.webpackJsonp([6],{
+global.webpackJsonp([7],{
 
 /***/ 102:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -101,11 +101,11 @@ if (false) {(function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_lodash__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__(5);
 
@@ -240,8 +240,14 @@ if (false) {(function () {
       productTypesId: 0, //当前所选类型
       productList: [],
       hasMore: true,
-      scrollTop: 0
+      scrollTop: 0,
+      hasMounted: false
     };
+  },
+  onShow: function onShow() {
+    if (this.hasMounted) {
+      this.getList();
+    }
   },
 
   computed: __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default()({}, Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["b" /* mapState */])(["commdityShopping", "userInfo"]), {
@@ -273,17 +279,22 @@ if (false) {(function () {
     }
   },
   mounted: function mounted() {
-    var _this = this;
-
     this.hasMore = true;
-    this.$fly.post("/u/goods_group_list", {}).then(function (res) {
-      _this.productTypes = res.data.data;
-      _this.productTypesId = _this.productTypes[0].id || 0;
-      _this.getProductList();
-    });
+    this.hasMounted = true;
+    this.getList();
   },
 
   methods: {
+    getList: function getList() {
+      var _this = this;
+
+      this.$fly.post("/u/goods_group_list", {}).then(function (res) {
+        _this.productTypes = res.data.data;
+        _this.productTypesId = _this.productTypes[0].id || 0;
+        _this.getProductList();
+      });
+    },
+
     // 切换列表
     toggleList: function toggleList(id) {
       this.productTypesId = id;

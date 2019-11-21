@@ -1,4 +1,4 @@
-global.webpackJsonp([4],{
+global.webpackJsonp([5],{
 
 /***/ 123:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -99,11 +99,12 @@ if (false) {(function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_index__ = __webpack_require__(32);
 
 
 //
@@ -156,8 +157,7 @@ if (false) {(function () {
 //
 //
 //
-//
-//
+
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
@@ -227,7 +227,7 @@ if (false) {(function () {
     transformData: function transformData(arr) {
       return arr.map(function (item) {
         return __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default()({}, item, {
-          join_time: new Date(item.join_time * 1000).toLocaleString().replace(/:\d{1,2}$/, '').replace(/[\u4e00-\u9fa5]+/, '')
+          join_time: Object(__WEBPACK_IMPORTED_MODULE_3__utils_index__["a" /* formatTime */])(new Date(item.join_time * 1000))
         });
       });
     },
@@ -274,15 +274,8 @@ if (false) {(function () {
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "exchange-container"
-  }, [_c('i-panel', {
-    attrs: {
-      "title": "注: 以下内容请须知:",
-      "mpcomid": '0'
-    }
-  }, [_c('view', {
-    staticStyle: {
-      "padding": "0 15px"
-    }
+  }, [_c('div', {
+    staticClass: "header"
   }, [_c('div', {
     staticClass: "tip",
     domProps: {
@@ -290,7 +283,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     }
   }), _vm._v(" "), _c('div', {
     staticClass: "integral"
-  }, [_vm._v("我的积分: " + _vm._s(_vm.userInfo.integral) + " 分")])])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("我的积分: " + _vm._s(_vm.userInfo.integral) + " 分")])]), _vm._v(" "), _c('div', {
     staticClass: "divider"
   }), _vm._v(" "), _c('div', {
     staticClass: "exchange"
@@ -328,10 +321,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "click": _vm.exchange
     }
   }, [_vm._v("确认兑换")])], 1), _vm._v(" "), _c('view', {
-    staticClass: "table-inner-wraper",
-    staticStyle: {
-      "padding": "15px"
-    }
+    staticClass: "table-inner-wraper"
   }, [_c('view', {
     staticClass: "table"
   }, [_vm._m(0), _vm._v(" "), _c('scroll-view', {
@@ -371,7 +361,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     }, [_vm._v(_vm._s(item.name))]), _vm._v(" "), _c('view', {
       staticClass: "td"
     }, [_vm._v(_vm._s(item.status == 0 ? '未使用' : '已使用'))])])])
-  }))], 1)])], 1)
+  }))], 1)])])
 }
 var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('view', {
