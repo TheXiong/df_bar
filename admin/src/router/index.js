@@ -53,7 +53,7 @@ let defaultRouter = [
 
 let addRouter = [
   {
-    r_id: 100026,
+    r_id: 100001,
     r_name: roleNmae.userManage,
     path: '/',
     iconCls: 'el-icon-tickets', // 图标样式class
@@ -62,7 +62,7 @@ let addRouter = [
     meta: { role: ['superAdmin', 'admin'] },
     children: [
       {
-        r_id: 100029,
+        r_id: 100002,
         r_name: roleNmae.userList,
         path: '/userList',
         iconCls: 'el-icon-edit-outline', // 图标样式class
@@ -72,7 +72,7 @@ let addRouter = [
         children: []
       },
       {
-        r_id: 100030,
+        r_id: 100003,
         r_name: roleNmae.editPassworld,
         path: '/editPassworld',
         iconCls: 'el-icon-edit-outline', // 图标样式class
@@ -85,16 +85,17 @@ let addRouter = [
     ]
   },
   {
-    r_id: 100026,
+    r_id: 100004,
     r_name: roleNmae.shopManage,
-    path: '/',
+    path: '/shopList',
     iconCls: 'el-icon-tickets', // 图标样式class
     name: 'shopManage',
     component: () => import('@/views/layout/layout'),
     meta: { role: ['superAdmin', 'admin'] },
+    alone: true,
     children: [
       {
-        r_id: 100027,
+        r_id: 100005,
         r_name: roleNmae.shopList,
         path: '/shopList',
         iconCls: 'el-icon-edit-outline', // 图标样式class
@@ -106,16 +107,17 @@ let addRouter = [
     ]
   },
   {
-    r_id: 100026,
+    r_id: 100006,
     r_name: roleNmae.orderManage,
-    path: '/',
+    path: '/orderList',
     iconCls: 'el-icon-tickets', // 图标样式class
     name: 'orderManage',
     component: () => import('@/views/layout/layout'),
     meta: { role: ['superAdmin', 'admin'] },
+    alone: true,
     children: [
       {
-        r_id: 100027,
+        r_id: 100007,
         r_name: roleNmae.orderList,
         path: '/orderList',
         iconCls: 'el-icon-edit-outline', // 图标样式class
@@ -127,21 +129,110 @@ let addRouter = [
     ]
   },
   {
-    r_id: 100026,
+    r_id: 100008,
+    r_name: roleNmae.exchangeManage,
+    path: '/exchangeList',
+    iconCls: 'el-icon-tickets', // 图标样式class
+    name: 'exchangeManage',
+    component: () => import('@/views/layout/layout'),
+    meta: { role: ['superAdmin', 'admin'] },
+    alone: true,
+    children: [
+      {
+        r_id: 100009,
+        r_name: roleNmae.exchangeList,
+        path: '/exchangeList',
+        iconCls: 'el-icon-edit-outline', // 图标样式class
+        name: 'exchangeList',
+        component: () => import('@/views/exchange/list'),
+        meta: { role: ['superAdmin', 'admin'] },
+        children: []
+      }
+    ]
+  },
+  {
+    r_id: 100010,
+    r_name: roleNmae.giftManage,
+    path: '/giftList',
+    iconCls: 'el-icon-tickets', // 图标样式class
+    name: 'giftManage',
+    component: () => import('@/views/layout/layout'),
+    meta: { role: ['superAdmin', 'admin'] },
+    alone: true,
+    children: [
+      {
+        r_id: 100011,
+        r_name: roleNmae.giftList,
+        path: '/giftList',
+        iconCls: 'el-icon-edit-outline', // 图标样式class
+        name: 'giftList',
+        component: () => import('@/views/gift/list'),
+        meta: { role: ['superAdmin', 'admin'] },
+        children: []
+      }
+    ]
+  },
+  {
+    r_id: 100012,
+    r_name: roleNmae.integralManage,
+    path: '/integralList',
+    iconCls: 'el-icon-tickets', // 图标样式class
+    name: 'integralManage',
+    component: () => import('@/views/layout/layout'),
+    meta: { role: ['superAdmin', 'admin'] },
+    alone: true,
+    children: [
+      {
+        r_id: 100013,
+        r_name: roleNmae.integralList,
+        path: '/integralList',
+        iconCls: 'el-icon-edit-outline', // 图标样式class
+        name: 'integralList',
+        component: () => import('@/views/integral/list'),
+        meta: { role: ['superAdmin', 'admin'] },
+        children: []
+      }
+    ]
+  },
+  {
+    r_id: 100014,
     r_name: roleNmae.serviceManage,
-    path: '/',
+    path: '/serviceEdit',
     iconCls: 'el-icon-tickets', // 图标样式class
     name: 'serviceManage',
     component: () => import('@/views/layout/layout'),
     meta: { role: ['superAdmin', 'admin'] },
+    alone: true,
     children: [
       {
-        r_id: 100027,
+        r_id: 100015,
         r_name: roleNmae.serviceEdit,
         path: '/serviceEdit',
         iconCls: 'el-icon-edit-outline', // 图标样式class
         name: 'serviceEdit',
         component: () => import('@/views/service/edit'),
+        meta: { role: ['superAdmin', 'admin'] },
+        children: []
+      }
+    ]
+  },
+  {
+    r_id: 100016,
+    r_name: roleNmae.feedbackManage,
+    path: '/feedbackList',
+    iconCls: 'el-icon-tickets', // 图标样式class
+    name: 'feedbackManage',
+    component: () => import('@/views/layout/layout'),
+    meta: { role: ['superAdmin', 'admin'] },
+    alone: true,
+    children: [
+      {
+        r_id: 100017,
+        r_name: roleNmae.feedbackList,
+        path: '/feedbackList',
+        iconCls: 'el-icon-edit-outline', // 图标样式class
+        name: 'feedbackList',
+        component: () => import('@/views/feedback/list'),
         meta: { role: ['superAdmin', 'admin'] },
         children: []
       }

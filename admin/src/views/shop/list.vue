@@ -1,6 +1,16 @@
 <template>
   <div>
     <div>
+      <el-form inline>
+        <el-form-item label="搜索商品">
+          <el-input type="text" v-model="search" autocomplete="off" placeholder="商品名"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="query">查询</el-button>
+          <el-button @click="reset">重置</el-button>
+        </el-form-item>
+      </el-form>
+
       <el-button
         type="primary"
         icon="el-icon-circle-plus-outline"
@@ -10,14 +20,15 @@
     </div>
     <el-table :data="shopListData">
       <el-table-column prop="id" label="ID"></el-table-column>
-      <!-- <el-table-column prop="join_time" label="创建时间"></el-table-column> -->
       <el-table-column prop="name" label="商品名"></el-table-column>
       <el-table-column prop="integral" label="积分"></el-table-column>
-      <el-table-column prop="group" label="分组"></el-table-column>
+      <el-table-column prop="group" label="分组">
+        <template slot-scope="scope">{{scope.row.group | getShopTypeName(shopTypeListData)}}</template>
+      </el-table-column>
       <el-table-column prop="status" label="状态"></el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
-          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+          <!-- <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button> -->
           <el-button size="mini" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
         </template>
       </el-table-column>
@@ -94,6 +105,18 @@ export default {
       }
     };
   },
+  filters: {
+    getShopTypeName(value, shopTypeListData) {
+      if (shopTypeListData.length == 0) {
+        return "";
+      } else {
+        let matched = shopTypeListData.filter(item => {
+          return item.id == value;
+        });
+        return matched[0] ? matched[0].name : "";
+      }
+    }
+  },
   methods: {
     currentChange(page) {
       this.page = page;
@@ -141,14 +164,14 @@ export default {
       this.$refs.dataForm.validate(valid => {
         if (valid) {
           this.$axios
-            .post("/a/add_goods", {...this.dataForm,tag:'1'})
+            .post("/a/add_goods", { ...this.dataForm, tag: "1" })
             .then(res => {
               this.$message({
                 showClose: true,
                 message: "新增成功",
                 type: "success"
               });
-              this.dataFormVisible = false
+              this.dataFormVisible = false;
               this.getList();
             })
             .catch(function(error) {
@@ -171,6 +194,13 @@ export default {
         .catch(function(error) {
           console.log(error);
         });
+    },
+    query(){
+      this.getList();
+    },
+    reset(){
+      this.search = ''
+      this.getList();
     }
   },
   mounted() {

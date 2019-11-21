@@ -23,7 +23,19 @@ const en = {
     orderList: 'orderList',
 
     serviceManage: 'serviceManage',
-    serviceEdit: 'serviceEdit'
+    serviceEdit: 'serviceEdit',
+
+    feedbackManage:'feedbackManage',
+    feedbackList: 'feedbackList',
+
+    integralManage: 'integralManage',
+    integralList: 'integralList',
+
+    exchangeManage:'exchangeManage',
+    exchangeList:'exchangeList',
+
+    giftManage:'giftManage',
+    giftList:'giftList'
 
   },
   rightMenu: {
@@ -34,7 +46,7 @@ const en = {
   role: {
     superAdmin: 'superAdmin',
     admin: 'admin',
-    ordinary: 'ordinary'
+    member: 'member'
   },
   userDropdownMenu: {
     basicInfor: 'basicInfor',

@@ -8,9 +8,9 @@
       </div>
       <div class="loginBox">
         <div class="loginCon">
-          <p class="title">nodePlatform</p>
-          <p class="title">前台: vue + element-ui</p>
-          <p class="title">后台: egg.js</p>
+          <p class="title">东方网咖</p>
+          <p class="title">后台管理系统</p>
+          <!-- <p class="title">后台: egg.js</p> -->
           <el-card shadow="always" class="login-module" v-if="smdl">
             <div slot="header" class="clearfix formTitlt">
               <span>密码登录</span>
@@ -28,7 +28,8 @@
                   type="text"
                   v-model="loginForm.mobile"
                   auto-complete="off"
-                  placeholder="请输入登录账号"
+                  placeholder="请输入手机号码"
+                  maxlength="11"
                 ></el-input>
               </el-form-item>
               <el-form-item>
@@ -67,16 +68,22 @@
                   type="text"
                   v-model="loginForm1.mobile"
                   auto-complete="off"
-                  placeholder="请输入登录账号"
+                  placeholder="请输入手机号码"
+                  maxlength="11"
                 ></el-input>
               </el-form-item>
               <el-form-item>
-                <el-input
-                  type="text"
-                  v-model="loginForm1.mobile_verify_code"
-                  auto-complete="off"
-                  placeholder="请输入验证码"
-                ></el-input>
+                <el-col :span="16">
+                  <el-input
+                    type="text"
+                    v-model="loginForm1.mobile_verify_code"
+                    auto-complete="off"
+                    placeholder="请输入验证码"
+                  ></el-input>
+                </el-col>
+                <el-col :span="8">
+                  <el-button type="primary" @click="sendCode">{{codeText}}</el-button>
+                </el-col>
               </el-form-item>
               <el-form-item>
                 <el-button class="subBtn" type="primary" @click="submitForm">登录</el-button>
@@ -98,14 +105,16 @@ export default {
   data() {
     return {
       smdl: true,
+      codeText: "发送验证码",
+      isSending: false,
       loginForm: {
-        mobile: "18888888888",
-        password: "123456",
+        mobile: "",
+        password: "",
         type: "password",
         admin: 1
       },
       loginForm1: {
-        username: "",
+        mobile: "",
         mobile_verify_code: "",
         type: "",
         admin: 1
@@ -137,13 +146,21 @@ export default {
           return;
         }
       }
+      if (!/^1[3456789]\d{9}$/.test(form.mobile)) {
+        this.$message({
+          showClose: true,
+          message: "请输入正确的手机号码",
+          type: "error"
+        });
+        return;
+      }
 
       // let that = this;
       this.$axios
         .post("/c/login", form)
         .then(res => {
           console.log(res.data.data.Token);
-          
+
           that.$store
             .dispatch("setToken", res.data.data.Token)
             .then(res => {
@@ -163,6 +180,50 @@ export default {
             message: err,
             type: "error"
           });
+        });
+    },
+    sendCode() {
+      //是否在读秒
+      if (this.isSending) {
+        return;
+      }
+      //验证phone
+      if (
+        !(
+          this.loginForm1.mobile &&
+          /^1[3456789]\d{9}$/.test(this.loginForm1.mobile)
+        )
+      ) {
+        this.$message({
+          showClose: true,
+          message: "电话号码有误,请重填",
+          type: "error"
+        });
+        return;
+      }
+
+      this.isSending = true;
+      this.$axios
+        .post("/c/send_mobile_verify_code", { mobile: this.loginForm1.mobile })
+        .then(res => {
+          this.$message({
+            showClose: true,
+            message: "发送成功",
+            type: "success"
+          });
+          let times = 60;
+          setInterval(() => {
+            this.codeText = `${times}s后重发`;
+            if (times == 0) {
+              this.isSending = false;
+              this.codeText = "发送验证码";
+            } else {
+              times--;
+            }
+          }, 1000);
+        })
+        .catch(err => {
+          this.isSending = false;
         });
     }
   }

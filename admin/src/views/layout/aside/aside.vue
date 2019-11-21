@@ -3,7 +3,7 @@
     <el-aside id="asideNav">
       <div class="logo-name">
         <p v-if="$store.getters.logoShow">XU</p>
-        <p v-else>vue-xuAdmin</p>
+        <p v-else>DF-Admin</p>
       </div>
       <el-menu :default-active="$route.path" class="el-menu-vertical"
                @select="selectmenu"

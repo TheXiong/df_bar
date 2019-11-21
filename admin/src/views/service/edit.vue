@@ -34,6 +34,16 @@ export default {
       baseUrl: "http://xcs.mylife028.cn/"
     };
   },
+  mounted() {
+    this.$axios
+      .post("/u/contact_customer_service", {})
+      .then(res => {
+        this.dataForm.info = res.data.data.customer
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  },
   methods: {
     handleAvatarSuccess(res, file) {
       console.log(res);

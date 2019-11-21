@@ -1,8 +1,18 @@
 <template>
   <div>
+    <div>
+      <el-form inline>
+        <el-form-item label="搜索用户">
+          <el-input type="text" v-model="search" autocomplete="off" placeholder="用户id或电话"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="query">查询</el-button>
+          <el-button @click="reset">重置</el-button>
+        </el-form-item>
+      </el-form>
+    </div>
     <el-table :data="userListData">
       <el-table-column prop="id" label="ID"></el-table-column>
-      <el-table-column prop="join_time" label="创建时间"></el-table-column>
       <el-table-column prop="name" label="用户名"></el-table-column>
       <el-table-column prop="mobile" label="电话"></el-table-column>
       <el-table-column prop="integral" label="积分"></el-table-column>
@@ -18,6 +28,9 @@
             inactive-text="正常"
           ></el-switch>
         </template>
+      </el-table-column>
+      <el-table-column prop="join_time" label="时间">
+        <template slot-scope="scope">{{scope.row.join_time | formatTimestamp}}</template>
       </el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
@@ -220,6 +233,13 @@ export default {
         .catch(function(error) {
           console.log(error);
         });
+    },
+    query(){
+      this.getList();
+    },
+    reset(){
+      this.search = ''
+      this.getList()
     }
   },
   mounted() {

@@ -16,7 +16,7 @@
                     {{this.$store.getters.info.name}}<i class="el-icon-arrow-down el-icon--right"></i>
                   </span>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item command="info">{{ $t('userDropdownMenu.basicInfor') }}</el-dropdown-item>
+              <!-- <el-dropdown-item command="info">{{ $t('userDropdownMenu.basicInfor') }}</el-dropdown-item> -->
               <el-dropdown-item command="editPassworld">{{ $t('userDropdownMenu.changePassword') }}</el-dropdown-item>
               <el-dropdown-item command="logout" divided>{{ $t('userDropdownMenu.logout') }}</el-dropdown-item>
             </el-dropdown-menu>
