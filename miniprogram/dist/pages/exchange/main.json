@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "i-panel": "../../static/dist/panel/index",
-    "i-divider": "../../static/dist/divider/index"
+    "i-divider": "../../static/dist/divider/index",
+    "i-load-more": "../../static/dist/load-more/index"
   }
 }

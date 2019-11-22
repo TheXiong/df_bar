@@ -11,7 +11,8 @@ export default {
       'i-icon': '../../static/dist/icon/index',
       'i-cell-group': '../../static/dist/cell-group/index',
       'i-cell': '../../static/dist/cell/index',
-      'i-input': '../../static/dist/input/index'
+      'i-input': '../../static/dist/input/index',
+      'i-load-more': '../../static/dist/load-more/index'
     }
   }
 }

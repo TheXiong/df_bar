@@ -1,4 +1,4 @@
-global.webpackJsonp([8],{
+global.webpackJsonp([9],{
 
 /***/ 52:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -78,7 +78,8 @@ app.$mount();
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#0097ff',
       navigationBarTitleText: '东方网咖',
-      navigationBarTextStyle: 'white'
+      navigationBarTextStyle: 'white',
+      enablePullDownRefresh: true
     },
     tabBar: {
       color: '#6f6f6f',
@@ -87,8 +88,8 @@ app.$mount();
       borderStyle: 'black',
       list: [{
         pagePath: 'pages/commodity/main',
-        iconPath: 'static/img/tj1.png',
-        selectedIconPath: 'static/img/tj1s.png',
+        iconPath: 'static/img/dc.png',
+        selectedIconPath: 'static/img/dcs.png',
         text: '点餐'
       }, {
         pagePath: 'pages/shopp/main',
@@ -202,9 +203,9 @@ if (false) {(function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fly_js__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vuex_persistedstate__ = __webpack_require__(93);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_lodash__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_lodash__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_lodash__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_index__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_index__ = __webpack_require__(8);
 
 
 

@@ -35,7 +35,10 @@ const en = {
     exchangeList:'exchangeList',
 
     giftManage:'giftManage',
-    giftList:'giftList'
+    giftList:'giftList',
+
+    activityManage:'activityManage',
+    activityContent:'activityContent'
 
   },
   rightMenu: {

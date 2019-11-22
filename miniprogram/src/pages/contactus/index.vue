@@ -12,10 +12,23 @@ export default {
       baseUrl: "https://mylife028.cn/"
     };
   },
+  onPullDownRefresh() {
+    this.getList();
+    wx.showNavigationBarLoading();
+  },
   mounted() {
-    this.$fly.post("/u/contact_customer_service", {}).then(res => {
-      this.src = res.data.data.customer;
-    });
+    this.getList();
+  },
+  methods: {
+    getList() {
+      this.$fly.post("/u/contact_customer_service", {}).then(res => {
+        this.src = res.data.data.customer;
+        try {
+          wx.hideNavigationBarLoading();
+          wx.stopPullDownRefresh();
+        } catch (error) {}
+      });
+    }
   }
 };
 </script>

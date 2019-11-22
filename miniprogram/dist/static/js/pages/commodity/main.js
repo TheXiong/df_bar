@@ -1,4 +1,4 @@
-global.webpackJsonp([7],{
+global.webpackJsonp([8],{
 
 /***/ 102:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -21,7 +21,8 @@ app.$mount();
       'i-icon': '../../static/dist/icon/index',
       'i-cell-group': '../../static/dist/cell-group/index',
       'i-cell': '../../static/dist/cell/index',
-      'i-input': '../../static/dist/input/index'
+      'i-input': '../../static/dist/input/index',
+      'i-load-more': '../../static/dist/load-more/index'
     }
   }
 });
@@ -101,15 +102,16 @@ if (false) {(function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_lodash__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__(5);
 
 
+//
 //
 //
 //
@@ -241,13 +243,18 @@ if (false) {(function () {
       productList: [],
       hasMore: true,
       scrollTop: 0,
-      hasMounted: false
+      hasMounted: false,
+      loading: false
     };
   },
   onShow: function onShow() {
     if (this.hasMounted) {
       this.getList();
     }
+  },
+  onPullDownRefresh: function onPullDownRefresh() {
+    this.getList();
+    wx.showNavigationBarLoading();
   },
 
   computed: __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default()({}, Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["b" /* mapState */])(["commdityShopping", "userInfo"]), {
@@ -331,8 +338,13 @@ if (false) {(function () {
             _this2.hasMore = false;
           }
         } else {
+          _this2.productList = [];
           _this2.hasMore = false;
         }
+        try {
+          wx.hideNavigationBarLoading();
+          wx.stopPullDownRefresh();
+        } catch (error) {}
       });
     },
 
@@ -414,6 +426,7 @@ if (false) {(function () {
       if (!this.hasMore) {
         return;
       }
+      this.loading = true;
       this.$fly.post("/u/goods_list", {
         group: this.productTypesId,
         id: this.getTheBigId(this.productList)
@@ -432,6 +445,7 @@ if (false) {(function () {
         } else {
           _this3.hasMore = false;
         }
+        _this3.loading = false;
       });
     }
   }
@@ -479,7 +493,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     on: {
       "scrolltolower": _vm.lower
     }
-  }, _vm._l((_vm.productList), function(product, index) {
+  }, [_vm._l((_vm.productList), function(product, index) {
     return _c('div', {
       key: index,
       staticClass: "commodityListShoppContentD",
@@ -524,21 +538,27 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         }
       }
     }, [_vm._v("＋")])])], 1)])
-  }))], 1)]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('i-load-more', {
+    attrs: {
+      "tip": _vm.hasMore ? '加载数据中' : '暂无数据',
+      "loading": _vm.loading,
+      "mpcomid": '0'
+    }
+  })], 2)], 1)]), _vm._v(" "), _c('div', {
     staticClass: "commodityShoppList",
     class: {
       commodityShoppListToggle: _vm.commodityToggleShow
     }
   }, [_c('i-cell-group', {
     attrs: {
-      "mpcomid": '1'
+      "mpcomid": '2'
     }
   }, _vm._l((_vm.commdityShopping), function(item, index) {
     return _c('i-cell', {
       key: index,
       attrs: {
         "title": item.name,
-        "mpcomid": '0-' + index
+        "mpcomid": '1-' + index
       }
     }, [_c('div', {
       slot: "footer"
@@ -590,7 +610,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "type": "publishgoods_fill",
       "size": "40",
       "color": _vm.commoditySumShopp === 0 ? '#5f5f63' : '#ffffff',
-      "mpcomid": '2'
+      "mpcomid": '3'
     }
   }), _vm._v(" "), (_vm.commoditySumShopp) ? _c('div', {
     staticClass: "commodityGsum"

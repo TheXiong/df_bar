@@ -1,18 +1,8 @@
 <template>
   <div>
     <el-form :model="dataForm" ref="dataForm" :rules="dataFormRules">
-      <el-form-item label="图片" prop="info">
-        <el-upload
-          class="avatar-uploader"
-          :action="baseUrl+'api/v1/c/up'"
-          :show-file-list="false"
-          :on-success="handleAvatarSuccess"
-          :before-upload="beforeAvatarUpload"
-          accept="image/*"
-        >
-          <img v-if="dataForm.info" :src="baseUrl+dataForm.info" class="avatar" />
-          <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-        </el-upload>
+      <el-form-item label="活动内容" prop="info">
+        <el-input type="textarea" placeholder="请输入内容" :autosize="{ minRows: 10}" v-model="dataForm.info"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
@@ -29,38 +19,26 @@ export default {
         info: ""
       },
       dataFormRules: {
-        info: [{required:true,message:'请选择图片',trigger:'blur'}]
-      },
-      baseUrl: "https://mylife028.cn/"
+        info: [{required:true,message:'请输入活动内容',trigger:'blur'}]
+      }
     };
   },
   mounted() {
     this.$axios
-      .post("/u/contact_customer_service", {})
+      .post("/u/activity_describe", {})
       .then(res => {
-        this.dataForm.info = res.data.data.customer
+        this.dataForm.info = res.data.data.describe;
       })
       .catch(function(error) {
         console.log(error);
       });
   },
   methods: {
-    handleAvatarSuccess(res, file) {
-      this.dataForm.info = res.data.info;
-    },
-    beforeAvatarUpload(file) {
-      const isLt20M = file.size / 1024 / 1024 < 20;
-
-      if (!isLt20M) {
-        this.$message.error("上传图片大小不能超过 20MB!");
-      }
-      return isLt20M;
-    },
     submitForm() {
       this.$refs.dataForm.validate(valid => {
         if (valid) {
           this.$axios
-            .post("/a/save_contact_customer_service", this.dataForm)
+            .post("/a/set_activity_describe", this.dataForm)
             .then(res => {
               this.$message({
                 showClose: true,

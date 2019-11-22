@@ -32,6 +32,7 @@
               <view class="_view data-v-04d3a428 td">{{item.status==0?'未使用':'已使用'}}</view>
             </view>
           </block>
+          <i-load-more tip="{{hasMore?'加载数据中':'暂无数据'}}" loading="{{loading}}" class="_i-load-more data-v-04d3a428"></i-load-more>
         </scroll-view>
       </view>
     </view>

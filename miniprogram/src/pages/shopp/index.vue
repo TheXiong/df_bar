@@ -12,6 +12,7 @@
           <div class="content">机号:{{item.note}}</div>
           <div class="content">{{item.join_time}}</div>
         </div>
+        <i-load-more :tip="hasMore?'加载数据中':'暂无数据'" :loading="loading" />
       </scroll-view>
     </div>
   </div>
@@ -22,25 +23,39 @@ import { formatTime } from "../../utils/index";
 export default {
   data() {
     return {
-      tip: `本期活动:\r\n为回馈广大用户对本网咖的厚爱,网咖推出送奖品活动!\r\n达到以下条件均可获赠奖品一份:\r\n1.英雄联盟 任意区服获得5杀(人机除外)\r\n2.大逃亡任意服吃鸡(第1名)`,
+      tip: '',
       listData: [],
       hasMore: true,
       scrollTop: 0,
-      hasMounted: false
+      hasMounted: false,
+      loading: false
     };
   },
   mounted() {
     this.hasMore = true;
     this.hasMounted = true
     this.getList();
+    this.getTip();
   },
-
+  onPullDownRefresh() {
+    this.hasMore = true;
+    this.hasMounted = true
+    this.getList();
+    this.getTip();
+    wx.showNavigationBarLoading();
+  },
 	onShow(){
 		if (this.hasMounted) {
       this.getList();
+      this.getTip();
     }
 	},
   methods: {
+    getTip(){
+      this.$fly.post("/u/activity_describe", {}).then(res=>{
+        this.tip = res.data.data.describe
+      })
+    },
     getList() {
       this.$fly.post("/u/gift_record", {}).then(res => {
         if (res.data.data) {
@@ -51,6 +66,10 @@ export default {
         } else {
           this.hasMore = false;
         }
+        try {
+          wx.hideNavigationBarLoading();
+          wx.stopPullDownRefresh();
+        } catch (error) {}
       });
     },
     getTheSmallId(arr) {
@@ -76,6 +95,7 @@ export default {
       if (!this.hasMore) {
         return;
       }
+      this.loading = true
       this.$fly
         .post("/u/gift_record", {
           id: this.getTheSmallId(this.listData)
@@ -93,6 +113,7 @@ export default {
           } else {
             this.hasMore = false;
           }
+          this.loading = false
         });
     }
   }

@@ -41,6 +41,7 @@
               <view class="td">{{item.status==0?'未使用':'已使用'}}</view>
             </view>
           </block>
+          <i-load-more :tip="hasMore?'加载数据中':'暂无数据'" :loading="loading" />
         </scroll-view>
       </view>
     </view>
@@ -59,7 +60,8 @@ export default {
       integral: "",
       listData: [],
       scrollTop: 0,
-      hasMore: true
+      hasMore: true,
+      loading: false
     };
   },
   computed: {
@@ -68,6 +70,11 @@ export default {
   mounted() {
     this.hasMore = true;
     this.getExchangeLog();
+  },
+  onPullDownRefresh() {
+    this.hasMore = true;
+    this.getExchangeLog();
+    wx.showNavigationBarLoading();
   },
   methods: {
     exchange() {
@@ -112,6 +119,10 @@ export default {
         } else {
           this.hasMore = false;
         }
+        try {
+          wx.hideNavigationBarLoading();
+          wx.stopPullDownRefresh();
+        } catch (error) {}
       });
     },
     transformData(arr) {
@@ -137,6 +148,7 @@ export default {
       if (!this.hasMore) {
         return;
       }
+      this.loading = true
       this.$fly
         .post("/u/use_integral_exchange_goods_log", {
           id: this.getTheSmallId(this.listData)
@@ -154,6 +166,7 @@ export default {
           } else {
             this.hasMore = false;
           }
+          this.loading = false
         });
     }
   }

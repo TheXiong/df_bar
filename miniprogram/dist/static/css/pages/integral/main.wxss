@@ -9,7 +9,7 @@ page {
   display: flex;
   width: 100%;
   justify-content: center;
-  height: 120rpx;
+  height: 10%;
   align-items: center;
 }
 .td.data-v-80a34396 {

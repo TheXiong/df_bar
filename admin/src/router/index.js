@@ -239,6 +239,28 @@ let addRouter = [
     ]
   },
   {
+    r_id: 100018,
+    r_name: roleNmae.activityManage,
+    path: '/activityManage',
+    iconCls: 'el-icon-tickets', // 图标样式class
+    name: 'activityManage',
+    component: () => import('@/views/layout/layout'),
+    meta: { role: ['superAdmin', 'admin'] },
+    alone: true,
+    children: [
+      {
+        r_id: 100019,
+        r_name: roleNmae.activityContent,
+        path: '/activityManage',
+        iconCls: 'el-icon-edit-outline', // 图标样式class
+        name: 'activityContent',
+        component: () => import('@/views/activity/index'),
+        meta: { role: ['superAdmin', 'admin'] },
+        children: []
+      }
+    ]
+  },
+  {
     path: '*',
     redirect: '/404',
     hidden: true,

@@ -70,10 +70,19 @@ export default {
     this.hasMounted = true;
     this.getList();
   },
+  onPullDownRefresh() {
+    this.hasMounted = true;
+    this.getList();
+    wx.showNavigationBarLoading();
+  },
   methods: {
     getList() {
       this.$fly.post("/u/order_list", {}).then(res => {
         this.$store.dispatch("setCommdityOrder", res.data.data);
+        try {
+          wx.hideNavigationBarLoading();
+          wx.stopPullDownRefresh();
+        } catch (error) {}
       });
     },
     orderCloseDel() {

@@ -29,7 +29,8 @@ export default {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#0097ff',
       navigationBarTitleText: '东方网咖',
-      navigationBarTextStyle: 'white'
+      navigationBarTextStyle: 'white',
+      enablePullDownRefresh: true
     },
     tabBar: {
       color: '#6f6f6f',
@@ -39,8 +40,8 @@ export default {
       list: [
         {
           pagePath: 'pages/commodity/main',
-          iconPath: 'static/img/tj1.png',
-          selectedIconPath: 'static/img/tj1s.png',
+          iconPath: 'static/img/dc.png',
+          selectedIconPath: 'static/img/dcs.png',
           text: '点餐'
         },
         {

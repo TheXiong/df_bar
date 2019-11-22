@@ -33,7 +33,10 @@ const cn = {
     exchangeList: '兑换列表',
 
     giftManage:'赠送管理',
-    giftList: '赠送列表'
+    giftList: '赠送列表',
+
+    activityManage:'活动管理',
+    activityContent:'活动内容'
   },
   rightMenu: {
     close: '关闭',

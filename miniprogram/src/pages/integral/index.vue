@@ -29,6 +29,7 @@
               <view class="td">{{item.result}}</view>
             </view>
           </block>
+          <i-load-more :tip="hasMore?'加载数据中':'暂无数据'" :loading="loading" />
         </scroll-view>
       </view>
     </view>
@@ -44,15 +45,21 @@ export default {
     return {
       listData: [],
       scrollTop: 0,
-      hasMore: true
+      hasMore: true,
+      loading: false
     };
   },
   mounted() {
     this.hasMore = true;
-    this.getExchangeLog();
+    this.getIntegralLog();
+  },
+  onPullDownRefresh() {
+    this.hasMore = true;
+    this.getIntegralLog();
+    wx.showNavigationBarLoading();
   },
   methods: {
-    getExchangeLog() {
+    getIntegralLog() {
       this.$fly.post("/u/integral_log", {}).then(res => {
         if (res.data.data) {
           this.listData = this.transformData(res.data.data);
@@ -62,6 +69,10 @@ export default {
         } else {
           this.hasMore = false;
         }
+        try {
+          wx.hideNavigationBarLoading();
+          wx.stopPullDownRefresh();
+        } catch (error) {}
       });
     },
     transformData(arr) {
@@ -87,6 +98,7 @@ export default {
       if (!this.hasMore) {
         return;
       }
+      this.loading = true
       this.$fly
         .post("/u/integral_log", {
           id: this.getTheSmallId(this.listData)
@@ -104,6 +116,7 @@ export default {
           } else {
             this.hasMore = false;
           }
+          this.loading = false
         });
     }
   }
@@ -124,7 +137,7 @@ page {
   display: flex;
   width: 100%;
   justify-content: center;
-  height: 120rpx;
+  height: 10%;
   align-items: center;
 }
 .td {

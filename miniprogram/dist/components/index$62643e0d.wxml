@@ -23,6 +23,7 @@
               <view class="_view data-v-80a34396 td">{{item.result}}</view>
             </view>
           </block>
+          <i-load-more tip="{{hasMore?'加载数据中':'暂无数据'}}" loading="{{loading}}" class="_i-load-more data-v-80a34396"></i-load-more>
         </scroll-view>
       </view>
     </view>

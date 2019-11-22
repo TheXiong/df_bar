@@ -54,6 +54,7 @@
               </div>
             </div>
           </div>
+          <i-load-more :tip="hasMore?'加载数据中':'暂无数据'" :loading="loading" />
         </scroll-view>
       </div>
     </div>
@@ -129,13 +130,18 @@ export default {
       productList: [],
       hasMore: true,
       scrollTop: 0,
-      hasMounted: false
+      hasMounted: false,
+      loading: false
     };
   },
   onShow() {
     if (this.hasMounted) {
-      this.getList()
+      this.getList();
     }
+  },
+  onPullDownRefresh() {
+    this.getList();
+    wx.showNavigationBarLoading();
   },
   computed: {
     ...mapState(["commdityShopping", "userInfo"]),
@@ -169,7 +175,7 @@ export default {
   mounted() {
     this.hasMore = true;
     this.hasMounted = true;
-    this.getList()
+    this.getList();
   },
   methods: {
     getList() {
@@ -216,8 +222,13 @@ export default {
               this.hasMore = false;
             }
           } else {
+            this.productList = [];
             this.hasMore = false;
           }
+          try {
+            wx.hideNavigationBarLoading();
+            wx.stopPullDownRefresh();
+          } catch (error) {}
         });
     },
     // 遮罩层切换
@@ -292,6 +303,7 @@ export default {
       if (!this.hasMore) {
         return;
       }
+      this.loading = true;
       this.$fly
         .post("/u/goods_list", {
           group: this.productTypesId,
@@ -313,6 +325,7 @@ export default {
           } else {
             this.hasMore = false;
           }
+          this.loading = false;
         });
     }
   }
