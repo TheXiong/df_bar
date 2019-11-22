@@ -249,6 +249,7 @@ if (false) {(function () {
   },
   onShow: function onShow() {
     if (this.hasMounted) {
+      this.productList = [];
       this.getList();
     }
   },
@@ -307,6 +308,7 @@ if (false) {(function () {
       this.productTypesId = id;
       this.hasMore = true;
       this.scrollTop = 0;
+      this.productList = [];
       this.getProductList();
     },
     mapCartToProductList: function mapCartToProductList() {

@@ -155,7 +155,7 @@ page {
 .th {
   width: 40%;
   justify-content: center;
-  background: #0097ff;
+  background: #99CC33;
   color: #fff;
   display: flex;
   height: 120rpx;

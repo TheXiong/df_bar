@@ -136,6 +136,7 @@ export default {
   },
   onShow() {
     if (this.hasMounted) {
+      this.productList = []
       this.getList();
     }
   },
@@ -190,6 +191,7 @@ export default {
       this.productTypesId = id;
       this.hasMore = true;
       this.scrollTop = 0;
+      this.productList = [];
       this.getProductList();
     },
     mapCartToProductList() {
