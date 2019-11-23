@@ -29,6 +29,19 @@ global.webpackJsonp([15],{
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
@@ -36,6 +49,7 @@ global.webpackJsonp([15],{
   data: function data() {
     return {
       member_number: "",
+      net_manager: "",
       messageStatus: false
     };
   },
@@ -44,12 +58,11 @@ global.webpackJsonp([15],{
   watch: {
     userInfo: function userInfo() {
       this.member_number = this.userInfo.member_number;
+      this.net_manager = this.userInfo.parent ? this.userInfo.parent : "";
     }
   },
   created: function created() {
     // let userInfo = wx.getStorageSync("userInfo");
-    console.log(this.userInfo);
-
     this.member_number = this.userInfo.member_number;
   },
 
@@ -61,10 +74,40 @@ global.webpackJsonp([15],{
       var _this = this;
 
       if (!this.member_number) {
+        wx.showToast({
+          title: "请输入会员卡号",
+          icon: "none",
+          duration: 2000
+        });
+        return;
+      }
+      if (!this.net_manager) {
+        wx.showToast({
+          title: "请输入网管ID",
+          icon: "none",
+          duration: 2000
+        });
+        return;
+      }
+      if (!/^[1-9]\d*$/.test(this.net_manager)) {
+        wx.showToast({
+          title: "网管ID只能为正整数",
+          icon: "none",
+          duration: 2000
+        });
+        return;
+      }
+      if (this.userInfo.member_number == this.member_number && this.userInfo.parent == this.net_manager) {
+        wx.showToast({
+          title: "无更新",
+          icon: "none",
+          duration: 2000
+        });
         return;
       }
       this.$fly.post("/u/add_user_member_number", {
-        member_number: this.member_number
+        member_number: this.member_number,
+        net_manager: this.net_manager
       }).then(function (res) {
         _this.$store.dispatch("getNewUserInfo");
       });
@@ -98,7 +141,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text",
       "autofocus": "",
-      "placeholder": "卡号",
+      "placeholder": "请输入卡号",
       "eventid": '0'
     },
     domProps: {
@@ -110,17 +153,47 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         _vm.member_number = $event.target.value
       }
     }
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "addressAddContent"
+  }, [_c('div', {
+    staticClass: "addressAddContentList"
+  }, [_c('div', {
+    staticClass: "addressAddContentListTitle"
+  }, [_vm._v("网管ID")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.net_manager),
+      expression: "net_manager"
+    }],
+    staticClass: "addressAddContentListInput",
+    style: (_vm.userInfo.parent ? 'color:#ccc' : ''),
+    attrs: {
+      "type": "text",
+      "disabled": _vm.userInfo.parent,
+      "placeholder": "数字，只能填写一次，不可更改",
+      "eventid": '1'
+    },
+    domProps: {
+      "value": (_vm.net_manager)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.net_manager = $event.target.value
+      }
+    }
   })])]), _vm._v(" "), (_vm.messageStatus) ? _c('p', {
     staticClass: "message"
   }, [_vm._v("您还没有填写卡号哦~")]) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "addressAddButton",
     attrs: {
-      "eventid": '1'
+      "eventid": '2'
     },
     on: {
       "click": _vm.addressAddButton
     }
-  }, [_vm._v("保存卡号")])], 1)
+  }, [_vm._v("保存")])], 1)
 }
 var staticRenderFns = []
 render._withStripped = true

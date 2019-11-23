@@ -170,7 +170,7 @@ if (false) {(function () {
       listData: [],
       scrollTop: 0,
       hasMore: true,
-      loading: false
+      loading: true
     };
   },
 
@@ -230,6 +230,7 @@ if (false) {(function () {
         } else {
           _this2.hasMore = false;
         }
+        _this2.loading = false;
         try {
           wx.hideNavigationBarLoading();
           wx.stopPullDownRefresh();

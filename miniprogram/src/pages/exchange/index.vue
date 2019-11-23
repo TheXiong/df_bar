@@ -61,7 +61,7 @@ export default {
       listData: [],
       scrollTop: 0,
       hasMore: true,
-      loading: false
+      loading: true
     };
   },
   computed: {
@@ -119,6 +119,7 @@ export default {
         } else {
           this.hasMore = false;
         }
+        this.loading = false
         try {
           wx.hideNavigationBarLoading();
           wx.stopPullDownRefresh();

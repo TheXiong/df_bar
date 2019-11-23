@@ -228,7 +228,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     slot: "icon"
   })], 1), _vm._v(" "), _c('i-cell', {
     attrs: {
-      "title": "会员卡号",
+      "title": "会员信息",
       "is-link": "true",
       "url": "/pages/addressAdd/main",
       "mpcomid": '5'

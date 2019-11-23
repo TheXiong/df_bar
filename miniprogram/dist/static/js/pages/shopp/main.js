@@ -135,7 +135,7 @@ if (false) {(function () {
       hasMore: true,
       scrollTop: 0,
       hasMounted: false,
-      loading: false
+      loading: true
     };
   },
   mounted: function mounted() {
@@ -178,6 +178,7 @@ if (false) {(function () {
         } else {
           _this2.hasMore = false;
         }
+        _this2.loading = false;
         try {
           wx.hideNavigationBarLoading();
           wx.stopPullDownRefresh();
@@ -262,9 +263,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       style: (index % 2 == 0 ? 'background:#e6f3f9' : '')
     }, [_c('div', {
       staticClass: "content"
-    }, [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c('div', {
-      staticClass: "content"
-    }, [_vm._v(_vm._s(item.tag))]), _vm._v(" "), _c('div', {
+    }, [_vm._v(_vm._s(item.serial))]), _vm._v(" "), _c('div', {
       staticClass: "content"
     }, [_vm._v(_vm._s(item.name))]), _vm._v(" "), _c('div', {
       staticClass: "content"

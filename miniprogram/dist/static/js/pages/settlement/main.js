@@ -390,32 +390,6 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   return _c('div', {
     staticClass: "settlementContainer"
   }, [_c('div', {
-    staticClass: "settlementHeader"
-  }, [_c('div', {
-    staticClass: "settlementHeaderAddress"
-  }, [_c('p', {
-    staticClass: "settlementHeaderAddressD"
-  }, [_vm._v("会员卡号:")]), _vm._v(" "), _c('p', {
-    staticClass: "settlementHeaderAddressA"
-  }, [(_vm.member_number) ? _c('span', {
-    staticClass: "settlementHeaderAddressA number"
-  }, [_vm._v(_vm._s(_vm.member_number))]) : _vm._e(), _vm._v(" "), (_vm.member_number) ? _c('span', {
-    staticClass: "settlementHeaderAddressA editAddress",
-    attrs: {
-      "eventid": '1'
-    },
-    on: {
-      "click": _vm.toEditCardNumber
-    }
-  }, [_vm._v("编辑会员卡号 >")]) : _c('span', {
-    staticClass: "settlementHeaderAddressA",
-    attrs: {
-      "eventid": '0'
-    },
-    on: {
-      "click": _vm.toEditCardNumber
-    }
-  }, [_vm._v("录入会员卡号 >")])])], 1)]), _vm._v(" "), _c('div', {
     staticClass: "settlementMain"
   }, [_c('i-cell-group', {
     attrs: {
@@ -445,14 +419,14 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   }, [_vm._v("您有积分" + _vm._s(_vm.integral))])])], 1), _vm._v(" "), _c('div', {
     staticClass: "settlementFooterR",
     attrs: {
-      "eventid": '2'
+      "eventid": '0'
     },
     on: {
       "click": _vm.payClickTest
     }
   }, [_vm._v("立即下单")])]), _vm._v(" "), (_vm.payShow) ? _c('pay', {
     attrs: {
-      "eventid": '3',
+      "eventid": '1',
       "mpcomid": '2'
     },
     on: {

@@ -101,9 +101,8 @@ page {
 }
 .commodityListShoppContent .commodityListShoppContentD.data-v-9ef0214c {
   width: 100%;
-  height: 190rpx;
-  margin-top: 20rpx;
-  margin-bottom: 40rpx;
+  height: 160rpx;
+  border-bottom: 2rpx solid #eee;
 }
 .commodityListShoppContent .commodityListShoppContentD .commodityListShoppContentDImg.data-v-9ef0214c {
   width: 190rpx;
@@ -116,7 +115,7 @@ page {
 }
 .commodityListShoppContent .commodityListShoppContentD .commodityListShoppContentDD.data-v-9ef0214c {
   float: left;
-  width: 330rpx;
+  width: 100%;
   height: 100%;
   margin-left: 20rpx;
   position: relative;
@@ -147,7 +146,7 @@ page {
   position: absolute;
   display: flex;
   flex-direction: row;
-  right: 0;
+  right: 44rpx;
   bottom: 22rpx;
 }
 .commodityListShoppContent .commodityListShoppContentD .commodityListShoppContentDD .commodityShoppListSwitch.data-v-9ef0214c {

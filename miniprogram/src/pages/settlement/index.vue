@@ -1,6 +1,6 @@
 <template>
   <div class="settlementContainer">
-    <div class="settlementHeader">
+    <!-- <div class="settlementHeader">
       <div class="settlementHeaderAddress">
         <p class="settlementHeaderAddressD">会员卡号:</p>
         <p class="settlementHeaderAddressA">
@@ -13,7 +13,7 @@
           <span class="settlementHeaderAddressA" @click="toEditCardNumber" v-else>录入会员卡号 ></span>
         </p>
       </div>
-    </div>
+    </div> -->
 
     <div class="settlementMain">
       <i-cell-group>

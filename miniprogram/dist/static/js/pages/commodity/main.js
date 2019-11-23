@@ -244,7 +244,7 @@ if (false) {(function () {
       hasMore: true,
       scrollTop: 0,
       hasMounted: false,
-      loading: false
+      loading: true
     };
   },
   onShow: function onShow() {
@@ -343,6 +343,7 @@ if (false) {(function () {
           _this2.productList = [];
           _this2.hasMore = false;
         }
+        _this2.loading = false;
         try {
           wx.hideNavigationBarLoading();
           wx.stopPullDownRefresh();
@@ -503,13 +504,6 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         "id": 'product' + product.id
       }
     }, [_c('div', {
-      staticClass: "commodityListShoppContentDImg"
-    }, [_c('img', {
-      attrs: {
-        "src": product.img,
-        "alt": product.alt
-      }
-    })]), _vm._v(" "), _c('div', {
       staticClass: "commodityListShoppContentDD"
     }, [_c('p', {
       staticClass: "commodityListShoppContentDDT"

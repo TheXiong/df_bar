@@ -34,6 +34,7 @@
       </el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">设置</el-button>
           <el-button size="mini" @click="handleEditRole(scope.$index, scope.row)">设置角色</el-button>
           <el-button size="mini" @click="handleEditIntegral(scope.$index, scope.row)">更改积分</el-button>
         </template>
@@ -76,6 +77,40 @@
       <span slot="footer" class="dialog-footer">
         <el-button @click="integralVisible = false">取 消</el-button>
         <el-button type="primary" @click="integralSubmit">确 定</el-button>
+      </span>
+    </el-dialog>
+
+    <el-dialog title="设置" :visible.sync="baseVisible" width="30%">
+      <el-form :model="baseForm" ref="baseForm" :rules="baseFormRules">
+        <el-form-item label="是否网管" prop="is_network_manager">
+          <el-switch
+            v-model="baseForm.is_network_manager"
+            :active-value="1"
+            :inactive-value="0"
+            active-text="是"
+            inactive-text="否"
+          ></el-switch>
+        </el-form-item>
+        <el-form-item label="是否店长" prop="is_store_manager">
+          <el-switch
+            v-model="baseForm.is_store_manager"
+            :active-value="1"
+            :inactive-value="0"
+            active-text="是"
+            inactive-text="否"
+          ></el-switch>
+        </el-form-item>
+        <el-form-item label="网管提成" prop="network_manager_commission">
+          <el-input type="text" v-model="baseForm.network_manager_commission" autocomplete="off"></el-input>
+        </el-form-item>
+
+        <el-form-item label="会员所属网管ID" prop="parent">
+          <el-input type="text" v-model="baseForm.parent" autocomplete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="baseVisible = false">取 消</el-button>
+        <el-button type="primary" @click="baseSubmit">确 定</el-button>
       </span>
     </el-dialog>
   </div>
@@ -123,10 +158,61 @@ export default {
             trigger: "blur"
           }
         ]
+      },
+      baseVisible: false,
+      baseForm: {
+        is_network_manager: "",
+        network_manager_commission: "",
+        is_store_manager: "",
+        parent: ""
+      },
+      baseFormRules: {
+        is_network_manager: [],
+        network_manager_commission: [
+          {
+            validator: (rule, value, callback) => {
+              if (value===''||value === '0') {
+                callback();
+                return;
+              }
+              if (/^0\.\d+$|^[1-9]+(\.\d+)?$/.test(value)) {
+                callback();
+              } else {
+                callback(new Error("请输入正数"));
+              }
+            }
+          }
+        ],
+        is_store_manager: [],
+        parent: [
+          {
+            validator: (rule, value, callback) => {
+              if (!value) {
+                callback();
+                return;
+              }
+              if (/^[1-9]\d{0,}$/.test(value)) {
+                callback();
+              } else {
+                callback(new Error("请输入正整数"));
+              }
+            }
+          }
+        ]
       }
     };
   },
   methods: {
+    handleEdit(index, row) {
+      this.baseForm = {
+        ...row
+      };
+      this.editRow = row;
+      this.baseVisible = true;
+      this.$nextTick(() => {
+        this.$refs.baseForm.clearValidate();
+      });
+    },
     handleEditRole(index, row) {
       this.roleForm = {
         level: ""
@@ -145,6 +231,30 @@ export default {
       this.integralVisible = true;
       this.$nextTick(() => {
         this.$refs.integralForm.clearValidate();
+      });
+    },
+    baseSubmit() {
+      this.$refs.baseForm.validate(valid => {
+        if (valid) {
+          this.$axios
+            .post("/a/update_user", {
+              ...this.baseForm,
+              network_manager_commission:
+                this.baseForm.network_manager_commission || 0
+            })
+            .then(res => {
+              this.$message({
+                showClose: true,
+                message: "操作成功",
+                type: "success"
+              });
+              this.getList();
+              this.baseVisible = false;
+            })
+            .catch(function(error) {
+              console.log(error);
+            });
+        }
       });
     },
     roleSubmit() {
@@ -234,12 +344,12 @@ export default {
           console.log(error);
         });
     },
-    query(){
+    query() {
       this.getList();
     },
-    reset(){
-      this.search = ''
-      this.getList()
+    reset() {
+      this.search = "";
+      this.getList();
     }
   },
   mounted() {

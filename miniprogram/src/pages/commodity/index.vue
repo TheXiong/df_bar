@@ -38,9 +38,9 @@
             :key="index"
             :id="'product'+product.id"
           >
-            <div class="commodityListShoppContentDImg">
+            <!-- <div class="commodityListShoppContentDImg">
               <img :src="product.img" :alt="product.alt" />
-            </div>
+            </div> -->
             <div class="commodityListShoppContentDD">
               <p class="commodityListShoppContentDDT">{{product.name}}</p>
               <p class="commodityListShoppContentDDM">{{product.integral}}积分</p>
@@ -131,7 +131,7 @@ export default {
       hasMore: true,
       scrollTop: 0,
       hasMounted: false,
-      loading: false
+      loading: true
     };
   },
   onShow() {
@@ -227,6 +227,7 @@ export default {
             this.productList = [];
             this.hasMore = false;
           }
+          this.loading = false
           try {
             wx.hideNavigationBarLoading();
             wx.stopPullDownRefresh();
@@ -447,9 +448,8 @@ page {
 
   .commodityListShoppContentD {
     width: 100%;
-    height: 190rpx;
-    margin-top: 20rpx;
-    margin-bottom: 40rpx;
+    height: 160rpx;
+    border-bottom: 2rpx solid #eee;
     .commodityListShoppContentDImg {
       width: 190rpx;
       height: 190rpx;
@@ -461,7 +461,7 @@ page {
     }
     .commodityListShoppContentDD {
       float: left;
-      width: 330rpx;
+      width: 100%;
       height: 100%;
       margin-left: 20rpx;
       position: relative;
@@ -504,7 +504,7 @@ page {
         position: absolute;
         display: flex;
         flex-direction: row;
-        right: 0;
+        right: 44rpx;
         bottom: 22rpx;
       }
       .commodityShoppListSwitch {

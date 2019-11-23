@@ -6,8 +6,8 @@
       <div class="title">赠送记录</div>
       <scroll-view class="list" scroll-y="true" @scrolltolower="lower" :scroll-top="scrollTop">
         <div class="item" v-for="(item, index) in listData" :key="index" :style="index%2==0?'background:#e6f3f9':''">
-          <div class="content">{{index+1}}</div>
-          <div class="content">{{item.tag}}</div>
+          <div class="content">{{item.serial}}</div>
+          <!-- <div class="content">{{item.tag}}</div> -->
           <div class="content">{{item.name}}</div>
           <div class="content">机号:{{item.note}}</div>
           <div class="content">{{item.join_time}}</div>
@@ -28,7 +28,7 @@ export default {
       hasMore: true,
       scrollTop: 0,
       hasMounted: false,
-      loading: false
+      loading: true
     };
   },
   mounted() {
@@ -66,6 +66,7 @@ export default {
         } else {
           this.hasMore = false;
         }
+        this.loading = false
         try {
           wx.hideNavigationBarLoading();
           wx.stopPullDownRefresh();

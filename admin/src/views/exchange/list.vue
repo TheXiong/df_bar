@@ -13,6 +13,7 @@
     </div>
     <el-table :data="integralListData">
       <el-table-column prop="id" label="ID"></el-table-column>
+      <el-table-column prop="member_number" label="会员卡号"></el-table-column>
       <el-table-column prop="name" label="核销码"></el-table-column>
       <el-table-column prop="change" label="使用积分"></el-table-column>
       <el-table-column prop="join_time" label="时间">

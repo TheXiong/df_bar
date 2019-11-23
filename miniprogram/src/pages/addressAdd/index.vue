@@ -8,14 +8,27 @@
           type="text"
           v-model="member_number"
           autofocus
-          placeholder="卡号"
+          placeholder="请输入卡号"
+        />
+      </div>
+    </div>
+    <div class="addressAddContent">
+      <div class="addressAddContentList">
+        <div class="addressAddContentListTitle">网管ID</div>
+        <input
+          class="addressAddContentListInput"
+          type="text"
+          :disabled="userInfo.parent"
+          v-model="net_manager"
+          :style="userInfo.parent?'color:#ccc':''"
+          placeholder="数字，只能填写一次，不可更改"
         />
       </div>
     </div>
 
     <p v-if="messageStatus" class="message">您还没有填写卡号哦~</p>
 
-    <div class="addressAddButton" @click="addressAddButton">保存卡号</div>
+    <div class="addressAddButton" @click="addressAddButton">保存</div>
   </div>
 </template>
 
@@ -26,6 +39,7 @@ export default {
   data() {
     return {
       member_number: "",
+      net_manager: "",
       messageStatus: false
     };
   },
@@ -35,12 +49,11 @@ export default {
   watch: {
     userInfo() {
       this.member_number = this.userInfo.member_number;
+      this.net_manager = this.userInfo.parent ? this.userInfo.parent : "";
     }
   },
   created() {
     // let userInfo = wx.getStorageSync("userInfo");
-    console.log(this.userInfo);
-    
     this.member_number = this.userInfo.member_number;
   },
   methods: {
@@ -49,11 +62,44 @@ export default {
      */
     addressAddButton() {
       if (!this.member_number) {
+        wx.showToast({
+          title: "请输入会员卡号",
+          icon: "none",
+          duration: 2000
+        });
+        return;
+      }
+      if (!this.net_manager) {
+        wx.showToast({
+          title: "请输入网管ID",
+          icon: "none",
+          duration: 2000
+        });
+        return;
+      }
+      if (!/^[1-9]\d*$/.test(this.net_manager)) {
+        wx.showToast({
+          title: "网管ID只能为正整数",
+          icon: "none",
+          duration: 2000
+        });
+        return;
+      }
+      if (
+        this.userInfo.member_number == this.member_number &&
+        this.userInfo.parent == this.net_manager
+      ) {
+        wx.showToast({
+          title: "无更新",
+          icon: "none",
+          duration: 2000
+        });
         return;
       }
       this.$fly
         .post("/u/add_user_member_number", {
-          member_number: this.member_number
+          member_number: this.member_number,
+          net_manager: this.net_manager
         })
         .then(res => {
           this.$store.dispatch("getNewUserInfo");

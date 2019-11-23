@@ -154,7 +154,7 @@ if (false) {(function () {
       listData: [],
       scrollTop: 0,
       hasMore: true,
-      loading: false
+      loading: true
     };
   },
   mounted: function mounted() {
@@ -180,6 +180,7 @@ if (false) {(function () {
         } else {
           _this.hasMore = false;
         }
+        _this.loading = false;
         try {
           wx.hideNavigationBarLoading();
           wx.stopPullDownRefresh();
@@ -297,11 +298,11 @@ var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _
     staticClass: "th"
   }, [_vm._v("时间")]), _vm._v(" "), _c('view', {
     staticClass: "th"
-  }, [_vm._v("名称")]), _vm._v(" "), _c('view', {
+  }, [_vm._v("描述")]), _vm._v(" "), _c('view', {
     staticClass: "th"
-  }, [_vm._v("消耗积分")]), _vm._v(" "), _c('view', {
+  }, [_vm._v("本次积分")]), _vm._v(" "), _c('view', {
     staticClass: "th"
-  }, [_vm._v("剩余积分")])])
+  }, [_vm._v("累计积分")])])
 }]
 render._withStripped = true
 var esExports = { render: render, staticRenderFns: staticRenderFns }

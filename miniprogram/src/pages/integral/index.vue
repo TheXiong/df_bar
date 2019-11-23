@@ -5,9 +5,9 @@
       <view class="table">
         <view class="tr bg-w">
           <view class="th">时间</view>
-          <view class="th">名称</view>
-          <view class="th">消耗积分</view>
-          <view class="th">剩余积分</view>
+          <view class="th">描述</view>
+          <view class="th">本次积分</view>
+          <view class="th">累计积分</view>
         </view>
         <scroll-view
           class="scroll-container"
@@ -46,7 +46,7 @@ export default {
       listData: [],
       scrollTop: 0,
       hasMore: true,
-      loading: false
+      loading: true
     };
   },
   mounted() {
@@ -69,6 +69,7 @@ export default {
         } else {
           this.hasMore = false;
         }
+        this.loading = false
         try {
           wx.hideNavigationBarLoading();
           wx.stopPullDownRefresh();
