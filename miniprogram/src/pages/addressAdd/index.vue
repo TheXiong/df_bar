@@ -40,8 +40,15 @@ export default {
     return {
       member_number: "",
       net_manager: "",
-      messageStatus: false
+      messageStatus: false,
+      hasMounted: false
     };
+  },
+  onShow() {
+    if (this.hasMounted) {
+      this.member_number = this.userInfo.member_number;
+      this.net_manager = this.userInfo.parent ? this.userInfo.parent : "";
+    }
   },
   computed: {
     ...mapState(["userInfo"])
@@ -55,6 +62,9 @@ export default {
   created() {
     // let userInfo = wx.getStorageSync("userInfo");
     this.member_number = this.userInfo.member_number;
+  },
+  mounted(){
+    this.hasMounted = true
   },
   methods: {
     /**

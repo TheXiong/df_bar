@@ -50,8 +50,15 @@ global.webpackJsonp([15],{
     return {
       member_number: "",
       net_manager: "",
-      messageStatus: false
+      messageStatus: false,
+      hasMounted: false
     };
+  },
+  onShow: function onShow() {
+    if (this.hasMounted) {
+      this.member_number = this.userInfo.member_number;
+      this.net_manager = this.userInfo.parent ? this.userInfo.parent : "";
+    }
   },
 
   computed: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapState */])(["userInfo"])),
@@ -64,6 +71,9 @@ global.webpackJsonp([15],{
   created: function created() {
     // let userInfo = wx.getStorageSync("userInfo");
     this.member_number = this.userInfo.member_number;
+  },
+  mounted: function mounted() {
+    this.hasMounted = true;
   },
 
   methods: {

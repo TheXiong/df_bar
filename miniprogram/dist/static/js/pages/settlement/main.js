@@ -195,6 +195,14 @@ if (false) {(function () {
     payClickTest: function payClickTest() {
       var _this = this;
 
+      if (!this.userInfo.member_number) {
+        wx.showToast({
+          title: "请到我的会员信息完善资料",
+          icon: "none",
+          duration: 2000
+        });
+        return;
+      }
       this.$fly.post("/u/build_order", { infos: this.commdityShopping }).then(function (res) {
         wx.showToast({
           title: "下单成功",

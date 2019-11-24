@@ -13,7 +13,7 @@
           <span class="settlementHeaderAddressA" @click="toEditCardNumber" v-else>录入会员卡号 ></span>
         </p>
       </div>
-    </div> -->
+    </div>-->
 
     <div class="settlementMain">
       <i-cell-group>
@@ -91,6 +91,14 @@ export default {
   },
   methods: {
     payClickTest() {
+      if (!this.userInfo.member_number) {
+        wx.showToast({
+          title: "请到我的会员信息完善资料",
+          icon: "none",
+          duration: 2000
+        });
+        return;
+      }
       this.$fly
         .post("/u/build_order", { infos: this.commdityShopping })
         .then(res => {
@@ -100,7 +108,7 @@ export default {
             duration: 2000
           });
           this.$fly.post("/u/order_list", {}).then(res => {
-            this.$store.dispatch("setCommdityOrder",  res.data.data);
+            this.$store.dispatch("setCommdityOrder", res.data.data);
           });
           this.$store.dispatch("getNewUserInfo").then(res => {
             this.payShow = true;
