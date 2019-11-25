@@ -2,6 +2,18 @@
   <div class="addressAddContainer">
     <div class="addressAddContent">
       <div class="addressAddContentList">
+        <div class="addressAddContentListTitle">会员名称</div>
+        <input
+          class="addressAddContentListInput"
+          type="text"
+          v-model="name"
+          autofocus
+          placeholder="请输入会员名称"
+        />
+      </div>
+    </div>
+    <div class="addressAddContent">
+      <div class="addressAddContentList">
         <div class="addressAddContentListTitle">会员卡号</div>
         <input
           class="addressAddContentListInput"
@@ -38,6 +50,7 @@ export default {
   components: {},
   data() {
     return {
+      name: "",
       member_number: "",
       net_manager: "",
       messageStatus: false,
@@ -46,6 +59,7 @@ export default {
   },
   onShow() {
     if (this.hasMounted) {
+      this.name = this.userInfo.name;
       this.member_number = this.userInfo.member_number;
       this.net_manager = this.userInfo.parent ? this.userInfo.parent : "";
     }
@@ -55,22 +69,33 @@ export default {
   },
   watch: {
     userInfo() {
+      this.name = this.userInfo.name;
       this.member_number = this.userInfo.member_number;
       this.net_manager = this.userInfo.parent ? this.userInfo.parent : "";
     }
   },
   created() {
     // let userInfo = wx.getStorageSync("userInfo");
+    this.name = this.userInfo.name;
     this.member_number = this.userInfo.member_number;
+    this.net_manager = this.userInfo.parent ? this.userInfo.parent : "";
   },
-  mounted(){
-    this.hasMounted = true
+  mounted() {
+    this.hasMounted = true;
   },
   methods: {
     /**
      * 单击保存 保存信息到全局状态
      */
     addressAddButton() {
+      if (!this.name) {
+        wx.showToast({
+          title: "请输入会员名称",
+          icon: "none",
+          duration: 2000
+        });
+        return;
+      }
       if (!this.member_number) {
         wx.showToast({
           title: "请输入会员卡号",
@@ -96,6 +121,7 @@ export default {
         return;
       }
       if (
+        this.userInfo.name == this.name &&
         this.userInfo.member_number == this.member_number &&
         this.userInfo.parent == this.net_manager
       ) {
@@ -108,6 +134,7 @@ export default {
       }
       this.$fly
         .post("/u/add_user_member_number", {
+          name: this.name,
           member_number: this.member_number,
           net_manager: this.net_manager
         })

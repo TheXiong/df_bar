@@ -10,9 +10,6 @@
       <view class="_div data-v-9ef0214c commodityListShoppContent">
         <scroll-view scroll-y="true" bindscrolltolower="handleProxy" scroll-top="{{scrollTop}}" class="_scroll-view data-v-9ef0214c commodityToggleList commodityToggle" data-eventid="{{'3'}}" data-comkey="{{$k}}">
           <view class="_div data-v-9ef0214c commodityListShoppContentD" wx:key="index" key="{{index}}" id="{{'product'+product.id}}" wx:for="{{productList}}" wx:for-index="index" wx:for-item="product">
-            <view class="_div data-v-9ef0214c commodityListShoppContentDImg">
-              <image src="{{product.img}}" alt="{{product.alt}}" class="_img data-v-9ef0214c"></image>
-            </view>
             <view class="_div data-v-9ef0214c commodityListShoppContentDD">
               <view class="_p data-v-9ef0214c commodityListShoppContentDDT">{{product.name}}</view>
               <view class="_p data-v-9ef0214c commodityListShoppContentDDM">{{product.integral}}积分</view>

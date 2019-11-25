@@ -42,12 +42,25 @@ global.webpackJsonp([15],{
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   components: {},
   data: function data() {
     return {
+      name: "",
       member_number: "",
       net_manager: "",
       messageStatus: false,
@@ -56,6 +69,7 @@ global.webpackJsonp([15],{
   },
   onShow: function onShow() {
     if (this.hasMounted) {
+      this.name = this.userInfo.name;
       this.member_number = this.userInfo.member_number;
       this.net_manager = this.userInfo.parent ? this.userInfo.parent : "";
     }
@@ -64,13 +78,16 @@ global.webpackJsonp([15],{
   computed: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapState */])(["userInfo"])),
   watch: {
     userInfo: function userInfo() {
+      this.name = this.userInfo.name;
       this.member_number = this.userInfo.member_number;
       this.net_manager = this.userInfo.parent ? this.userInfo.parent : "";
     }
   },
   created: function created() {
     // let userInfo = wx.getStorageSync("userInfo");
+    this.name = this.userInfo.name;
     this.member_number = this.userInfo.member_number;
+    this.net_manager = this.userInfo.parent ? this.userInfo.parent : "";
   },
   mounted: function mounted() {
     this.hasMounted = true;
@@ -83,6 +100,14 @@ global.webpackJsonp([15],{
     addressAddButton: function addressAddButton() {
       var _this = this;
 
+      if (!this.name) {
+        wx.showToast({
+          title: "请输入会员名称",
+          icon: "none",
+          duration: 2000
+        });
+        return;
+      }
       if (!this.member_number) {
         wx.showToast({
           title: "请输入会员卡号",
@@ -107,7 +132,7 @@ global.webpackJsonp([15],{
         });
         return;
       }
-      if (this.userInfo.member_number == this.member_number && this.userInfo.parent == this.net_manager) {
+      if (this.userInfo.name == this.name && this.userInfo.member_number == this.member_number && this.userInfo.parent == this.net_manager) {
         wx.showToast({
           title: "无更新",
           icon: "none",
@@ -116,6 +141,7 @@ global.webpackJsonp([15],{
         return;
       }
       this.$fly.post("/u/add_user_member_number", {
+        name: this.name,
         member_number: this.member_number,
         net_manager: this.net_manager
       }).then(function (res) {
@@ -140,6 +166,35 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "addressAddContentList"
   }, [_c('div', {
     staticClass: "addressAddContentListTitle"
+  }, [_vm._v("会员名称")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.name),
+      expression: "name"
+    }],
+    staticClass: "addressAddContentListInput",
+    attrs: {
+      "type": "text",
+      "autofocus": "",
+      "placeholder": "请输入会员名称",
+      "eventid": '0'
+    },
+    domProps: {
+      "value": (_vm.name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.name = $event.target.value
+      }
+    }
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "addressAddContent"
+  }, [_c('div', {
+    staticClass: "addressAddContentList"
+  }, [_c('div', {
+    staticClass: "addressAddContentListTitle"
   }, [_vm._v("会员卡号")]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
@@ -152,7 +207,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "type": "text",
       "autofocus": "",
       "placeholder": "请输入卡号",
-      "eventid": '0'
+      "eventid": '1'
     },
     domProps: {
       "value": (_vm.member_number)
@@ -182,7 +237,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "type": "text",
       "disabled": _vm.userInfo.parent,
       "placeholder": "数字，只能填写一次，不可更改",
-      "eventid": '1'
+      "eventid": '2'
     },
     domProps: {
       "value": (_vm.net_manager)
@@ -198,7 +253,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   }, [_vm._v("您还没有填写卡号哦~")]) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "addressAddButton",
     attrs: {
-      "eventid": '2'
+      "eventid": '3'
     },
     on: {
       "click": _vm.addressAddButton
