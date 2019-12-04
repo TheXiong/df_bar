@@ -1,0 +1,5 @@
+<template name="index$73ad922c">
+  <view class="_div data-v-5e109b58">
+    <button open-type="getUserInfo" getuserinfo="{{getuserinfoCallback}}" class="_button data-v-5e109b58">授权登录</button>
+  </view>
+</template>

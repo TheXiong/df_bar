@@ -78,7 +78,7 @@ export default {
   methods: {
     getList() {
       this.$fly.post("/u/order_list", {}).then(res => {
-        this.$store.dispatch("setCommdityOrder", res.data.data);
+        this.$store.dispatch("setCommdityOrder", res.data.data || []);
         try {
           wx.hideNavigationBarLoading();
           wx.stopPullDownRefresh();

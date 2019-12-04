@@ -263,11 +263,11 @@ if (false) {(function () {
       return Object(__WEBPACK_IMPORTED_MODULE_1__utils_index__["a" /* formatTime */])(new Date(log));
     });
 
-    wx.setStorageSync("token", "uZvAdoXqPr41AvVzscbFrg==");
-    var token = wx.getStorageSync("token");
-    if (token) {
-      this.getUserInfo();
-    }
+    // wx.setStorageSync("token", "uZvAdoXqPr41AvVzscbFrg==");
+    // const token = wx.getStorageSync("token");
+    // if (token) {
+    //   this.getUserInfo();
+    // }
   }
 });
 

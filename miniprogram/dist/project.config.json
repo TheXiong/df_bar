@@ -22,16 +22,14 @@
 		}
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.0.4",
-	"appid": "wx6d4059dd02b618cf",
+	"libVersion": "2.9.4",
+	"appid": "wxc953f77d7a833302",
 	"projectname": "df",
 	"cloudfunctionTemplateRoot": "",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
 	"scripts": {},
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,

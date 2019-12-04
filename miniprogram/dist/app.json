@@ -1,13 +1,13 @@
 {
   "pages": [
-    "pages/login/main",
-    "pages/addressAdd/main",
     "pages/commodity/main",
+    "pages/addressAdd/main",
     "pages/contactus/main",
     "pages/counter/main",
     "pages/exchange/main",
     "pages/feedback/main",
     "pages/integral/main",
+    "pages/login/main",
     "pages/logs/main",
     "pages/order/main",
     "pages/register/main",

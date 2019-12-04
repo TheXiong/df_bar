@@ -40,7 +40,7 @@
           >
             <!-- <div class="commodityListShoppContentDImg">
               <img :src="product.img" :alt="product.alt" />
-            </div> -->
+            </div>-->
             <div class="commodityListShoppContentDD">
               <p class="commodityListShoppContentDDT">{{product.name}}</p>
               <p class="commodityListShoppContentDDM">{{product.integral}}积分</p>
@@ -134,9 +134,10 @@ export default {
       loading: true
     };
   },
+  
   onShow() {
     if (this.hasMounted) {
-      this.productList = []
+      this.productList = [];
       this.getList();
     }
   },
@@ -227,7 +228,7 @@ export default {
             this.productList = [];
             this.hasMore = false;
           }
-          this.loading = false
+          this.loading = false;
           try {
             wx.hideNavigationBarLoading();
             wx.stopPullDownRefresh();

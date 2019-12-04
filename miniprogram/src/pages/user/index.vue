@@ -40,9 +40,9 @@
       </i-cell-group>
     </div>
 
-    <div class="userLogIn" @click="logout">
+    <!-- <div class="userLogIn" @click="logout">
       <a>退出登陆</a>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -60,12 +60,12 @@ export default {
     toExchange() {
       wx.navigateTo({ url: "../exchange/main" });
     },
-    logout() {
-      wx.removeStorageSync("token");
-      wx.navigateTo({
-        url: "../login/main"
-      });
-    }
+    // logout() {
+    //   wx.removeStorageSync("token");
+    //   wx.navigateTo({
+    //     url: "../login/main"
+    //   });
+    // }
   }
 };
 </script>

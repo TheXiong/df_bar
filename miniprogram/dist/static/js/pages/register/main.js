@@ -398,13 +398,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     on: {
       "click": _vm.login
     }
-  }, [_vm._v("注册")]), _vm._v(" "), _c('p', {
-    staticClass: "login-text"
-  }, [_vm._v("\n    登陆/注册即视为同意\n    "), _c('span', {
-    staticStyle: {
-      "color": "#8ECEF4"
-    }
-  }, [_vm._v("meEdu协议")])]), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('p', {
+  }, [_vm._v("注册")]), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('p', {
     staticClass: "login-text",
     attrs: {
       "eventid": '6'

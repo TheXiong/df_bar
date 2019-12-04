@@ -1,5 +1,0 @@
-<template name="index$8431698e">
-  <view class="_div data-v-2a4801ab contactusContainer">
-    <image wx:if="{{src}}" mode="aspectFit" src="{{baseUrl+src}}" class="_image data-v-2a4801ab"></image>
-  </view>
-</template>

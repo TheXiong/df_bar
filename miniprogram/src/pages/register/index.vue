@@ -38,10 +38,10 @@
       />
     </view>
     <button class="btn" @click="login">注册</button>
-    <p class="login-text">
+    <!-- <p class="login-text">
       登陆/注册即视为同意
       <span style="color: #8ECEF4;">meEdu协议</span>
-    </p>
+    </p> -->
     <br />
     <br />
     <br />

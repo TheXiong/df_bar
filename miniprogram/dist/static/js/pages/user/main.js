@@ -157,12 +157,6 @@ if (false) {(function () {
     toOrderPages: function toOrderPages() {},
     toExchange: function toExchange() {
       wx.navigateTo({ url: "../exchange/main" });
-    },
-    logout: function logout() {
-      wx.removeStorageSync("token");
-      wx.navigateTo({
-        url: "../login/main"
-      });
     }
   }
 });
@@ -271,15 +265,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "mpcomid": '8'
     },
     slot: "icon"
-  })], 1)], 1)], 1), _vm._v(" "), _c('div', {
-    staticClass: "userLogIn",
-    attrs: {
-      "eventid": '1'
-    },
-    on: {
-      "click": _vm.logout
-    }
-  }, [_c('a', [_vm._v("退出登陆")])])])
+  })], 1)], 1)], 1)])
 }
 var staticRenderFns = []
 render._withStripped = true

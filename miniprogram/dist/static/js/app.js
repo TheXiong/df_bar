@@ -27,7 +27,7 @@ fly.interceptors.request.use(function (request) {
 });
 
 fly.interceptors.response.use(function (response) {
-    if (response.data.code == 0) {
+    if (response.data.code == 0 || response.data.openid) {
         return response;
     } else {
         wx.showToast({
@@ -73,7 +73,10 @@ app.$mount();
   // 这个字段走 app.json
   config: {
     // 页面前带有 ^ 符号的，会被编译成首页，其他页面可以选填，我们会自动把 webpack entry 里面的入口页面加进去
-    pages: ['^pages/login/main', 'pages/register/main', 'pages/commodity/main', 'pages/order/main', 'pages/shopp/main', 'pages/user/main'],
+    pages: [
+    // '^pages/login/main',
+    // 'pages/register/main',
+    '^pages/commodity/main', 'pages/order/main', 'pages/shopp/main', 'pages/user/main'],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#0097ff',
@@ -179,12 +182,35 @@ if (false) {(function () {
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   created: function created() {
-    // 调用API从本地缓存中获取数据
-    var logs = wx.getStorageSync('logs') || [];
-    logs.unshift(Date.now());
-    wx.setStorageSync('logs', logs);
+    var _this = this;
 
-    console.log('app created and cache logs by setStorageSync');
+    // 调用API从本地缓存中获取数据
+    var logs = wx.getStorageSync("logs") || [];
+    logs.unshift(Date.now());
+    wx.setStorageSync("logs", logs);
+
+    var token = wx.getStorageSync("token");
+    if (token) {
+      this.getUserInfo();
+    } else {
+      wx.login({
+        success: function success(res) {
+          var url = "https://api.weixin.qq.com/sns/jscode2session?appid=wxc953f77d7a833302&secret=c8e20453a0a4d79728f3368d7d86d4e1&js_code=" + res.code + "&grant_type=authorization_code";
+          _this.$fly.get(url).then(function (res) {
+            _this.$fly.post("/c/login_wechat", { openid: res.data.openid }).then(function (res) {
+              wx.setStorageSync("token", res.headers.token);
+              _this.getUserInfo();
+            });
+          });
+        }
+      });
+    }
+  },
+
+  methods: {
+    getUserInfo: function getUserInfo() {
+      this.$store.dispatch("getNewUserInfo").then(function (res) {});
+    }
   }
 });
 

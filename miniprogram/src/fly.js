@@ -20,7 +20,7 @@ fly.interceptors.request.use(request => {
 
 fly.interceptors.response.use(
     (response) => {
-        if (response.data.code == 0) {
+        if (response.data.code == 0 ||  response.data.openid) {
             return response
         } else {
             wx.showToast({

@@ -173,11 +173,11 @@ export default {
     const logs = wx.getStorageSync("logs") || [];
     this.logs = logs.map(log => formatTime(new Date(log)));
 
-    wx.setStorageSync("token", "uZvAdoXqPr41AvVzscbFrg==");
-    const token = wx.getStorageSync("token");
-    if (token) {
-      this.getUserInfo();
-    }
+    // wx.setStorageSync("token", "uZvAdoXqPr41AvVzscbFrg==");
+    // const token = wx.getStorageSync("token");
+    // if (token) {
+    //   this.getUserInfo();
+    // }
   }
 };
 </script>

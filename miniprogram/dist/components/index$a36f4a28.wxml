@@ -28,8 +28,5 @@
         </i-cell>
       </i-cell-group>
     </view>
-    <view class="_div data-v-8acbfed8 userLogIn" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}">
-      <view class="_a data-v-8acbfed8">退出登陆</view>
-    </view>
   </view>
 </template>

@@ -178,7 +178,7 @@ if (false) {(function () {
       var _this = this;
 
       this.$fly.post("/u/order_list", {}).then(function (res) {
-        _this.$store.dispatch("setCommdityOrder", res.data.data);
+        _this.$store.dispatch("setCommdityOrder", res.data.data || []);
         try {
           wx.hideNavigationBarLoading();
           wx.stopPullDownRefresh();
