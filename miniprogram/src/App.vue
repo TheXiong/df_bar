@@ -12,7 +12,7 @@ export default {
     } else {
       wx.login({
         success: res => {
-          let url = `https://api.weixin.qq.com/sns/jscode2session?appid=wxc953f77d7a833302&secret=c8e20453a0a4d79728f3368d7d86d4e1&js_code=${
+          let url = `https://api.weixin.qq.com/sns/jscode2session?appid=wxcdeee7ca5289e27b&secret=fdfae97f14114f48b48040ff86774897&js_code=${
             res.code
           }&grant_type=authorization_code`;
           this.$fly.get(url).then(res => {

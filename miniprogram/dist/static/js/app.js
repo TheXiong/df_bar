@@ -195,7 +195,7 @@ if (false) {(function () {
     } else {
       wx.login({
         success: function success(res) {
-          var url = "https://api.weixin.qq.com/sns/jscode2session?appid=wxc953f77d7a833302&secret=c8e20453a0a4d79728f3368d7d86d4e1&js_code=" + res.code + "&grant_type=authorization_code";
+          var url = "https://api.weixin.qq.com/sns/jscode2session?appid=wxcdeee7ca5289e27b&secret=fdfae97f14114f48b48040ff86774897&js_code=" + res.code + "&grant_type=authorization_code";
           _this.$fly.get(url).then(function (res) {
             _this.$fly.post("/c/login_wechat", { openid: res.data.openid }).then(function (res) {
               wx.setStorageSync("token", res.headers.token);
