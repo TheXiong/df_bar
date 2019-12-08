@@ -151,6 +151,16 @@ if (false) {(function () {
   data: function data() {
     return {};
   },
+  onShow: function onShow() {
+    this.$store.dispatch("getNewUserInfo");
+  },
+  onPullDownRefresh: function onPullDownRefresh() {
+    wx.showNavigationBarLoading();
+    this.$store.dispatch("getNewUserInfo").then(function (res) {
+      wx.hideNavigationBarLoading();
+      wx.stopPullDownRefresh();
+    });
+  },
 
   computed: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapState */])(["userInfo"])),
   methods: {
@@ -158,6 +168,13 @@ if (false) {(function () {
     toExchange: function toExchange() {
       wx.navigateTo({ url: "../exchange/main" });
     }
+    // logout() {
+    //   wx.removeStorageSync("token");
+    //   wx.navigateTo({
+    //     url: "../login/main"
+    //   });
+    // }
+
   }
 });
 

@@ -1,0 +1,17 @@
+<template name="index$de9a8f96">
+  <view class="_div data-v-80b4adb2 shoppcontainer">
+    <rich-text class="_div data-v-80b4adb2 tip" nodes="{{tip}}"></rich-text>
+    <view class="_div data-v-80b4adb2 gift-list-container">
+      <view class="_div data-v-80b4adb2 title">赠送记录</view>
+      <scroll-view class="_scroll-view data-v-80b4adb2 list" scroll-y="true" bindscrolltolower="handleProxy" scroll-top="{{scrollTop}}" data-eventid="{{'0'}}" data-comkey="{{$k}}">
+        <view class="_div data-v-80b4adb2 item" wx:key="index" key="{{index}}" wx:for="{{listData}}" wx:for-index="index" wx:for-item="item" style=" {{index % 2 == 0 ? 'background:#e6f3f9' : ''}}">
+          <view class="_div data-v-80b4adb2 content">{{item.serial}}</view>
+          <view class="_div data-v-80b4adb2 content">{{item.name}}</view>
+          <view class="_div data-v-80b4adb2 content">机号:{{item.note}}</view>
+          <view class="_div data-v-80b4adb2 content">{{item.join_time}}</view>
+        </view>
+        <i-load-more tip="{{hasMore?'加载数据中':'暂无数据'}}" loading="{{loading}}" class="_i-load-more data-v-80b4adb2"></i-load-more>
+      </scroll-view>
+    </view>
+  </view>
+</template>

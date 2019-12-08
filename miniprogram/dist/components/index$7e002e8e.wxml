@@ -1,0 +1,25 @@
+<template name="index$7e002e8e">
+  <view class="_div data-v-4dfe6054 addressAddContainer">
+    <view class="_div data-v-4dfe6054 addressAddContent">
+      <view class="_div data-v-4dfe6054 addressAddContentList">
+        <view class="_div data-v-4dfe6054 addressAddContentListTitle">会员名称</view>
+        <input class="_input data-v-4dfe6054 addressAddContentListInput" type="text" value="{{name}}" bindinput="handleProxy" autofocus placeholder="请输入会员名称" data-eventid="{{'0'}}" data-comkey="{{$k}}" />
+      </view>
+    </view>
+    <view class="_div data-v-4dfe6054 addressAddContent">
+      <view class="_div data-v-4dfe6054 addressAddContentList">
+        <view class="_div data-v-4dfe6054 addressAddContentListTitle">会员卡号</view>
+        <input class="_input data-v-4dfe6054 addressAddContentListInput" type="text" value="{{member_number}}" bindinput="handleProxy" autofocus placeholder="请输入卡号" data-eventid="{{'1'}}" data-comkey="{{$k}}" />
+      </view>
+    </view>
+    <view class="_div data-v-4dfe6054 addressAddContent">
+      <view class="_div data-v-4dfe6054 addressAddContentList">
+        <view class="_div data-v-4dfe6054 addressAddContentListTitle">网管ID</view>
+        <input class="_input data-v-4dfe6054 addressAddContentListInput" type="text" disabled="{{userInfo.parent}}" value="{{net_manager}}" bindinput="handleProxy" placeholder="数字，只能填写一次，不可更改" data-eventid="{{'2'}}" data-comkey="{{$k}}" style=" {{userInfo.parent ? 'color:#ccc' : ''}}"
+        />
+      </view>
+    </view>
+    <view wx:if="{{messageStatus}}" class="_p data-v-4dfe6054 message">您还没有填写卡号哦~</view>
+    <view class="_div data-v-4dfe6054 addressAddButton" bindtap="handleProxy" data-eventid="{{'3'}}" data-comkey="{{$k}}">保存</view>
+  </view>
+</template>

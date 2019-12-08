@@ -14,7 +14,7 @@ var fly = new Fly();
 //设置超时
 // fly.config.timeout=10000;
 //设置请求基地址
-fly.config.baseURL = "https://mylife028.cn/api/v1/";
+fly.config.baseURL = "https://xiaoqusd.com/api/v1/";
 //设置公共的Get参数
 // fly.config.params={"token":"testtoken"};
 fly.interceptors.request.use(function (request) {
@@ -195,9 +195,11 @@ if (false) {(function () {
     } else {
       wx.login({
         success: function success(res) {
-          var url = "https://api.weixin.qq.com/sns/jscode2session?appid=wxcdeee7ca5289e27b&secret=fdfae97f14114f48b48040ff86774897&js_code=" + res.code + "&grant_type=authorization_code";
-          _this.$fly.get(url).then(function (res) {
-            _this.$fly.post("/c/login_wechat", { openid: res.data.openid }).then(function (res) {
+          // let url = `https://api.weixin.qq.com/sns/jscode2session?appid=wxcdeee7ca5289e27b&secret=fdfae97f14114f48b48040ff86774897&js_code=${
+          //   res.code
+          // }&grant_type=authorization_code`;
+          _this.$fly.post("/c/get_wechat_openid_by_code", { code: res.code }).then(function (res) {
+            _this.$fly.post("/c/login_wechat", { openid: JSON.parse(res.data.data.data).openid }).then(function (res) {
               wx.setStorageSync("token", res.headers.token);
               _this.getUserInfo();
             });
@@ -209,7 +211,7 @@ if (false) {(function () {
 
   methods: {
     getUserInfo: function getUserInfo() {
-      this.$store.dispatch("getNewUserInfo").then(function (res) {});
+      this.$store.dispatch("getNewUserInfo");
     }
   }
 });

@@ -42,7 +42,7 @@
 
     <!-- <div class="userLogIn" @click="logout">
       <a>退出登陆</a>
-    </div> -->
+    </div>-->
   </div>
 </template>
 
@@ -52,6 +52,16 @@ export default {
   data() {
     return {};
   },
+  onShow() {
+    this.$store.dispatch("getNewUserInfo");
+  },
+  onPullDownRefresh() {
+    wx.showNavigationBarLoading();
+    this.$store.dispatch("getNewUserInfo").then(res => {
+      wx.hideNavigationBarLoading();
+      wx.stopPullDownRefresh();
+    });
+  },
   computed: {
     ...mapState(["userInfo"])
   },
@@ -59,7 +69,7 @@ export default {
     toOrderPages() {},
     toExchange() {
       wx.navigateTo({ url: "../exchange/main" });
-    },
+    }
     // logout() {
     //   wx.removeStorageSync("token");
     //   wx.navigateTo({

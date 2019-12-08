@@ -12,12 +12,12 @@ export default {
     } else {
       wx.login({
         success: res => {
-          let url = `https://api.weixin.qq.com/sns/jscode2session?appid=wxcdeee7ca5289e27b&secret=fdfae97f14114f48b48040ff86774897&js_code=${
-            res.code
-          }&grant_type=authorization_code`;
-          this.$fly.get(url).then(res => {
+          // let url = `https://api.weixin.qq.com/sns/jscode2session?appid=wxcdeee7ca5289e27b&secret=fdfae97f14114f48b48040ff86774897&js_code=${
+          //   res.code
+          // }&grant_type=authorization_code`;
+          this.$fly.post("/c/get_wechat_openid_by_code",{code:res.code}).then(res => {
             this.$fly
-              .post("/c/login_wechat", { openid: res.data.openid })
+              .post("/c/login_wechat", { openid: JSON.parse(res.data.data.data).openid })
               .then(res => {
                 wx.setStorageSync("token", res.headers.token);
                 this.getUserInfo();
@@ -29,8 +29,7 @@ export default {
   },
   methods: {
     getUserInfo() {
-      this.$store.dispatch("getNewUserInfo").then(res => {
-      });
+      this.$store.dispatch("getNewUserInfo")
     }
   }
 };
