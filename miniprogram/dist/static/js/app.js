@@ -14,7 +14,7 @@ var fly = new Fly();
 //设置超时
 // fly.config.timeout=10000;
 //设置请求基地址
-fly.config.baseURL = "https://xiaoqusd.com/api/v1/";
+fly.config.baseURL = "https://028xianmei.cn/api/v1/";
 //设置公共的Get参数
 // fly.config.params={"token":"testtoken"};
 fly.interceptors.request.use(function (request) {
